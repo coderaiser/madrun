@@ -1,6 +1,6 @@
 # Madrun [![License][LicenseIMGURL]][LicenseURL] [![NPM version][NPMIMGURL]][NPMURL] [![Dependency Status][DependencyStatusIMGURL]][DependencyStatusURL] [![Build Status][BuildStatusIMGURL]][BuildStatusURL] [![Coverage Status][CoverageIMGURL]][CoverageURL]
 
-CLI tool to run multiple npm-scripts in a madly comfortable way.
+CLI tool to run multiple npm-scripts in a madly comfortable way. Can be used together with [redrun](https://github.com/coderaiser/redrun).
 
 ## Install
 
@@ -31,9 +31,34 @@ madrun-completion >> ~/.zshrc
 
 You may also pipe the output of madrun-completion to a file such as `/usr/local/etc/bash_completion.d/madrun` if you have a system that will read that file for you.
 
+## API
+
+`madrun` supports next `API` set:
+
+### run(name, [opt])
+Run script by a name or regexp.
+
+- `name` - name of a sript
+- `opt` - options to run with
+- `scripts` - all scripts set (need for embedding only)
+
+### series(names, [opt, scripts])
+Run scripts by a name or regexp one-by-one.
+
+- `name` - array of names of scrips
+- `opt` - options to run with
+- `scripts` - all scripts set (need for embedding only)
+
+### parallel (names, [opt, scripts])
+Run scripts by a name or regexp parallel.
+
+- `name` - array of names of scrips
+- `opt` - options to run with
+- `scripts` - all scripts set (need for embedding only)
+
 ## Example
 
-Let's install `madrun` as `devDependency` with:
+Let's install `madrun` and save it as `devDependency` with:
 
 ```sh
 npm i madrun -D
@@ -68,6 +93,10 @@ For parallel fix with can use:
 $ madrun fix:lint
 > eslint eslint lib --fix & eslin bin --fix
 ```
+
+## Related
+
+- [redrun](https://github.com/coderaiser/redrun) - CLI tool to run multiple npm-scripts fast.
 
 ## License
 
