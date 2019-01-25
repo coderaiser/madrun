@@ -26,7 +26,7 @@
     "exclude": [
       ".*",
       "test"
-      ]
+    ]
   },
   "keywords": [
     "madrun",
@@ -71,5 +71,8 @@
     "nyc": "^13.0.1",
     "putout": "^3.13.2",
     "supertape": "^1.2.1"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
