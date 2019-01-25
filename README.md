@@ -51,7 +51,7 @@ module.exports = {
     'lint:lib': 'eslint lib',
     'lint:bin': 'eslint bin',
     'lint': run('lint:*'),
-    'fix:lint': parallel(['lint:lib, 'lint:bin'], 'fix');
+    'fix:lint': parallel(['lint:lib, 'lint:bin'], 'fix'),
 };
 ```
 
