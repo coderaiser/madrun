@@ -2,17 +2,13 @@
 
 'use strict';
 
-const {
-    dirname
-} = require('path');
+const {dirname} = require('path');
 
 const findUp = require('find-up');
 
 const {series} = require('..');
 
-const {
-    exit
-} = process;
+const {exit} = process;
 
 const args = require('yargs-parser')(process.argv.slice(2), {
     configuration: {
@@ -36,7 +32,7 @@ console.log(`> ${cmd}`);
 execute(cmd);
 
 function execute(cmd) {
-    const execSync = require('child_process').execSync;
+    const {execSync} = require('child_process');
     const tryCatch = require('try-catch');
     
     const [e] = tryCatch(execSync, cmd, {

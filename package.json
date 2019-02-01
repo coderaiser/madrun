@@ -63,10 +63,10 @@
     "yargs-parser": "^12.0.0"
   },
   "devDependencies": {
-    "@putout/eslint-config": "^1.1.0",
     "coveralls": "^3.0.0",
     "eslint": "^5.1.0",
     "eslint-plugin-node": "^8.0.0",
+    "eslint-plugin-putout": "^1.0.2",
     "nodemon": "^1.9.1",
     "nyc": "^13.0.1",
     "putout": "^3.13.2",
