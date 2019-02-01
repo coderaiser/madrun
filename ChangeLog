@@ -1,3 +1,10 @@
+2019.02.01, v1.1.0
+
+feature:
+- (package) yargs-parser v12.0.0
+- (madrun) add support of pre, post
+
+
 2019.01.25, v1.0.1
 
 fix:
