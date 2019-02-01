@@ -90,3 +90,16 @@ test('madrun: parallel', (t) => {
     t.end();
 });
 
+test('madrun: pre, post', (t) => {
+    const scripts = {
+        'prelint': () => 'echo pre',
+        'lint': () => 'eslint lib',
+        'postlint': () => 'echo post',
+    };
+    
+    const result = run('lint', '', scripts);
+    const expected = 'echo pre && eslint lib && echo post';
+    
+    t.equal(result, expected, 'should equal');
+    t.end();
+});
