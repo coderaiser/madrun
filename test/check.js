@@ -10,10 +10,7 @@ test('madrun check', (t) => {
         coverage: () => {},
     });
     
-    const expected = [
-        'test',
-        'lint',
-    ];
+    const expected = `echo 'fix scripts first: "test", "lint"'`;
     
     t.deepEqual(result, expected, 'should equal');
     t.end();

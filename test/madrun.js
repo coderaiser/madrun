@@ -31,6 +31,18 @@ test('madrun: run: not found', (t) => {
     t.end();
 });
 
+test('madrun: run: problem script', (t) => {
+    const scripts = {
+        hello: 'world',
+    };
+    
+    const [, data] = tryCatch(run, 'test', '', scripts);
+    const expected = `echo 'fix scripts first: "hello"'`;
+    
+    t.equal(data, expected, 'should equal');
+    t.end();
+});
+
 test('madrun: run: not found: no scripts provided', (t) => {
     const [e] = tryCatch(run, 'abc', '');
     const expected = 'one of scripts not found: abc';

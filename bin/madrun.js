@@ -22,8 +22,8 @@ const [dir, script] = getScript();
 
 const problems = check(script);
 
-if (problems.length) {
-    console.error(`fix scripts first: "${problems.join('", "')}"`);
+if (problems) {
+    execute(problems);
     process.exit(1);
 }
 
