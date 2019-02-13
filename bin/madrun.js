@@ -3,10 +3,10 @@
 'use strict';
 
 const {dirname} = require('path');
-
 const findUp = require('find-up');
 
 const {series} = require('..');
+const check = require('../lib/check');
 
 const {exit} = process;
 
@@ -19,6 +19,13 @@ const args = require('yargs-parser')(process.argv.slice(2), {
 const names = args._;
 const options = getOptions(args['--']);
 const [dir, script] = getScript();
+
+const problems = check(script);
+
+if (problems.length) {
+    console.error(`fix scripts first: "${problems.join('", "')}"`);
+    process.exit(1);
+}
 
 if (!names.length) {
     console.log(Object.keys(script).join('\n'));

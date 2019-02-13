@@ -103,3 +103,4 @@ test('madrun: pre, post', (t) => {
     t.equal(result, expected, 'should equal');
     t.end();
 });
+
