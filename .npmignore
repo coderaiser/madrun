@@ -2,6 +2,7 @@
 test
 redrun.png
 madrun.js
+!bin/madrun.js
 redrun.ai
 *.md
 !README.md
