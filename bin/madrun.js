@@ -11,11 +11,15 @@ const check = require('../lib/check');
 const {exit} = process;
 
 const args = require('yargs-parser')(process.argv.slice(2), {
+    boolean: [
+        'fix',
+    ],
     configuration: {
         'populate--': true,
     },
 });
 
+const {fix} = args;
 const names = args._;
 const options = getOptions(args['--']);
 const [dir, script] = getScript();
@@ -23,7 +27,18 @@ const [dir, script] = getScript();
 const problems = check(script);
 
 if (problems) {
-    execute(problems);
+    const result = putoutMadrun(`${dir}/.madrun.js`, {fix});
+    
+    if (fix) {
+        process.exit();
+    } else {
+        console.log(result);
+        process.exit(1);
+    }
+}
+
+if (problems) {
+    execute(`echo '${problems}'`);
     process.exit(1);
 }
 
@@ -72,5 +87,21 @@ function getScript() {
         dirname(path),
         require(path),
     ];
+}
+
+function putoutMadrun(name, {fix}) {
+    const putout = require('../lib/fix');
+    const {
+        readFileSync,
+        writeFileSync,
+    } = require('fs');
+    
+    const data = readFileSync(name, 'utf8');
+    const {places, code} = putout(data);
+    
+    if (fix)
+        writeFileSync(name, code);
+    
+    return places;
 }
 
