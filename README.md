@@ -10,7 +10,7 @@ npm i madrun -g
 
 # Usage
 
-First thing you should do is create `.madrun.js` file.
+First thing you should do is create `madrun.js` file.
 Then you can run `madrun` without args to see list of a scripts. Or run: 
 
 ```
@@ -64,7 +64,7 @@ Let's install `madrun` and save it as `devDependency` with:
 npm i madrun -D
 ```
 
-Let's create file `.madrun.js`:
+Let's create file `madrun.js`:
 
 ```js
 const {

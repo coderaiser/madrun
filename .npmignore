@@ -1,6 +1,7 @@
 .*
 test
 redrun.png
+madrun.js
 redrun.ai
 *.md
 !README.md
