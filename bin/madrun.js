@@ -12,6 +12,7 @@ const {exit} = process;
 
 const args = require('yargs-parser')(process.argv.slice(2), {
     boolean: [
+        'init',
         'fix',
     ],
     configuration: {
@@ -19,7 +20,17 @@ const args = require('yargs-parser')(process.argv.slice(2), {
     },
 });
 
-const {fix} = args;
+let {fix, init} = args;
+
+if (init) {
+    const init = require('./init');
+    fix = true;
+    
+    init.create();
+    init.patchNpmIgnore();
+    init.patchPackage();
+}
+
 const names = args._;
 const options = getOptions(args['--']);
 const [dir, script] = getScript();
@@ -27,7 +38,7 @@ const [dir, script] = getScript();
 const problems = check(script);
 
 if (problems) {
-    const result = putoutMadrun(`${dir}/madrun.js`, {fix});
+    const result = putoutMadrun(dir, {fix});
     
     if (fix) {
         process.exit();
@@ -36,6 +47,9 @@ if (problems) {
         process.exit(1);
     }
 }
+
+if (init)
+    return;
 
 if (problems) {
     execute(`echo '${problems}'`);
@@ -89,7 +103,8 @@ function getScript() {
     ];
 }
 
-function putoutMadrun(name, {fix}) {
+function putoutMadrun(dir, {fix}) {
+    const name = `${dir}/madrun.js`;
     const putout = require('../lib/fix');
     const {
         readFileSync,

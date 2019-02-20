@@ -52,7 +52,9 @@
   },
   "homepage": "https://github.com/coderaiser/madrun",
   "license": "MIT",
-  "engine": ">=8",
+  "engines": {
+    "node": ">=8.3.0"
+  },
   "dependencies": {
     "@putout/plugin-madrun": "^1.0.1",
     "all-object-keys": "^1.0.0",
