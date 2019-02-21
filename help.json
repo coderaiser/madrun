@@ -1,0 +1,6 @@
+{
+    "--init                 ": "init scripts file madrun.js",
+    "--fix                  ": "fix scripts file madrun.js",
+    "-h, --help             ": "display this help and exit",
+    "-v, --version          ": "output version information and exit"
+}
