@@ -1,3 +1,12 @@
+2019.02.21, v2.1.0
+
+feature:
+- (package) putout v4.2.0
+- (madrun) add bility to use run as series
+- (madrun) add -v, -h
+- (madrun) add --init
+
+
 2019.02.15, v2.0.1
 
 fix:
