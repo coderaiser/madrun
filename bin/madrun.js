@@ -26,7 +26,13 @@ const args = require('yargs-parser')(process.argv.slice(2), {
     },
 });
 
-let {fix, init, help,version} = args;
+let {fix} = args;
+
+const {
+    init,
+    help,
+    version,
+} = args;
 
 if (help)
     return showHelp();
@@ -142,6 +148,6 @@ function showHelp() {
         result +=`  ${key} ${value}\n`;
     }
     
-   console.log(result);
+    console.log(result);
 }
 

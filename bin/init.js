@@ -2,7 +2,11 @@
 
 const CWD = process.cwd();
 
-const {readFileSync, writeFileSync, existsSync} = require('fs');
+const {
+    readFileSync,
+    writeFileSync,
+    existsSync,
+} = require('fs');
 const info = require(`${CWD}/package`);
 
 const {scripts} = info;
