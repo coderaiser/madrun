@@ -21,6 +21,18 @@ test('madrun: run', (t) => {
     t.end();
 });
 
+test('madrun: run: series', (t) => {
+    const lint = 'eslint lib';
+    const scripts = {
+        lint: () => lint,
+    };
+    
+    const result = run(['lint'], '', scripts);
+    
+    t.equal(result, lint, 'should equal');
+    t.end();
+});
+
 test('madrun: run: not found', (t) => {
     const scripts = {};
     

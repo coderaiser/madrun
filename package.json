@@ -25,6 +25,7 @@
   "nyc": {
     "exclude": [
       ".*",
+      "madrun.js",
       "test"
     ]
   },
