@@ -14,3 +14,4 @@ test('madrun: fix', (t) => {
     t.deepEqual(result, fixture, 'should equal');
     t.end();
 });
+
