@@ -4,15 +4,23 @@
   "description": "CLI tool to run multiple npm-scripts in a madly comfortable way",
   "main": "lib/madrun.js",
   "scripts": {
-    "lint": "bin/madrun.js lint:*",
-    "fix:lint": "bin/madrun.js fix:lint",
-    "test": "tape test/**/*.js",
-    "watch:test": "bin/madrun.js watcher -- npm test",
-    "watch:coverage": "bin/madrun.js watch:coverage:base",
-    "watch:lint": "bin/madrun.js watcher -- bin/madrun.js lint:eslint*",
-    "coverage": "bin/madrun.js coverage",
-    "report": "bin/madrun.js report",
-    "postpublish": "npm i -g"
+    "lint": "madrun lint",
+    "lint:eslint-bin": "madrun lint:eslint-bin",
+    "lint:eslint-lib": "madrun lint:eslint-lib",
+    "lint:eslint-dot": "madrun lint:eslint-dot",
+    "lint:putout": "madrun lint:putout",
+    "fix:lint": "madrun fix:lint",
+    "test": "madrun test",
+    "watch:test": "madrun watch:test",
+    "watch:tape": "madrun watch:tape",
+    "watch:coverage:base": "madrun watch:coverage:base",
+    "watch:coverage:tape": "madrun watch:coverage:tape",
+    "watch:coverage": "madrun watch:coverage",
+    "watch:lint": "madrun watch:lint",
+    "watcher": "madrun watcher",
+    "coverage": "madrun coverage",
+    "report": "madrun report",
+    "postpublish": "madrun postpublish"
   },
   "repository": {
     "type": "git",
@@ -57,6 +65,7 @@
     "node": ">=8.3.0"
   },
   "dependencies": {
+    "@putout/formatter-dump": "^1.0.6",
     "@putout/plugin-madrun": "^1.0.1",
     "all-object-keys": "^1.0.0",
     "find-up": "^3.0.0",
