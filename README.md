@@ -11,6 +11,20 @@ npm i madrun -g
 # Usage
 
 First thing you should do is create `madrun.js` file.
+This can be done using:
+
+```sh
+madrun --init
+```
+
+`madrun` will import all scripts to `madrun.js`, and add it to `.npmignore`.
+
+When update `madrun.js`, adding new scripts, run `madrun --init` again, to update `package.json`, so you can use:
+
+```sh
+npm run new-script-name
+```
+
 Then you can run `madrun` without args to see list of a scripts. Or run: 
 
 ```
