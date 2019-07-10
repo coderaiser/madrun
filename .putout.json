@@ -1,7 +1,7 @@
 {
     "match": {
-        "bin": {
-            "remove-console": false
+        "lib|bin|test": {
+            "madrun": false
         }
     }
 }

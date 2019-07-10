@@ -145,7 +145,7 @@ function showHelp() {
     
     const entries = Object.entries(helpjson);
     for (const [key, value] of entries) {
-        result +=`  ${key} ${value}\n`;
+        result += `  ${key} ${value}\n`;
     }
     
     console.log(result);
