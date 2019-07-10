@@ -7,6 +7,9 @@ const {
     writeFileSync,
     existsSync,
 } = require('fs');
+
+const tryCatch = require('try-catch');
+
 const info = require(`${CWD}/package`);
 
 const {scripts} = info;
@@ -60,7 +63,7 @@ function patchPackage(scripts) {
 }
 
 function updateNpmIgnore() {
-    const file = readFileSync('./.npmignore');
+    const [, file = ''] = tryCatch(readFileSync, './.npmignore');
     
     if (file.includes('madrun.js'))
         return;
