@@ -70,6 +70,21 @@ Run scripts by a name or regexp parallel.
 - `opt` - options to run with
 - `scripts` - all scripts set (need for embedding only)
 
+### Predefined scripts
+
+You can easilly add one of predefined scripts
+
+#### eslint({names, ignore})
+
+```js
+eslint({
+    names: ['a'],
+    ignore: ['b'],
+});
+// returns
+`eslint a --ignore-pattern 'b'`
+```
+
 ## Example
 
 Let's install `madrun` and save it as `devDependency` with:

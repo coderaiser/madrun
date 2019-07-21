@@ -18,8 +18,8 @@ const args = require('yargs-parser')(process.argv.slice(2), {
         'version',
     ],
     alias: {
-        'v': 'version',
-        'h': 'help',
+        v: 'version',
+        h: 'help',
     },
     configuration: {
         'populate--': true,

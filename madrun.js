@@ -2,20 +2,25 @@
 
 const {
     run,
-    parallel,
+    predefined,
 } = require('.');
 
+const {eslint} = predefined;
+
 module.exports = {
-    'lint': () => parallel('lint:*'),
-    'lint:putout': () => 'putout bin lib test madrun.js',
-    'lint:eslint-bin': () => `eslint --rule 'no-console:0,no-process-exit:0' bin`,
-    'lint:eslint-lib': () => 'eslint lib test',
-    'lint:eslint-dot': () => `eslint madrun.js`,
-    'fix:lint': () => {
-        const putout = run('lint:putout', '--fix');
-        const eslint = parallel('lint:e*', '--fix');
+    'lint': () => {
+        const names = [
+            'bin',
+            'lib',
+            'test',
+            '.eslintrc.js',
+            'madrun.js',
+        ];
         
-        return `${putout} && ${eslint}`;
+        return eslint({names});
+    },
+    'fix:lint': () => {
+        return run('lint', '--fix');
     },
     'test': () => 'tape test/**/*.js',
     'watch:test': () => run('watcher', run('test')),
@@ -23,7 +28,7 @@ module.exports = {
     'watch:coverage:base': () => run('watcher', `nyc ${run('test')}`),
     'watch:coverage:tape': () => run(['watcher'], 'nyc tape'),
     'watch:coverage': () => run('watch:coverage:base'),
-    'watch:lint': () => run('watcher', run('lint:eslint*')),
+    'watch:lint': () => run('watcher', run('lint')),
     'watcher': () => 'nodemon -w test -w lib --exec',
     'coverage': () => `nyc ${run('test')}`,
     'report': () => 'nyc report --reporter=text-lcov | coveralls',

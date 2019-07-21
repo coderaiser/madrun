@@ -5,7 +5,6 @@ const tryCatch = require('try-catch');
 
 const {
     run,
-    series,
     parallel,
 } = require('..');
 
@@ -81,7 +80,7 @@ test('madrun: series: opts', (t) => {
         'lint:bin': () => 'eslint bin',
     };
     
-    const result = series(['lint:lib', 'lint:bin'], '--fix', scripts);
+    const result = run(['lint:lib', 'lint:bin'], '--fix', scripts);
     const expected = 'eslint lib --fix && eslint bin --fix';
     
     t.equal(result, expected, 'should equal');
@@ -94,7 +93,7 @@ test('madrun: series: one arg', (t) => {
         'lint:bin': () => 'eslint bin',
     };
     
-    const result = series('lint:*', '', scripts);
+    const result = run('lint:*', '', scripts);
     const expected = 'eslint lib && eslint bin';
     
     t.equal(result, expected, 'should equal');
@@ -116,9 +115,9 @@ test('madrun: parallel', (t) => {
 
 test('madrun: pre, post', (t) => {
     const scripts = {
-        'prelint': () => 'echo pre',
-        'lint': () => 'eslint lib',
-        'postlint': () => 'echo post',
+        prelint: () => 'echo pre',
+        lint: () => 'eslint lib',
+        postlint: () => 'echo post',
     };
     
     const result = run('lint', '', scripts);
