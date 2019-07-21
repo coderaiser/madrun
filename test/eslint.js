@@ -11,7 +11,7 @@ test('madrun: eslint', (t) => {
         ignore,
     });
     
-    const expected = `eslint a --ignore-pattern 'b'`;
+    const expected = `eslint a --ignore-pattern '!.eslintrc.js' --ignore-pattern 'b'`;
     
     t.equal(result, expected);
     t.end();
@@ -19,9 +19,17 @@ test('madrun: eslint', (t) => {
 
 test('madrun: eslint: no args', (t) => {
     const result = eslint();
-    const expected = `eslint`;
+    const expected = `eslint  --ignore-pattern '!.eslintrc.js'`;
     
     t.equal(result, expected);
     t.end();
 });
 
+test('madrun: eslint: no args', (t) => {
+    const rulesdir = 'rules';
+    const result = eslint({rulesdir});
+    const expected = `eslint --rulesdir rules --ignore-pattern '!.eslintrc.js'`;
+    
+    t.equal(result, expected);
+    t.end();
+});
