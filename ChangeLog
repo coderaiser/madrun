@@ -1,3 +1,9 @@
+2019.07.22, v2.3.1
+
+fix:
+- (eslint) rm trimEnd
+
+
 2019.07.21, v2.3.0
 
 feature:
