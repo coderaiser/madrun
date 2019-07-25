@@ -44,46 +44,53 @@ if (init) {
     const init = require('./init');
     fix = true;
     
-    init.create();
-    init.patchNpmIgnore();
-    init.patchPackage();
+    return init.addMadrunToPackage().then(() => {
+        init.create();
+        init.patchNpmIgnore();
+        init.patchPackage();
+        next();
+    });
 }
 
-const names = args._;
-const options = getOptions(args['--']);
-const [dir, script] = getScript();
+next();
 
-const problems = check(script);
+function next() {
+    const names = args._;
+    const options = getOptions(args['--']);
+    const [dir, script] = getScript();
 
-if (problems) {
-    const result = putoutMadrun(dir, {fix});
+    const problems = check(script);
+
+    if (problems) {
+        const result = putoutMadrun(dir, {fix});
+        
+        if (fix) {
+            process.exit();
+        } else {
+            console.log(result);
+            process.exit(1);
+        }
+    }
+
+    if (init)
+        return;
     
-    if (fix) {
-        process.exit();
-    } else {
-        console.log(result);
+    if (problems) {
+        execute(`echo '${problems}'`);
         process.exit(1);
     }
+
+    if (!names.length) {
+        console.log(Object.keys(script).join('\n'));
+        exit();
+    }
+
+    const cmd = series(names, options, script);
+
+    console.log(`> ${cmd}`);
+
+    execute(cmd);
 }
-
-if (init)
-    return;
-
-if (problems) {
-    execute(`echo '${problems}'`);
-    process.exit(1);
-}
-
-if (!names.length) {
-    console.log(Object.keys(script).join('\n'));
-    exit();
-}
-
-const cmd = series(names, options, script);
-
-console.log(`> ${cmd}`);
-
-execute(cmd);
 
 function execute(cmd) {
     const {execSync} = require('child_process');

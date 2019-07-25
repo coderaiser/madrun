@@ -9,6 +9,7 @@ const {
 } = require('fs');
 
 const tryCatch = require('try-catch');
+const nupdate = require('nupdate');
 
 const info = require(`${CWD}/package`);
 
@@ -37,7 +38,21 @@ module.exports.patchPackage = () => {
 };
 
 module.exports.patchNpmIgnore = () => {
-    updateNpmIgnore();
+    const [, file = ''] = tryCatch(readFileSync, './.npmignore');
+    
+    if (file.includes('madrun.js'))
+        return;
+    
+    const data = file + 'madrun.js\n\n';
+    writeFileSync('./.npmignore', data);
+}
+
+module.exports.addMadrunToPackage = () => {
+    return nupdate('madrun', {
+        install: true,
+        dev: true,
+        add: true,
+    });
 };
 
 function preparePackage(info, scripts) {
@@ -61,14 +76,3 @@ function patchPackage(scripts) {
     
     return result;
 }
-
-function updateNpmIgnore() {
-    const [, file = ''] = tryCatch(readFileSync, './.npmignore');
-    
-    if (file.includes('madrun.js'))
-        return;
-    
-    const data = file + 'madrun.js\n\n';
-    writeFileSync('./.npmignore', data);
-}
-
