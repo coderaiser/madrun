@@ -13,7 +13,6 @@ module.exports = {
             'bin',
             'lib',
             'test',
-            '.eslintrc.js',
             'madrun.js',
         ];
         
