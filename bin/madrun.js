@@ -35,10 +35,10 @@ const {
 } = args;
 
 if (help)
-    return showHelp();
+    process.exit();
 
 if (version)
-    return console.log(`v${require('../package').version}`);
+    process.exit();
 
 if (init) {
     const init = require('./init');
@@ -67,7 +67,7 @@ if (problems) {
 }
 
 if (init)
-    return;
+    process.exit();
 
 if (problems) {
     execute(`echo '${problems}'`);
@@ -136,18 +136,5 @@ function putoutMadrun(dir, {fix}) {
         writeFileSync(name, code);
     
     return places;
-}
-
-function showHelp() {
-    const helpjson = require('../help');
-    let result = 'Usage: madrun [script]\n';
-    result += 'Options:\n';
-    
-    const entries = Object.entries(helpjson);
-    for (const [key, value] of entries) {
-        result += `  ${key} ${value}\n`;
-    }
-    
-    console.log(result);
 }
 

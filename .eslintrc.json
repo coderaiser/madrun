@@ -5,6 +5,11 @@
             "no-console": "off",
             "no-process-exit": "off"
         }
+    }, {
+        "files": ["lib/**/*.spec.js"],
+        "rules": {
+            "node/no-unpublished-require": "off"
+        }
     }],
     "extends": [
         "plugin:putout/recommended",

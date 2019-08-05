@@ -85,6 +85,28 @@ eslint({
 `eslint a --ignore-pattern 'b'`
 ```
 
+#### eslint({names, ignore, rulesdir})
+
+```js
+eslint({
+    names: ['a'],
+    ignore: ['b'],
+});
+// returns
+`eslint a --ignore-pattern 'b'`
+```
+
+#### putout({names, rulesdir})
+
+```js
+eslint({
+    names: ['a'],
+    ignore: ['b'],
+});
+// returns
+`eslint a --ignore-pattern 'b'`
+```
+
 ## Example
 
 Let's install `madrun` and save it as `devDependency` with:
@@ -98,14 +120,24 @@ Let's create file `madrun.js`:
 ```js
 const {
     run,
-    parallel,
+    predefined,
 } = require('madrun');
 
+const {putout} = predefined;
+
 module.exports = {
-    'lint:lib': 'eslint lib',
-    'lint:bin': 'eslint bin',
-    'lint': run('lint:*'),
-    'fix:lint': parallel(['lint:lib', 'lint:bin'], 'fix'),
+    'lint': () => {
+        const names = [
+            'bin',
+            'lib',
+            'test',
+        ];
+        
+        putout({
+            names
+        });
+    },
+    'fix:lint': () => run('lint', '--fix');
 };
 ```
 
