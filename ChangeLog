@@ -1,3 +1,9 @@
+2019.08.05, v2.5.0
+
+feature:
+- (madrun) predefined: putout: add ability pass options as an array
+
+
 2019.08.05, v2.4.0
 
 feature:
