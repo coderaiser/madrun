@@ -96,15 +96,18 @@ eslint({
 `eslint a --ignore-pattern 'b'`
 ```
 
-#### putout({names, rulesdir})
+#### putout({names, rulesdir}) || putout(names)
 
 ```js
-eslint({
-    names: ['a'],
-    ignore: ['b'],
-});
+const names = ['a'];
+
+putout(names)
 // returns
-`eslint a --ignore-pattern 'b'`
+`putout a`;
+
+putout({names})
+// returns
+`putout a`;
 ```
 
 ## Example
