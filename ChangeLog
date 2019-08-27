@@ -1,3 +1,10 @@
+2019.08.27, v2.5.1
+
+feature:
+- (package) putout v5.9.0
+- (package) eslint-plugin-putout v2.0.0
+
+
 2019.08.05, v2.5.0
 
 feature:
