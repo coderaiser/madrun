@@ -49,25 +49,28 @@ You may also pipe the output of madrun-completion to a file such as `/usr/local/
 
 `madrun` supports next `API` set:
 
-### run(name, [opt])
+### run(name, [opt, env])
 Run script by a name or regexp.
 
 - `name` - name of a sript
 - `opt` - options to run with
+- `env` - object with `env` variables
 - `scripts` - all scripts set (need for embedding only)
 
-### series(names, [opt, scripts])
+### series(names, [opt, env, scripts])
 Run scripts by a name or regexp one-by-one.
 
 - `name` - array of names of scrips
 - `opt` - options to run with
+- `env` - object with `env` variables
 - `scripts` - all scripts set (need for embedding only)
 
-### parallel (names, [opt, scripts])
+### parallel (names, [opt, env, scripts])
 Run scripts by a name or regexp parallel.
 
 - `name` - array of names of scrips
 - `opt` - options to run with
+- `env` - object with `env` variables
 - `scripts` - all scripts set (need for embedding only)
 
 ### Predefined scripts
@@ -140,7 +143,9 @@ module.exports = {
             names
         });
     },
-    'fix:lint': () => run('lint', '--fix');
+    'fix:lint': () => run('lint', '--fix', {
+        NODE_ENV: 'development'
+    });
 };
 ```
 
@@ -148,14 +153,14 @@ Now you can call any of listed scripts with help of `madrun cli`:
 
 ```sh
 $ madrun lint
-> eslint lib && eslint bin
+> putout lib
 ```
 
 For parallel fix with can use:
 
 ```sh
 $ madrun fix:lint
-> eslint eslint lib --fix & eslin bin --fix
+> NODE_ENV=development putout lib --fix
 ```
 
 ## Related
