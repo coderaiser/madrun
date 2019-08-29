@@ -79,7 +79,8 @@ if (!names.length) {
     exit();
 }
 
-const cmd = series(names, options, script);
+const env = {};
+const cmd = series(names, options, env, script);
 
 console.log(`> ${cmd}`);
 
