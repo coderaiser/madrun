@@ -9,10 +9,9 @@ const {
 } = require('fs');
 
 const tryCatch = require('try-catch');
-
 const info = require(`${CWD}/package`);
 
-const {scripts} = info;
+const {scripts = {}} = info;
 const madrun =
 `'use strict';
 
