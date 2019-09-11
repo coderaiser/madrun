@@ -1,3 +1,10 @@
+2019.09.11, v3.0.3
+
+fix:
+- (madrun) space
+- (madrun) init: no scripts section in package.json
+
+
 2019.09.09, v3.0.2
 
 feature:
