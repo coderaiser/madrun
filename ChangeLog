@@ -1,3 +1,9 @@
+2019.09.18, v3.0.5
+
+fix:
+- (npmignore) .spec.js
+
+
 2019.09.18, v3.0.4
 
 feature:
