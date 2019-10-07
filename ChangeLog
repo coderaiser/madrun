@@ -1,3 +1,12 @@
+2019.10.07, v3.0.6
+
+fix:
+- chore() lint
+
+feature:
+- (package) yargs-parser v15.0.0
+
+
 2019.09.18, v3.0.5
 
 fix:
