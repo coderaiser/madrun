@@ -74,7 +74,7 @@
     "parent-dirs": "^1.0.0",
     "putout": "^6.0.0",
     "try-catch": "^2.0.0",
-    "yargs-parser": "^14.0.0"
+    "yargs-parser": "^15.0.0"
   },
   "devDependencies": {
     "coveralls": "^3.0.0",
