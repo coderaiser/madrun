@@ -10,7 +10,7 @@ npm i madrun -g
 
 # Usage
 
-First thing you should do is create `madrun.js` file.
+First thing you should do is create `madrun.js` or `.madrun.js` file.
 This can be done using:
 
 ```sh

@@ -109,7 +109,10 @@ function getOptions(args) {
 }
 
 function getScript() {
-    const path = findUp.sync('madrun.js');
+    const path = findUp.sync([
+        '.madrun.js',
+        'madrun.js',
+    ]);
     
     if (!path) {
         console.error('file "madrun.js" not found!');
