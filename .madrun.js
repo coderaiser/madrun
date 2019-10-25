@@ -13,7 +13,7 @@ module.exports = {
             'bin',
             'lib',
             'test',
-            'madrun.js',
+            '.madrun.js',
         ];
         
         return putout({names});
