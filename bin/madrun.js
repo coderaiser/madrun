@@ -123,7 +123,7 @@ function getScript() {
 }
 
 function putoutMadrun(dir, {fix}) {
-    const name = `${dir}/madrun.js`;
+    const name = `${dir}/.madrun.js`;
     const putout = require('../lib/fix');
     const {
         readFileSync,
