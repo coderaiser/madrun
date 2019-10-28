@@ -26,8 +26,8 @@ module.exports = ${JSON.stringify(scripts, null, 4)};
 `;
 
 module.exports.create = () => {
-    if (!existsSync('./madrun.js'))
-        writeFileSync('./madrun.js', madrun);
+    if (!existsSync('./.madrun.js'))
+        writeFileSync('./.madrun.js', madrun);
 };
 
 module.exports.patchPackage = () => {
@@ -64,10 +64,10 @@ function patchPackage(scripts) {
 function updateNpmIgnore() {
     const [, file = ''] = tryCatch(readFileSync, './.npmignore');
     
-    if (file.includes('madrun.js'))
+    if (file.includes('.madrun.js'))
         return;
     
-    const data = file + 'madrun.js\n\n';
+    const data = file + '.madrun.js\n\n';
     writeFileSync('./.npmignore', data);
 }
 
