@@ -31,7 +31,7 @@ module.exports.create = () => {
 };
 
 module.exports.patchPackage = () => {
-    const updatedScripts = patchPackage(require(`${CWD}/madrun`));
+    const updatedScripts = patchPackage(require(`${CWD}/.madrun`));
     writeFileSync('./package.json', preparePackage(info, updatedScripts));
 };
 
@@ -55,6 +55,9 @@ function patchPackage(scripts) {
     const keys = Object.keys(scripts);
     
     for (const key of keys) {
+        if (/^(pre|post)/.test(key))
+            continue;
+        
         result[key] = `madrun ${key}`;
     }
     
