@@ -2,6 +2,10 @@
 
 const test = require('supertape');
 const tryCatch = require('try-catch');
+const stub = require('@cloudcmd/stub');
+const mockRequire = require('mock-require');
+
+const {reRequire, stopAll} = mockRequire;
 
 const {
     run,
@@ -150,6 +154,19 @@ test('madrun: pre, post', (t) => {
     const expected = 'echo pre && eslint lib && echo post';
     
     t.equal(result, expected, 'should equal');
+    t.end();
+});
+
+test('madrun: run: .madrun.js not found', (t) => {
+    mockRequire('find-up', {
+        sync: stub(),
+    });
+    const {run} = reRequire('..');
+    const [e] = tryCatch(run);
+    
+    stopAll();
+    
+    t.equal(e.message, '.madrun.js is missing!');
     t.end();
 });
 
