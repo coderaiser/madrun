@@ -1,3 +1,11 @@
+2019.11.06, v5.0.0
+
+feature:
+- (package) putout v7.0.0
+- (package) eslint-plugin-putout v3.0.0
+- (package) @putout/plugin-madrun v4.0.0
+
+
 2019.11.04, v4.2.0
 
 feature:
