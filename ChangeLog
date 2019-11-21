@@ -1,3 +1,10 @@
+2019.11.21, v5.0.1
+
+feature:
+- (package) nodemon v2.0.0
+- (package) all-object-keys v2.0.0
+
+
 2019.11.06, v5.0.0
 
 feature:
