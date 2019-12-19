@@ -38,8 +38,10 @@ const {
 if (help)
     process.exit();
 
-if (version)
+if (version) {
+    console.log(`v${require('../package').version}`);
     process.exit();
+}
 
 if (init) {
     const init = require('./init');
