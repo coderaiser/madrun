@@ -1,3 +1,14 @@
+2019.12.19, v5.1.0
+
+fix:
+- (madrun) version
+- (madrun) madrun.js -> .madrun.js
+
+feature:
+- (package) @putout/plugin-madrun v5.0.2
+- (madrun) add MADRUN_PWD
+
+
 2019.11.21, v5.0.1
 
 feature:
