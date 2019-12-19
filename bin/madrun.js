@@ -9,6 +9,7 @@ const {series} = require('..');
 const check = require('../lib/check');
 
 const {exit} = process;
+const {MADRUN_PWD} = process.env;
 
 const args = require('yargs-parser')(process.argv.slice(2), {
     boolean: [
@@ -82,9 +83,15 @@ if (!names.length) {
 const env = {};
 const cmd = series(names, options, env, script);
 
-console.log(`> ${cmd}`);
-
+console.log(getOutput(cmd));
 execute(cmd);
+
+function getOutput() {
+    if (MADRUN_PWD)
+        return `> ${cmd} (${MADRUN_CWD && process.cwd()})`;
+    
+    return `> ${cmd}`;
+}
 
 function execute(cmd) {
     const {execSync} = require('child_process');

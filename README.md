@@ -45,6 +45,16 @@ madrun-completion >> ~/.zshrc
 
 You may also pipe the output of madrun-completion to a file such as `/usr/local/etc/bash_completion.d/madrun` if you have a system that will read that file for you.
 
+## Options
+
+`Madrun` can be configured using `env variables`.
+`MADRUN_PWD` will output current directory:
+
+```sh
+MADRUN_PWD=1 madrun lint
+> putout lib test .madrun.js (/home/coderaiser/cloudcmd)
+```
+
 ## API
 
 `madrun` supports next `API` set:
