@@ -48,11 +48,21 @@ You may also pipe the output of madrun-completion to a file such as `/usr/local/
 ## Options
 
 `Madrun` can be configured using `env variables`.
-`MADRUN_PWD` will output current directory:
+
+### MADRUN_PWD
+`MADRUN_PWD` will output current directory path:
 
 ```sh
 MADRUN_PWD=1 madrun lint
 > putout lib test .madrun.js (/home/coderaiser/cloudcmd)
+```
+
+### MADRUN_NAME
+`MADRUN_NAME` will output name of current directory:
+
+```sh
+MADRUN_PWD=1 madrun lint
+> putout lib test .madrun.js (cloudcmd)
 ```
 
 ## API

@@ -2,14 +2,18 @@
 
 'use strict';
 
-const {dirname} = require('path');
+const {dirname, basename} = require('path');
 const findUp = require('find-up');
 
 const {series} = require('..');
 const check = require('../lib/check');
 
 const {exit} = process;
-const {MADRUN_PWD} = process.env;
+const {
+    MADRUN_PWD,
+    MADRUN_NAME,
+} = process.env;
+const cwd = process.cwd();
 
 const args = require('yargs-parser')(process.argv.slice(2), {
     boolean: [
@@ -90,7 +94,10 @@ execute(cmd);
 
 function getOutput() {
     if (MADRUN_PWD)
-        return `> ${cmd} (${MADRUN_PWD && process.cwd()})`;
+        return `> ${cmd} (${cwd})`;
+    
+    if (MADRUN_NAME)
+        return `> ${cmd} (${basename(cwd)})`;
     
     return `> ${cmd}`;
 }
