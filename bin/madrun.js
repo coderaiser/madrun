@@ -90,7 +90,7 @@ execute(cmd);
 
 function getOutput() {
     if (MADRUN_PWD)
-        return `> ${cmd} (${MADRUN_CWD && process.cwd()})`;
+        return `> ${cmd} (${MADRUN_PWD && process.cwd()})`;
     
     return `> ${cmd}`;
 }
