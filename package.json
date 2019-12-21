@@ -69,7 +69,7 @@
     "@putout/plugin-madrun": "^5.0.2",
     "all-object-keys": "^2.0.0",
     "find-up": "^4.1.0",
-    "jessy": "^2.0.0",
+    "jessy": "^3.0.0",
     "mapsome": "^1.0.0",
     "parent-dirs": "^1.0.0",
     "putout": "^7.0.0",
