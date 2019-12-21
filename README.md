@@ -119,7 +119,7 @@ eslint({
 `eslint a --ignore-pattern 'b'`
 ```
 
-#### putout({names, rulesdir}) || putout(names)
+#### putout({names, rulesdir, formatter}) || putout(names)
 
 ```js
 const names = ['a'];
