@@ -3,7 +3,9 @@
 'use strict';
 
 const {dirname, basename} = require('path');
+
 const findUp = require('find-up');
+const tryCatch = require('try-catch');
 
 const {series} = require('..');
 const check = require('../lib/check');
@@ -39,8 +41,11 @@ const {
     version,
 } = args;
 
-if (help)
+if (help) {
+    const getHelpInfo = require('../lib/help');
+    console.log(getHelpInfo());
     process.exit();
+}
 
 if (version) {
     console.log(`v${require('../package').version}`);
@@ -87,7 +92,12 @@ if (!names.length) {
 }
 
 const env = {};
-const cmd = series(names, options, env, script);
+const [e, cmd] = tryCatch(series, names, options, env, script);
+
+if (e) {
+    console.error(e.message);
+    process.exit(1);
+}
 
 console.log(getOutput(cmd));
 execute(cmd);
