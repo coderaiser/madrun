@@ -5,7 +5,7 @@
 const {dirname, basename} = require('path');
 
 const findUp = require('find-up');
-const tryCatch = require('try-catch');
+const tryToCatch = require('try-to-catch');
 
 const {series} = require('..');
 const check = require('../lib/check');
@@ -91,18 +91,20 @@ if (!names.length) {
     exit();
 }
 
-const env = {};
-const [e, cmd] = tryCatch(series, names, options, env, script);
+(async () => {
+    const env = {};
+    const [e, cmd] = await tryToCatch(series, names, options, env, script);
+    
+    if (e) {
+        console.error(e.message);
+        process.exit(1);
+    }
+    
+    console.log(getOutput(cmd));
+    execute(cmd);
+})();
 
-if (e) {
-    console.error(e.message);
-    process.exit(1);
-}
-
-console.log(getOutput(cmd));
-execute(cmd);
-
-function getOutput() {
+function getOutput(cmd) {
     if (MADRUN_PWD)
         return `> ${cmd} (${cwd})`;
     

@@ -18,7 +18,7 @@ module.exports = {
         
         return putout({names});
     },
-    'fix:lint': () => {
+    'fix:lint': async () => {
         return run('lint', '--fix');
     },
     'test': () => `tape 'test/**/*.js' 'lib/**/*.spec.js'`,
