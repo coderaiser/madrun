@@ -5,14 +5,16 @@ const {execSync} = require('child_process');
 
 const test = require('supertape');
 const tryCatch = require('try-catch');
+const runsome = require('runsome');
 
 const {version} = require('../package');
 const help = require('../lib/help');
 
 const cliPath = join(__dirname, '../bin/madrun.js');
+const run = runsome(cliPath);
 
 test('madrun: cli: -v', async (t) => {
-    const result = runsome(cliPath, '-v');
+    const result = run('-v');
     const expected = `v${version}`;
     
     t.equal(result, expected);
@@ -20,7 +22,7 @@ test('madrun: cli: -v', async (t) => {
 });
 
 test('madrun: cli: --version', async (t) => {
-    const result = runsome(cliPath, '--version');
+    const result = run('--version');
     const expected = `v${version}`;
     
     t.equal(result, expected);
@@ -28,7 +30,7 @@ test('madrun: cli: --version', async (t) => {
 });
 
 test('madrun: cli: --help', async (t) => {
-    const result = runsome(cliPath, '--help');
+    const result = run('--help');
     const expected = help();
     
     t.equal(result, expected);
@@ -36,7 +38,7 @@ test('madrun: cli: --help', async (t) => {
 });
 
 test('madrun: cli: -h', (t) => {
-    const result = runsome(cliPath, '--h');
+    const result = run('--h');
     const expected = help();
     
     t.equal(result, expected);
@@ -44,7 +46,7 @@ test('madrun: cli: -h', (t) => {
 });
 
 test('madrun: cli: script not found', (t) => {
-    const result = runsome(cliPath, 'xxx');
+    const result = run('xxx');
     const expected = 'one of scripts not found: xxx';
     
     t.equal(result, expected);
@@ -52,7 +54,7 @@ test('madrun: cli: script not found', (t) => {
 });
 
 test('madrun: cli: kill', async (t) => {
-    const result = runsome(cliPath, 'lint', {
+    const result = run('lint', {
         timeout: 1000,
     });
     
@@ -61,22 +63,4 @@ test('madrun: cli: kill', async (t) => {
     t.equal(result, expected);
     t.end();
 });
-
-const rmNewLine = (a) => a.toString().replace(/\n$/, '');
-
-function runsome(name, args, options = {}) {
-    const {
-        timeout = 0,
-    } = options;
-    
-    const [e, result] = tryCatch(execSync, `${name} ${args}`, {
-        timeout,
-    });
-    
-    if (e) {
-        return rmNewLine(e.stdout) || rmNewLine(e.stderr);
-    }
-    
-    return rmNewLine(result);
-}
 
