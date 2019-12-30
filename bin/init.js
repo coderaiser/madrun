@@ -67,7 +67,10 @@ function patchPackage(scripts) {
 function updateNpmIgnore() {
     const [, file = ''] = tryCatch(readFileSync, './.npmignore');
     
-    if (file.includes('.madrun.js'))
+    const isMadrun = file.includes('.madrun.js');
+    const isDotAll = file.includes('.*');
+    
+    if (isDotAll || isMadrun)
         return;
     
     const data = file + '.madrun.js\n\n';
