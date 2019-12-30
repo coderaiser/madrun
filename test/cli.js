@@ -1,10 +1,8 @@
 'use strict';
 
 const {join} = require('path');
-const {execSync} = require('child_process');
 
 const test = require('supertape');
-const tryCatch = require('try-catch');
 const runsome = require('runsome');
 
 const {version} = require('../package');
