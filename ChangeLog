@@ -1,3 +1,12 @@
+2019.12.30, v5.4.1
+
+fix:
+- (bin) init: do not add .madrun when there is .*
+
+feature:
+- (package) eslint-plugin-node v11.0.0
+
+
 2019.12.25, v5.4.0
 
 feature:
