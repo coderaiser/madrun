@@ -1,3 +1,9 @@
+2020.02.10, v5.4.2
+
+feature:
+- (package) yargs-parser v17.0.0
+
+
 2019.12.30, v5.4.1
 
 fix:
