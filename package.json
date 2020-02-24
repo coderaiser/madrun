@@ -73,7 +73,7 @@
     "mapsome": "^1.0.0",
     "parent-dirs": "^1.0.0",
     "putout": "^7.0.0",
-    "try-catch": "^2.0.0",
+    "try-catch": "^3.0.0",
     "yargs-parser": "^17.0.0"
   },
   "devDependencies": {
