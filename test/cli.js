@@ -11,7 +11,7 @@ const help = require('../lib/help');
 const cliPath = join(__dirname, '../bin/madrun.js');
 const run = runsome(cliPath);
 
-test('madrun: cli: -v', async (t) => {
+test('madrun: cli: -v', (t) => {
     const result = run('-v');
     const expected = `v${version}`;
     
@@ -19,7 +19,7 @@ test('madrun: cli: -v', async (t) => {
     t.end();
 });
 
-test('madrun: cli: --version', async (t) => {
+test('madrun: cli: --version', (t) => {
     const result = run('--version');
     const expected = `v${version}`;
     
@@ -27,7 +27,7 @@ test('madrun: cli: --version', async (t) => {
     t.end();
 });
 
-test('madrun: cli: --help', async (t) => {
+test('madrun: cli: --help', (t) => {
     const result = run('--help');
     const expected = help();
     
@@ -51,7 +51,7 @@ test('madrun: cli: script not found', (t) => {
     t.end();
 });
 
-test('madrun: cli: kill', async (t) => {
+test('madrun: cli: kill', (t) => {
     const result = run('lint', {
         timeout: 1000,
     });
