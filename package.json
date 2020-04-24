@@ -2,7 +2,13 @@
   "name": "madrun",
   "version": "5.5.0",
   "description": "CLI tool to run multiple npm-scripts in a madly comfortable way",
-  "main": "lib/madrun.js",
+  "type": "commonjs",
+  "main": "./lib/madrun.js",
+  "export": "./lib/madrun.js",
+  "exports": {
+    "require": "./lib/madrun.js",
+    "import": "./lib/madrun.mjs"
+  },
   "scripts": {
     "lint": "madrun lint",
     "lint:eslint-bin": "madrun lint:eslint-bin",
@@ -66,6 +72,7 @@
   },
   "dependencies": {
     "@putout/formatter-dump": "^1.0.6",
+    "@putout/plugin-convert-esm-to-commonjs": "^3.0.0",
     "@putout/plugin-madrun": "^6.0.0",
     "all-object-keys": "^2.0.0",
     "find-up": "^4.1.0",
@@ -78,15 +85,18 @@
   },
   "devDependencies": {
     "@cloudcmd/stub": "^2.3.2",
+    "babel-eslint": "^10.1.0",
     "coveralls": "^3.0.0",
     "eslint": "^6.0.1",
     "eslint-plugin-node": "^11.0.0",
     "eslint-plugin-putout": "^3.0.0",
+    "esm": "^3.2.25",
     "mock-require": "^3.0.3",
     "nodemon": "^2.0.0",
     "nyc": "^15.0.0",
     "runsome": "^1.0.0",
-    "supertape": "^1.2.1"
+    "supertape": "^1.2.1",
+    "tap-merge": "^0.3.1"
   },
   "publishConfig": {
     "access": "public"

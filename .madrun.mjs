@@ -1,27 +1,11 @@
 'use strict';
 
-const {
-    run,
-    predefined,
-} = require('.');
+import {run} from './lib/madrun.js';
 
-const {putout} = predefined;
-
-module.exports = {
-    'lint': () => {
-        const names = [
-            'bin',
-            'lib',
-            'test',
-            '.madrun.js',
-        ];
-        
-        return putout({names});
-    },
-    'fix:lint': () => {
-        return run('lint', '--fix');
-    },
-    'test': () => `tape 'test/**/*.js' 'lib/**/*.spec.js'`,
+export default {
+    'lint': () => 'putout bin lib test .madrun.mjs',
+    'fix:lint': () => run('lint', '--fix'),
+    'test': () => `tape 'test/**/*.js' 'lib/**/*.spec.js' 'lib/**/*.spec.mjs'`,
     'watch:test': () => run('watcher', run('test')),
     'watch:tape': () => 'nodemon -w test -w lib --exec tape',
     'watch:coverage:base': () => run('watcher', `nyc ${run('test')}`),

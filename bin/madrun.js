@@ -135,9 +135,12 @@ function getOptions(args) {
 }
 
 function getScript() {
+    const superRequire = require('../lib/super-require');
+    
     const path = findUp.sync([
         '.madrun.js',
         '.madrun.cjs',
+        '.madrun.mjs',
     ]);
     
     if (!path) {
@@ -147,7 +150,7 @@ function getScript() {
     
     return [
         dirname(path),
-        require(path),
+        superRequire(path),
     ];
 }
 
