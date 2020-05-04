@@ -62,7 +62,7 @@
   "homepage": "https://github.com/coderaiser/madrun",
   "license": "MIT",
   "engines": {
-    "node": ">=8.3.0"
+    "node": ">=10"
   },
   "dependencies": {
     "@putout/formatter-dump": "^1.0.6",
