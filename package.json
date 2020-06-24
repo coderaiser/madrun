@@ -5,7 +5,8 @@
   "main": "lib/madrun.js",
   "nyc": {
     "exclude": [
-      ".madrun.js",
+      ".*",
+      "**/*.spec.js",
       "test"
     ]
   },
@@ -35,13 +36,6 @@
   "bin": {
     "madrun": "bin/madrun.js",
     "madrun-completion": "bin/madrun-completion.js"
-  },
-  "nyc": {
-    "exclude": [
-      ".*",
-      "**/*.spec.js",
-      "test"
-    ]
   },
   "keywords": [
     "madrun",
@@ -85,7 +79,7 @@
   "devDependencies": {
     "@cloudcmd/stub": "^2.3.2",
     "coveralls": "^3.0.0",
-    "eslint": "^6.0.1",
+    "eslint": "^7.3.1",
     "eslint-plugin-node": "^11.0.0",
     "eslint-plugin-putout": "^4.0.0",
     "mock-require": "^3.0.3",
