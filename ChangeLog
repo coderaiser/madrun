@@ -1,3 +1,13 @@
+2020.06.24, v7.0.0
+
+feature:
+- (package) supertape v2.0.1
+- (package) @cloudcmd/stub v3.1.0
+- (package) eslint-plugin-putout v5.0.0
+- (package) putout v9.0.0
+- (package) eslint v7.3.1
+
+
 2020.05.07, v6.0.1
 
 feature:
