@@ -72,7 +72,7 @@
     "jessy": "^3.0.0",
     "mapsome": "^1.0.0",
     "parent-dirs": "^1.0.0",
-    "putout": "^8.0.0",
+    "putout": "^9.0.0",
     "try-catch": "^3.0.0",
     "yargs-parser": "^18.1.0"
   },
