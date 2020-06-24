@@ -35,16 +35,12 @@ module.exports.patchPackage = () => {
     writeFileSync('./package.json', preparePackage(info, updatedScripts));
 };
 
-module.exports.patchNpmIgnore = () => {
-    updateNpmIgnore();
-};
+module.exports.patchNpmIgnore = updateNpmIgnore;
 
 function preparePackage(info, scripts) {
     const data = {
         ...info,
-        scripts: {
-            ...scripts,
-        },
+        scripts,
     };
     
     return JSON.stringify(data, null, 2) + '\n';
