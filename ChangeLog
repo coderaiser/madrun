@@ -1,3 +1,9 @@
+2020.07.28, v7.0.1
+
+fix:
+- (madrun) getOutput: arguments
+
+
 2020.06.24, v7.0.0
 
 feature:
