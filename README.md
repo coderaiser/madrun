@@ -141,7 +141,7 @@ Let's install `madrun` and save it as `devDependency` with:
 npm i madrun -D
 ```
 
-Let's create file `madrun.js`:
+Let's create file `.madrun.js`:
 
 ```js
 const {
