@@ -99,10 +99,10 @@ if (e) {
     process.exit(1);
 }
 
-console.log(getOutput(cmd));
+console.log(getOutput({cmd, cwd}));
 execute(cmd);
 
-function getOutput() {
+function getOutput({cmd, cwd}) {
     if (MADRUN_PWD)
         return `> ${cmd} (${cwd})`;
     
