@@ -61,7 +61,7 @@ MADRUN_PWD=1 madrun lint
 `MADRUN_NAME` will output name of current directory:
 
 ```sh
-MADRUN_PWD=1 madrun lint
+MADRUN_NAME=1 madrun lint
 > putout lib test .madrun.js (cloudcmd)
 ```
 
