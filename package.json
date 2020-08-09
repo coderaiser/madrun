@@ -1,6 +1,6 @@
 {
   "name": "madrun",
-  "version": "7.0.1",
+  "version": "7.0.2",
   "description": "CLI tool to run multiple npm-scripts in a madly comfortable way",
   "main": "lib/madrun.js",
   "nyc": {
