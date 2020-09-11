@@ -68,7 +68,7 @@
     "@putout/formatter-dump": "^2.0.1",
     "@putout/plugin-madrun": "^7.0.0",
     "all-object-keys": "^2.0.0",
-    "find-up": "^4.1.0",
+    "find-up": "^5.0.0",
     "jessy": "^3.0.0",
     "mapsome": "^1.0.0",
     "parent-dirs": "^1.0.0",
