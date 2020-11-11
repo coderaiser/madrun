@@ -25,7 +25,7 @@ When update `.madrun.js`, adding new scripts, run `madrun --init` again, to upda
 npm run new-script-name
 ```
 
-Then you can run `madrun` without args to see list of a scripts. Or run: 
+Then you can run `madrun` without args to see list of a scripts. Or run:
 
 ```
 madrun <script>
@@ -35,8 +35,7 @@ To run specified script.
 
 # Completion
 
-You can enable tab-completion of npm scripts similar to [npm's completion](
-https://docs.npmjs.com/cli/completion) using:
+You can enable tab-completion of npm scripts similar to [npm's completion](https://docs.npmjs.com/cli/completion) using:
 
 ```sh
 madrun-completion >> ~/.bashrc
@@ -50,6 +49,7 @@ You may also pipe the output of madrun-completion to a file such as `/usr/local/
 `Madrun` can be configured using `env variables`.
 
 ### MADRUN_PWD
+
 `MADRUN_PWD` will output current directory path:
 
 ```sh
@@ -58,6 +58,7 @@ MADRUN_PWD=1 madrun lint
 ```
 
 ### MADRUN_NAME
+
 `MADRUN_NAME` will output name of current directory:
 
 ```sh
@@ -70,6 +71,7 @@ MADRUN_NAME=1 madrun lint
 `madrun` supports next `API` set:
 
 ### run(name, [opt, env])
+
 Run script by a name or regexp.
 
 - `name` - name of a sript
@@ -78,6 +80,7 @@ Run script by a name or regexp.
 - `scripts` - all scripts set (need for embedding only)
 
 ### series(names, [opt, env, scripts])
+
 Run scripts by a name or regexp one-by-one.
 
 - `name` - array of names of scrips
@@ -86,6 +89,7 @@ Run scripts by a name or regexp one-by-one.
 - `scripts` - all scripts set (need for embedding only)
 
 ### parallel (names, [opt, env, scripts])
+
 Run scripts by a name or regexp parallel.
 
 - `name` - array of names of scrips
@@ -191,15 +195,13 @@ $ madrun fix:lint
 
 MIT
 
-[NPMIMGURL]:                https://img.shields.io/npm/v/madrun.svg?style=flat
-[BuildStatusIMGURL]:        https://img.shields.io/travis/coderaiser/madrun/master.svg?style=flat
-[DependencyStatusIMGURL]:   https://img.shields.io/david/coderaiser/madrun.svg?style=flat
-[LicenseIMGURL]:            https://img.shields.io/badge/license-MIT-317BF9.svg?style=flat
-[NPMURL]:                   https://npmjs.org/package/madrun "npm"
-[BuildStatusURL]:           https://travis-ci.org/coderaiser/madrun  "Build Status"
-[DependencyStatusURL]:      https://david-dm.org/coderaiser/madrun "Dependency Status"
-[LicenseURL]:               https://tldrlegal.com/license/mit-license "MIT License"
-
-[CoverageURL]:              https://coveralls.io/github/coderaiser/madrun?branch=master
-[CoverageIMGURL]:           https://coveralls.io/repos/coderaiser/madrun/badge.svg?branch=master&service=github
-
+[NPMIMGURL]: https://img.shields.io/npm/v/madrun.svg?style=flat
+[BuildStatusIMGURL]: https://img.shields.io/travis/coderaiser/madrun/master.svg?style=flat
+[DependencyStatusIMGURL]: https://img.shields.io/david/coderaiser/madrun.svg?style=flat
+[LicenseIMGURL]: https://img.shields.io/badge/license-MIT-317BF9.svg?style=flat
+[NPMURL]: https://npmjs.org/package/madrun "npm"
+[BuildStatusURL]: https://travis-ci.org/coderaiser/madrun "Build Status"
+[DependencyStatusURL]: https://david-dm.org/coderaiser/madrun "Dependency Status"
+[LicenseURL]: https://tldrlegal.com/license/mit-license "MIT License"
+[CoverageURL]: https://coveralls.io/github/coderaiser/madrun?branch=master
+[CoverageIMGURL]: https://coveralls.io/repos/coderaiser/madrun/badge.svg?branch=master&service=github
