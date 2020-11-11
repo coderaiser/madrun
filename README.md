@@ -105,7 +105,7 @@ eslint({
     ignore: ['b'],
 });
 // returns
-`eslint a --ignore-pattern 'b'`
+`eslint a --ignore-pattern 'b'`;
 ```
 
 #### eslint({names, ignore, rulesdir})
@@ -116,7 +116,7 @@ eslint({
     ignore: ['b'],
 });
 // returns
-`eslint a --ignore-pattern 'b'`
+`eslint a --ignore-pattern 'b'`;
 ```
 
 #### putout({names, rulesdir, formatter}) || putout(names)
@@ -124,11 +124,11 @@ eslint({
 ```js
 const names = ['a'];
 
-putout(names)
+putout(names);
 // returns
 `putout a`;
 
-putout({names})
+putout({names});
 // returns
 `putout a`;
 ```
@@ -160,12 +160,12 @@ module.exports = {
         ];
         
         putout({
-            names
+            names,
         });
     },
     'fix:lint': () => run('lint', '--fix', {
-        NODE_ENV: 'development'
-    });
+        NODE_ENV: 'development',
+    }),
 };
 ```
 

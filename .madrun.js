@@ -14,6 +14,7 @@ module.exports = {
             'lib',
             'test',
             '.madrun.js',
+            '*.md',
         ];
         
         return putout({names});
