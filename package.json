@@ -34,7 +34,7 @@
     "url": "git://github.com/coderaiser/madrun.git"
   },
   "bin": {
-    "madrun": "bin/madrun.js",
+    "madrun": "bin/madrun.mjs",
     "madrun-completion": "bin/madrun-completion.js"
   },
   "keywords": [
@@ -62,7 +62,7 @@
   "homepage": "https://github.com/coderaiser/madrun",
   "license": "MIT",
   "engines": {
-    "node": ">=10"
+    "node": ">=14"
   },
   "dependencies": {
     "@putout/formatter-dump": "^2.0.1",

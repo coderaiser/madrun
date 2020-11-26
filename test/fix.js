@@ -1,7 +1,7 @@
 'use strict';
 
 const test = require('supertape');
-const fix = require('../lib/fix');
+const {runPutout} = require('../lib/fix');
 const fixture = require('./fixture/fix');
 
 test('madrun: fix', (t) => {
@@ -9,7 +9,7 @@ test('madrun: fix', (t) => {
         fixCount: 1,
     };
     
-    const result = fix(`
+    const result = runPutout(`
         module.exports = {
             'hello': 'world'
         };

@@ -1,27 +1,10 @@
 'use strict';
 
-const {
-    run,
-    predefined,
-} = require('.');
-
-const {putout} = predefined;
+const {run} = require('.');
 
 module.exports = {
-    'lint': () => {
-        const names = [
-            'bin',
-            'lib',
-            'test',
-            '.madrun.js',
-            '*.md',
-        ];
-        
-        return putout({names});
-    },
-    'fix:lint': () => {
-        return run('lint', '--fix');
-    },
+    'lint': () => 'putout .',
+    'fix:lint': () => run('lint', '--fix'),
     'test': () => `tape 'test/**/*.js' 'lib/**/*.spec.js'`,
     'watch:test': () => run('watcher', run('test')),
     'watch:tape': () => 'nodemon -w test -w lib --exec tape',

@@ -2,13 +2,14 @@
 
 'use strict';
 
-const {dirname, basename} = require('path');
+import {dirname, basename} from 'path';
 
-const findUp = require('find-up');
-const tryCatch = require('try-catch');
+import findUp from 'find-up';
+import tryCatch from 'try-catch';
+import yargsParser from 'yargs-parser';
 
-const {series} = require('..');
-const check = require('../lib/check');
+import {series} from '../lib/madrun.js';
+import check from '../lib/check.js';
 
 const {exit} = process;
 const {
@@ -17,7 +18,7 @@ const {
 } = process.env;
 const cwd = process.cwd();
 
-const args = require('yargs-parser')(process.argv.slice(2), {
+const args = yargsParser(process.argv.slice(2), {
     boolean: [
         'init',
         'fix',
@@ -42,33 +43,38 @@ const {
 } = args;
 
 if (help) {
-    const getHelpInfo = require('../lib/help');
-    console.log(getHelpInfo());
+    const {help} = await import('../lib/help.js');
+    console.log(help());
     process.exit();
 }
 
 if (version) {
-    console.log(`v${require('../package').version}`);
+    const {version} = await readJSON('../package.json');
+    console.log(`v${version}`);
     process.exit();
 }
 
 if (init) {
-    const init = require('./init');
+    const {
+        create,
+        patchNpmIgnore,
+        patchPackage,
+    } = await import('./init');
     fix = true;
     
-    init.create();
-    init.patchNpmIgnore();
-    init.patchPackage();
+    create();
+    patchNpmIgnore();
+    patchPackage();
 }
 
 const names = args._;
 const options = getOptions(args['--']);
-const [dir, script] = getScript();
+const [dir, script] = await getScript();
 
 const problems = check(script);
 
 if (problems) {
-    const result = putoutMadrun(dir, {fix});
+    const result = await putoutMadrun(dir, {fix});
     
     if (fix) {
         process.exit();
@@ -113,8 +119,8 @@ function getOutput({cmd, cwd}) {
 }
 
 function execute(cmd) {
-    const {execSync} = require('child_process');
-    const tryCatch = require('try-catch');
+    const {execSync} = import('child_process');
+    const tryCatch = import('try-catch');
     
     const [e] = tryCatch(execSync, cmd, {
         stdio: [0, 1, 2, 'pipe'],
@@ -134,7 +140,7 @@ function getOptions(args) {
     return args.join(' ');
 }
 
-function getScript() {
+async function getScript() {
     const path = findUp.sync([
         '.madrun.js',
         '.madrun.cjs',
@@ -145,26 +151,36 @@ function getScript() {
         process.exit(1);
     }
     
+    const esm = await import(path);
+    
     return [
         dirname(path),
-        require(path),
+        esm.default,
     ];
 }
 
-function putoutMadrun(dir, {fix}) {
+async function putoutMadrun(dir, {fix}) {
     const name = `${dir}/.madrun.js`;
-    const putout = require('../lib/fix');
+    const {runPutout} = import('../lib/fix.js');
     const {
-        readFileSync,
-        writeFileSync,
-    } = require('fs');
+        readFile,
+        writeFile,
+    } = import('fs/promises');
     
-    const data = readFileSync(name, 'utf8');
-    const {places, code} = putout(data);
+    const data = await readFile(name, 'utf8');
+    const {places, code} = runPutout(data);
     
     if (fix)
-        writeFileSync(name, code);
+        await writeFile(name, code);
     
     return places;
 }
 
+async function readJSON(name) {
+    const {readFile} = await import('fs/promises');
+    const {parse} = JSON;
+    const src = new URL(name, import.meta.url);
+    const info = await readFile(src, 'utf8');
+    
+    return parse(info);
+}

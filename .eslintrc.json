@@ -1,16 +1,4 @@
 {
-    "overrides": [{
-        "files": ["bin/**"],
-        "rules": {
-            "no-console": "off",
-            "no-process-exit": "off"
-        }
-    }, {
-        "files": ["lib/**/*.spec.js"],
-        "rules": {
-            "node/no-unpublished-require": "off"
-        }
-    }],
     "extends": [
         "plugin:node/recommended",
         "plugin:putout/recommended"

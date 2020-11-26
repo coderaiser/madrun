@@ -6,9 +6,9 @@ const test = require('supertape');
 const runsome = require('runsome');
 
 const {version} = require('../package');
-const help = require('../lib/help');
+const {help} = require('../lib/help');
 
-const cliPath = join(__dirname, '../bin/madrun.js');
+const cliPath = join(__dirname, '../bin/madrun.mjs');
 const run = runsome(cliPath);
 
 test('madrun: cli: -v', (t) => {
@@ -56,7 +56,7 @@ test('madrun: cli: kill', (t) => {
         timeout: 1000,
     });
     
-    const expected = '> putout bin lib test .madrun.js';
+    const expected = '> putout .';
     
     t.equal(result, expected);
     t.end();
