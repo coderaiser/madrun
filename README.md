@@ -97,46 +97,6 @@ Run scripts by a name or regexp parallel.
 - `env` - object with `env` variables
 - `scripts` - all scripts set (need for embedding only)
 
-### Predefined scripts
-
-You can easilly add one of predefined scripts
-
-#### eslint({names, ignore})
-
-```js
-eslint({
-    names: ['a'],
-    ignore: ['b'],
-});
-// returns
-`eslint a --ignore-pattern 'b'`;
-```
-
-#### eslint({names, ignore, rulesdir})
-
-```js
-eslint({
-    names: ['a'],
-    ignore: ['b'],
-});
-// returns
-`eslint a --ignore-pattern 'b'`;
-```
-
-#### putout({names, rulesdir, formatter}) || putout(names)
-
-```js
-const names = ['a'];
-
-putout(names);
-// returns
-`putout a`;
-
-putout({names});
-// returns
-`putout a`;
-```
-
 ## Example
 
 Let's install `madrun` and save it as `devDependency` with:
@@ -156,17 +116,7 @@ const {
 const {putout} = predefined;
 
 module.exports = {
-    'lint': () => {
-        const names = [
-            'bin',
-            'lib',
-            'test',
-        ];
-        
-        putout({
-            names,
-        });
-    },
+    'lint': 'putout .',
     'fix:lint': () => run('lint', '--fix', {
         NODE_ENV: 'development',
     }),
