@@ -1,7 +1,7 @@
 'use strict';
 
 const test = require('supertape');
-const tryCatch = require('try-catch');
+const tryToCatch = require('try-to-catch');
 const stub = require('@cloudcmd/stub');
 const mockRequire = require('mock-require');
 
@@ -12,120 +12,120 @@ const {
     parallel,
 } = require('..');
 
-test('madrun: run', (t) => {
+test('madrun: run', async (t) => {
     const lint = 'eslint lib';
     const env = {};
     const scripts = {
         lint: () => lint,
     };
     
-    const result = run('lint', '', env, scripts);
+    const result = await run('lint', '', env, scripts);
     
     t.equal(result, lint, 'should equal');
     t.end();
 });
 
-test('madrun: run: series', (t) => {
+test('madrun: run: series', async (t) => {
     const lint = 'eslint lib';
     const env = {};
     const scripts = {
         lint: () => lint,
     };
     
-    const result = run(['lint'], '', env, scripts);
+    const result = await run(['lint'], '', env, scripts);
     
     t.equal(result, lint, 'should equal');
     t.end();
 });
 
-test('madrun: run: not found', (t) => {
+test('madrun: run: not found', async (t) => {
     const scripts = {};
     const env = {};
     
-    const [e] = tryCatch(run, 'test', '', env, scripts);
+    const [e] = await tryToCatch(run, 'test', '', env, scripts);
     const expected = 'one of scripts not found: test';
     
     t.equal(e.message, expected, 'should equal');
     t.end();
 });
 
-test('madrun: run: problem script', (t) => {
+test('madrun: run: problem script', async (t) => {
     const env = {};
     const scripts = {
         hello: 'world',
     };
     
-    const [, data] = tryCatch(run, 'test', '', env, scripts);
+    const [, data] = await tryToCatch(run, 'test', '', env, scripts);
     const expected = `echo 'fix scripts first: "hello"'`;
     
     t.equal(data, expected, 'should equal');
     t.end();
 });
 
-test('madrun: run: not found: no scripts provided', (t) => {
-    const [e] = tryCatch(run, 'abc', '');
+test('madrun: run: not found: no scripts provided', async (t) => {
+    const [e] = await tryToCatch(run, 'abc', '');
     const expected = 'one of scripts not found: abc';
     
     t.equal(e.message, expected, 'should equal');
     t.end();
 });
 
-test('madrun: run: not found: deep', (t) => {
+test('madrun: run: not found: deep', async (t) => {
     const env = {};
     const scripts = {
         lint: () => run('test', '', env, scripts),
     };
     
-    const [e] = tryCatch(run, 'lint', '', env, scripts);
+    const [e] = await tryToCatch(run, 'lint', '', env, scripts);
     const expected = 'one of scripts not found: test';
     
     t.equal(e.message, expected, 'should equal');
     t.end();
 });
 
-test('madrun: series: opts', (t) => {
+test('madrun: series: opts', async (t) => {
     const env = {};
     const scripts = {
         'lint:lib': () => 'eslint lib',
         'lint:bin': () => 'eslint bin',
     };
     
-    const result = run(['lint:lib', 'lint:bin'], '--fix', env, scripts);
+    const result = await run(['lint:lib', 'lint:bin'], '--fix', env, scripts);
     const expected = 'eslint lib --fix && eslint bin --fix';
     
     t.equal(result, expected, 'should equal');
     t.end();
 });
 
-test('madrun: series: one arg', (t) => {
+test('madrun: series: one arg', async (t) => {
     const env = {};
     const scripts = {
         'lint:lib': () => 'eslint lib',
         'lint:bin': () => 'eslint bin',
     };
     
-    const result = run('lint:*', '', env, scripts);
+    const result = await run('lint:*', '', env, scripts);
     const expected = 'eslint lib && eslint bin';
     
     t.equal(result, expected, 'should equal');
     t.end();
 });
 
-test('madrun: parallel', (t) => {
+test('madrun: parallel', async (t) => {
     const env = {};
     const scripts = {
         'lint:lib': () => 'eslint lib',
         'lint:bin': () => 'eslint bin',
     };
     
-    const result = parallel('lint:*', '', env, scripts);
+    const result = await parallel('lint:*', '', env, scripts);
     const expected = 'eslint lib & eslint bin';
     
     t.equal(result, expected, 'should equal');
     t.end();
 });
 
-test('madrun: parallel: env', (t) => {
+test('madrun: parallel: env', async (t) => {
     const scripts = {
         'lint:lib': () => 'eslint lib',
         'lint:bin': () => 'eslint bin',
@@ -135,14 +135,14 @@ test('madrun: parallel: env', (t) => {
         NODE_ENV: 'development',
     };
     
-    const result = parallel('lint:*', '', env, scripts);
+    const result = await parallel('lint:*', '', env, scripts);
     const expected = 'NODE_ENV=development eslint lib & NODE_ENV=development eslint bin';
     
     t.equal(result, expected, 'should equal');
     t.end();
 });
 
-test('madrun: pre, post', (t) => {
+test('madrun: pre, post', async (t) => {
     const env = {};
     const scripts = {
         prelint: () => 'echo pre',
@@ -150,19 +150,19 @@ test('madrun: pre, post', (t) => {
         postlint: () => 'echo post',
     };
     
-    const result = run('lint', '', env, scripts);
+    const result = await run('lint', '', env, scripts);
     const expected = 'echo pre && eslint lib && echo post';
     
     t.equal(result, expected, 'should equal');
     t.end();
 });
 
-test('madrun: run: .madrun.js not found', (t) => {
+test('madrun: run: .madrun.js not found', async (t) => {
     mockRequire('find-up', {
         sync: stub(),
     });
     const {run} = reRequire('..');
-    const [e] = tryCatch(run);
+    const [e] = await tryToCatch(run);
     
     stopAll();
     

@@ -5,7 +5,7 @@
 import {dirname, basename} from 'path';
 
 import findUp from 'find-up';
-import tryCatch from 'try-catch';
+import tryToCatch from 'try-to-catch';
 import yargsParser from 'yargs-parser';
 
 import {series} from '../lib/madrun.js';
@@ -88,7 +88,7 @@ if (init)
     process.exit();
 
 if (problems) {
-    execute(`echo '${problems}'`);
+    await execute(`echo '${problems}'`);
     process.exit(1);
 }
 
@@ -98,7 +98,7 @@ if (!names.length) {
 }
 
 const env = {};
-const [e, cmd] = tryCatch(series, names, options, env, script);
+const [e, cmd] = await tryToCatch(series, names, options, env, script);
 
 if (e) {
     console.error(e.message);
@@ -106,7 +106,7 @@ if (e) {
 }
 
 console.log(getOutput({cmd, cwd}));
-execute(cmd);
+await execute(cmd);
 
 function getOutput({cmd, cwd}) {
     if (MADRUN_PWD)
@@ -118,9 +118,9 @@ function getOutput({cmd, cwd}) {
     return `> ${cmd}`;
 }
 
-function execute(cmd) {
-    const {execSync} = import('child_process');
-    const tryCatch = import('try-catch');
+async function execute(cmd) {
+    const {execSync} = await import('child_process');
+    const tryCatch = (await import('try-catch')).default;
     
     const [e] = tryCatch(execSync, cmd, {
         stdio: [0, 1, 2, 'pipe'],
@@ -161,7 +161,7 @@ async function getScript() {
 
 async function putoutMadrun(dir, {fix}) {
     const name = `${dir}/.madrun.js`;
-    const {runPutout} = import('../lib/fix.js');
+    const {runPutout} = await import('../lib/fix.js');
     const {
         readFile,
         writeFile,
