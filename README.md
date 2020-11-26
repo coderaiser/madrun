@@ -110,14 +110,11 @@ Let's create file `.madrun.js`:
 ```js
 const {
     run,
-    predefined,
 } = require('madrun');
 
-const {putout} = predefined;
-
 module.exports = {
-    'lint': 'putout .',
-    'fix:lint': () => run('lint', '--fix', {
+    'lint': () => 'putout .',
+    'fix:lint': async () => await run('lint', '--fix', {
         NODE_ENV: 'development',
     }),
 };
