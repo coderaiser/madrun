@@ -108,9 +108,7 @@ npm i madrun -D
 Let's create file `.madrun.js`:
 
 ```js
-const {
-    run,
-} = require('madrun');
+const {run} = require('madrun');
 
 module.exports = {
     'lint': () => 'putout .',
