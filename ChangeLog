@@ -1,3 +1,9 @@
+2020.12.06, v8.0.2
+
+feature:
+- (package) @putout/plugin-madrun v8.0.0
+
+
 2020.12.05, v8.0.1
 
 fix:
