@@ -1,3 +1,13 @@
+2020.12.05, v8.0.1
+
+fix:
+- (madrun) supported
+- (madrun) rm dead code
+
+feature:
+- (package) supertape v3.3.1
+
+
 2020.11.27, v8.0.0
 
 feature:
