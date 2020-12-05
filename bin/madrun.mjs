@@ -141,10 +141,8 @@ function getOptions(args) {
 }
 
 async function getScript() {
-    const path = findUp.sync([
-        '.madrun.js',
-        '.madrun.cjs',
-    ]);
+    const supported = await readJSON('../supported.json');
+    const path = findUp.sync(supported);
     
     if (!path) {
         console.error('file ".madrun.js" not found!');
