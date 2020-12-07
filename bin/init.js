@@ -26,7 +26,7 @@ module.exports = ${JSON.stringify(scripts, null, 4)};
 `;
 
 module.exports.create = () => {
-    if (!existsSync('./.madrun.js') || !existsSync('./.madrun.mjs'))
+    if (!existsSync('./.madrun.js') && !existsSync('./.madrun.mjs'))
         writeFileSync('./.madrun.js', madrun);
 };
 
