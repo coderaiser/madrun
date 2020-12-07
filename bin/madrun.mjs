@@ -59,7 +59,8 @@ if (init) {
         create,
         patchNpmIgnore,
         patchPackage,
-    } = await import('./init');
+    } = await import('./init.js');
+    
     fix = true;
     
     create();
