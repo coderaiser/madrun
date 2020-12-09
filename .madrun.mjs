@@ -1,5 +1,3 @@
-'use strict';
-
 import {run} from './lib/madrun.js';
 
 export default {

@@ -1,7 +1,5 @@
 #!/usr/bin/env node
 
-'use strict';
-
 import {dirname, basename} from 'path';
 
 import findUp from 'find-up';

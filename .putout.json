@@ -1,7 +1,7 @@
 {
     "match": {
-        "lib|bin|test": {
-            "madrun": false
+        "{lib,bin,test}": {
+            "madrun": "off"
         }
     }
 }
