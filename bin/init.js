@@ -30,14 +30,16 @@ module.exports.create = () => {
         writeFileSync('./.madrun.js', madrun);
 };
 
-module.exports.patchPackage = () => {
-    const updatedScripts = patchPackage(require(`${CWD}/.madrun`));
-    writeFileSync('./package.json', preparePackage(info, updatedScripts));
+module.exports.patchPackage = async () => {
+    const {default: content} = await import(`${CWD}/.madrun.js`);
+    const updatedScripts = await patchPackage(content);
+    
+    writeFileSync('./package.json', await preparePackage(info, updatedScripts));
 };
 
 module.exports.patchNpmIgnore = updateNpmIgnore;
 
-function preparePackage(info, scripts) {
+async function preparePackage(info, scripts) {
     const data = {
         ...info,
         scripts,
@@ -46,7 +48,7 @@ function preparePackage(info, scripts) {
     return JSON.stringify(data, null, 2) + '\n';
 }
 
-function patchPackage(scripts) {
+async function patchPackage(scripts) {
     const result = {};
     const keys = Object.keys(scripts);
     
@@ -60,7 +62,7 @@ function patchPackage(scripts) {
     return result;
 }
 
-function updateNpmIgnore() {
+async function updateNpmIgnore() {
     const [, file = ''] = tryCatch(readFileSync, './.npmignore');
     
     const isMadrun = file.includes('.madrun');

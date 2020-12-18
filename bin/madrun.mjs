@@ -61,9 +61,9 @@ if (init) {
     
     fix = true;
     
-    create();
-    patchNpmIgnore();
-    patchPackage();
+    await create();
+    await patchNpmIgnore();
+    await patchPackage();
 }
 
 const names = args._;
