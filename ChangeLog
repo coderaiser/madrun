@@ -1,3 +1,9 @@
+2020.12.19, v8.1.0
+
+feature:
+- (madrun) bin: init: asyncify
+
+
 2020.12.07, v8.0.5
 
 fix:
