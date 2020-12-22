@@ -55,15 +55,13 @@ if (version) {
 if (init) {
     const {
         create,
-        patchNpmIgnore,
         patchPackage,
     } = await import('./init.js');
     
     fix = true;
     
-    await create();
-    await patchNpmIgnore();
-    await patchPackage();
+    const name = await create();
+    await patchPackage(name);
 }
 
 const names = args._;
