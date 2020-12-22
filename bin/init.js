@@ -1,58 +1,64 @@
 'use strict';
 
-const CWD = process.cwd();
-
+const {join} = require('path');
 const {
-    readFileSync,
-    writeFileSync,
-    existsSync,
-} = require('fs');
+    writeFile,
+    access,
+} = require('fs/promises');
 
-const tryCatch = require('try-catch');
-const info = require(`${CWD}/package`);
+const tryToCatch = require('try-to-catch');
+const montag = require('montag');
 
-const {scripts = {}} = info;
-const madrun =
-`'use strict';
+const {stringify} = JSON;
+const {keys} = Object;
 
-const {
-    run,
-    series,
-    parallel,
-} = require('madrun');
-
-module.exports = ${JSON.stringify(scripts, null, 4)};
-
-`;
-
-module.exports.create = () => {
-    if (!existsSync('./.madrun.js') && !existsSync('./.madrun.mjs'))
-        writeFileSync('./.madrun.js', madrun);
-};
-
-module.exports.patchPackage = async () => {
-    const {default: content} = await import(`${CWD}/.madrun.js`);
-    const updatedScripts = await patchPackage(content);
+module.exports.createMadrun = async (cwd, info) => {
+    let name = await findMadrun(cwd);
     
-    writeFileSync('./package.json', await preparePackage(info, updatedScripts));
+    if (!name) {
+        const {scripts = {}} = info;
+        
+        const madrun = montag `
+            'use strict';
+            
+            const {
+                run,
+                series,
+                parallel,
+            } = require('madrun');
+            
+            module.exports = ${stringify(scripts)};
+        `;
+        
+        name = join(cwd, '.madrun.js');
+        await writeFile(name, madrun);
+    }
+    
+    return name;
 };
 
-module.exports.patchNpmIgnore = updateNpmIgnore;
+module.exports.patchPackage = async (name, info) => {
+    const {default: content} = await import(name);
+    
+    const updatedScripts = updatePackage(content);
+    const prepared = preparePackage(info, updatedScripts);
+    
+    await writeFile('./package.json', prepared);
+};
 
-async function preparePackage(info, scripts) {
+function preparePackage(info, scripts) {
     const data = {
         ...info,
         scripts,
     };
     
-    return JSON.stringify(data, null, 2) + '\n';
+    return stringify(data, null, 2) + '\n';
 }
 
-async function patchPackage(scripts) {
+function updatePackage(scripts) {
     const result = {};
-    const keys = Object.keys(scripts);
     
-    for (const key of keys) {
+    for (const key of keys(scripts)) {
         if (/^(pre|post)/.test(key))
             continue;
         
@@ -62,16 +68,22 @@ async function patchPackage(scripts) {
     return result;
 }
 
-async function updateNpmIgnore() {
-    const [, file = ''] = tryCatch(readFileSync, './.npmignore');
+const joinPartial = (a) => (b) => join(a, b);
+
+async function findMadrun(cwd) {
+    const madrunNames = [
+        '.madrun.js',
+        '.madrun.mjs',
+        '.madrun.cjs',
+    ].map(joinPartial(cwd));
     
-    const isMadrun = file.includes('.madrun');
-    const isDotAll = file.includes('.*');
+    for (const name of madrunNames) {
+        const [error] = await tryToCatch(access, name);
+        
+        if (!error)
+            return name;
+    }
     
-    if (isDotAll || isMadrun)
-        return;
-    
-    const data = file + '.madrun.js\n\n';
-    writeFileSync('./.npmignore', data);
+    return '';
 }
 

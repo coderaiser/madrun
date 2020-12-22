@@ -3,19 +3,9 @@
   "version": "8.1.0",
   "description": "CLI tool to run multiple npm-scripts in a madly comfortable way",
   "main": "lib/madrun.js",
-  "nyc": {
-    "exclude": [
-      ".*",
-      "**/*.spec.js",
-      "test"
-    ]
-  },
+  "type": "commonjs",
   "scripts": {
     "lint": "madrun lint",
-    "lint:eslint-bin": "madrun lint:eslint-bin",
-    "lint:eslint-lib": "madrun lint:eslint-lib",
-    "lint:eslint-dot": "madrun lint:eslint-dot",
-    "lint:putout": "madrun lint:putout",
     "fix:lint": "madrun fix:lint",
     "test": "madrun test",
     "watch:test": "madrun watch:test",
@@ -27,7 +17,7 @@
     "watcher": "madrun watcher",
     "coverage": "madrun coverage",
     "report": "madrun report",
-    "postpublish": "madrun postpublish"
+    "hello": "madrun hello"
   },
   "repository": {
     "type": "git",
@@ -71,14 +61,19 @@
     "find-up": "^5.0.0",
     "jessy": "^3.0.0",
     "mapsome": "^1.0.0",
+    "mock-import": "^1.0.2",
+    "montag": "^1.0.0",
+    "once": "^1.4.0",
     "parent-dirs": "^1.0.0",
     "putout": "^12.0.0",
+    "readjson": "^2.2.0",
     "try-catch": "^3.0.0",
     "try-to-catch": "^3.0.0",
     "yargs-parser": "^20.0.0"
   },
   "devDependencies": {
     "@cloudcmd/stub": "^3.1.0",
+    "c8": "^7.3.5",
     "coveralls": "^3.0.0",
     "eslint": "^7.3.1",
     "eslint-plugin-node": "^11.0.0",
@@ -87,7 +82,7 @@
     "nodemon": "^2.0.0",
     "nyc": "^15.0.0",
     "runsome": "^1.0.0",
-    "supertape": "^3.3.1"
+    "supertape": "^4.0.1"
   },
   "publishConfig": {
     "access": "public"

@@ -9,6 +9,7 @@ const {reRequire, stopAll} = mockRequire;
 
 const {
     run,
+    series,
     parallel,
 } = require('..');
 
@@ -33,6 +34,45 @@ test('madrun: run: series', async (t) => {
     };
     
     const result = await run(['lint'], '', env, scripts);
+    
+    t.equal(result, lint, 'should equal');
+    t.end();
+});
+
+test('madrun: run: series: no options', async (t) => {
+    const lint = 'putout .';
+    const env = {};
+    const scripts = {
+        lint: () => lint,
+    };
+    
+    const result = await series(['lint']);
+    
+    t.equal(result, lint, 'should equal');
+    t.end();
+});
+
+test('madrun: run: parallel: no scripts', async (t) => {
+    const lint = 'putout .';
+    const env = {};
+    const scripts = {
+        lint: () => lint,
+    };
+    
+    const result = await parallel(['lint'], '', env);
+    
+    t.equal(result, lint, 'should equal');
+    t.end();
+});
+
+test('madrun: run: parallel: no options', async (t) => {
+    const lint = 'putout .';
+    const env = {};
+    const scripts = {
+        lint: () => lint,
+    };
+    
+    const result = await parallel(['lint']);
     
     t.equal(result, lint, 'should equal');
     t.end();

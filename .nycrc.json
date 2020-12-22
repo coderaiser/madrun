@@ -1,0 +1,16 @@
+{
+    "extension": [
+        ".mjs"
+    ],
+    "check-coverage": true,
+    "all": true,
+    "exclude": [
+        ".*",
+        "**/*.spec.js",
+        "test"
+    ],
+    "branches": 100,
+    "lines": 100,
+    "functions": 100,
+    "statements": 100
+}
