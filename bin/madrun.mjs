@@ -54,14 +54,19 @@ if (version) {
 
 if (init) {
     const {
-        create,
+        createMadrun,
+        readPackage,
         patchPackage,
-    } = await import('./init.js');
+    } = await import('./init.mjs');
     
     fix = true;
     
-    const name = await create();
-    await patchPackage(name);
+    const info = await readPackage();
+    const name = await createMadrun(info);
+    const error = await patchPackage(name, info);
+
+    if (error)
+        console.error(error);
 }
 
 const names = args._;

@@ -14,5 +14,6 @@ export default {
     'coverage': async () => `nyc ${await run('test')}`,
     'report': () => 'nyc report --reporter=text-lcov | coveralls',
     'postpublish': () => 'npm i -g',
+    'hello': () => console.log('hello'),
 };
 

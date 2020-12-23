@@ -12,10 +12,6 @@
   },
   "scripts": {
     "lint": "madrun lint",
-    "lint:eslint-bin": "madrun lint:eslint-bin",
-    "lint:eslint-lib": "madrun lint:eslint-lib",
-    "lint:eslint-dot": "madrun lint:eslint-dot",
-    "lint:putout": "madrun lint:putout",
     "fix:lint": "madrun fix:lint",
     "test": "madrun test",
     "watch:test": "madrun watch:test",
@@ -26,8 +22,7 @@
     "watch:lint": "madrun watch:lint",
     "watcher": "madrun watcher",
     "coverage": "madrun coverage",
-    "report": "madrun report",
-    "postpublish": "madrun postpublish"
+    "report": "madrun report"
   },
   "repository": {
     "type": "git",
@@ -71,6 +66,7 @@
     "find-up": "^5.0.0",
     "jessy": "^3.0.0",
     "mapsome": "^1.0.0",
+    "mock-import": "^1.0.2",
     "montag": "^1.0.0",
     "once": "^1.4.0",
     "parent-dirs": "^1.0.0",

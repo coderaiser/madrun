@@ -1,38 +1,51 @@
 'use strict';
 
-
+import {join} from 'path';
 import {
     readFile,
     writeFile,
     access,
 } from 'fs/promises';
 
-import tryCatch from 'try-catch';
 import tryToCatch from 'try-to-catch';
 import montag from 'montag';
 import readjson from 'readjson';
 
 const CWD = process.cwd();
-const info = await readjson(`${CWD}/package.json`);
 
-const {scripts = {}} = info;
+export async function readPackage () {
+    const [error, info] = await  tryToCatch(readjson,`${CWD}/package.json`);
+
+    if (error) {
+        console.error(error.message);
+        process.exit(1);
+    }
+
+    return info;
+}
+
 const {stringify} = JSON;
 const {keys} = Object;
 
-const madrun = montag `
-    'use strict';
-    
-    const {
-        run,
-        series,
-        parallel,
-    } = require('madrun');
-
-    module.exports = ${stringify(scripts, null, 4)};
-`;
-
-export const create = async () => {
+export const createMadrun = async (info) => {
     let name = await findMadrun();
+
+    if (name)
+        return name;
+
+    const {scripts = {}} = info;
+
+    const madrun = montag `
+        'use strict';
+        
+        const {
+            run,
+            series,
+            parallel,
+        } = require('madrun');
+        module.exports = ${stringify(scripts, null, 4)};
+    `;
+
 
     if (!name)  {
         name = join(CWD, '.madrun.js');
@@ -42,15 +55,31 @@ export const create = async () => {
     return name;
 };
 
-export const patchPackage = async (name) => {
-    const {default: content} = await import(name);
+const tryToImport = async (name) => {
+    let data;
+
+    try {
+        data = await import(name)
+    } catch (error) {
+        return [error, data];
+    }
+
+    return [null, data.default]
+};
+
+export const patchPackage = async (name, info) => {
+    const [error, content] = await tryToImport(name);
+
+    if (error)
+        return error;
+    
     const updatedScripts = updatePackage(content);
     const prepared = preparePackage(info, updatedScripts);
     
     await writeFile('./package.json', prepared);
 };
 
-async function preparePackage(info, scripts) {
+function preparePackage(info, scripts) {
     const data = {
         ...info,
         scripts,
@@ -72,8 +101,9 @@ function updatePackage(scripts) {
     return result;
 }
 
-const joinPartial = (a) => (b) => join(b, a)
-async function findMadrun() {
+const joinPartial = (a) => (b) => join(a, b)
+
+export async function findMadrun() {
     const madrunNames = [
         '.madrun.js',
         '.madrun.mjs',
@@ -82,11 +112,9 @@ async function findMadrun() {
     
     for (const name of madrunNames) {
         const [error] = await tryToCatch(access, name);
-        
-        if (error)
-            continue;
 
-        return name;
+        if (!error)
+            return name;
     }
 
     return '';
