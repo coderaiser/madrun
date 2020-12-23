@@ -5,6 +5,7 @@ import {dirname, basename} from 'path';
 import findUp from 'find-up';
 import tryToCatch from 'try-to-catch';
 import yargsParser from 'yargs-parser';
+import readjson from 'readjson';
 
 import {series} from '../lib/madrun.js';
 import check from '../lib/check.js';
@@ -61,7 +62,11 @@ if (init) {
     
     fix = true;
     
-    const info = await readPackage();
+    const [errorPackage, info] = await  tryToCatch(readjson,`${cwd}/package.json`);
+
+    if (errorPackage)
+        console.error(errorPackage);
+
     const name = await createMadrun(info);
     const error = await patchPackage(name, info);
 

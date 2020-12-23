@@ -1,21 +1,21 @@
 'use strict';
 
-import test from 'supertape';
-import {create} from './init.mjs';
+import {test, stub} from 'supertape';
 import {createMockImport} from 'mock-import';
 
-// const {mockImport, reImport} = createMockImport(import.meta);
+const {mockImport, reImport} = createMockImport(import.meta.url);
 
-// create();
+test('madrun: init: createMadrun', async (t) => {
+    const access = stub();
 
-// mockImport('./madrun.mjs', 'abc');
-// const impl2 = await reImport('./init.mjs');
-// create();
+    mockImport('fs/promises', {
+        access,
+    })
+    
+    const {createMadrun} = await reImport('./init.mjs');
+    const cwd = '/hello'
+    const name = await createMadrun(cwd);
 
-test('create: write file', (t) => {
-    const expected = create();
-    const recived = '.madrun.js';
-
-    t.equal(expected, recived);
+    t.equal(name, '/hello/.madrun.js');
     t.end();
 })

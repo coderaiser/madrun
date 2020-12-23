@@ -2,33 +2,18 @@
 
 import {join} from 'path';
 import {
-    readFile,
     writeFile,
     access,
 } from 'fs/promises';
 
 import tryToCatch from 'try-to-catch';
 import montag from 'montag';
-import readjson from 'readjson';
-
-const CWD = process.cwd();
-
-export async function readPackage () {
-    const [error, info] = await  tryToCatch(readjson,`${CWD}/package.json`);
-
-    if (error) {
-        console.error(error.message);
-        process.exit(1);
-    }
-
-    return info;
-}
 
 const {stringify} = JSON;
 const {keys} = Object;
 
-export const createMadrun = async (info) => {
-    let name = await findMadrun();
+export const createMadrun = async (cwd, info) => {
+    let name = await findMadrun(cwd);
 
     if (name)
         return name;
@@ -48,7 +33,7 @@ export const createMadrun = async (info) => {
 
 
     if (!name)  {
-        name = join(CWD, '.madrun.js');
+        name = join(cwd, '.madrun.js');
         await writeFile(name, madrun);
     }
     
@@ -103,12 +88,13 @@ function updatePackage(scripts) {
 
 const joinPartial = (a) => (b) => join(a, b)
 
-export async function findMadrun() {
+export async function findMadrun(cwd) {
     const madrunNames = [
         '.madrun.js',
         '.madrun.mjs',
         '.madrun.cjs',
-    ].map(joinPartial(CWD));
+    ].map(joinPartial(cwd));
+    debugger;
     
     for (const name of madrunNames) {
         const [error] = await tryToCatch(access, name);

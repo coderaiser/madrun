@@ -22,7 +22,8 @@
     "watch:lint": "madrun watch:lint",
     "watcher": "madrun watcher",
     "coverage": "madrun coverage",
-    "report": "madrun report"
+    "report": "madrun report",
+    "hello": "madrun hello"
   },
   "repository": {
     "type": "git",
