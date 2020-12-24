@@ -14,6 +14,7 @@ const {keys} = Object;
 
 export const createMadrun = async (cwd, info) => {
     let name = await findMadrun(cwd);
+    console.log(':::', name);
 
     if (name)
         return name;
@@ -94,7 +95,8 @@ export async function findMadrun(cwd) {
         '.madrun.mjs',
         '.madrun.cjs',
     ].map(joinPartial(cwd));
-    debugger;
+    
+    console.log(access);
     
     for (const name of madrunNames) {
         const [error] = await tryToCatch(access, name);
