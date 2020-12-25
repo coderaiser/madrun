@@ -1,3 +1,9 @@
+2020.12.25, v8.2.0
+
+feature:
+- (init) add support of .madrun.mjs, .madrun.cjs
+
+
 2020.12.19, v8.1.0
 
 feature:
