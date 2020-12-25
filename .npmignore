@@ -2,9 +2,6 @@
 *.spec.js
 
 test
-redrun.png
-*.md
-!README.md
-
+coverage
 yarn-error.log
 
