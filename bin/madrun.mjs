@@ -69,7 +69,7 @@ if (init) {
     if (errorPackage)
         console.error(errorPackage);
     
-    const name = await createMadrun(info);
+    const name = await createMadrun(cwd, info);
     const [error] = await tryToCatch(patchPackage, name, info);
     
     if (error)
