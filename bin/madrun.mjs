@@ -58,7 +58,6 @@ if (version) {
 if (init) {
     const {
         createMadrun,
-        readPackage,
         patchPackage,
     } = await import('./init.js');
     
@@ -131,20 +130,15 @@ async function execute(cmd) {
     const {execSync} = await import('child_process');
     const tryCatch = await simport('try-catch');
     
-    const child = exec(cmd, {
+    const [error] = tryCatch(execSync, cmd, {
         stdio: [0, 1, 2, 'ipc'],
         cwd: dir,
     });
     
-    child.once('message', () => {
-        console.log('received');
-        process.send && process.send('ready');
-    });
-    
-    child.on('error', (e) => {
+    if (error) {
         console.error(e.message);
         process.exit(1);
-    });
+    }
 }
 
 function getOptions(args) {

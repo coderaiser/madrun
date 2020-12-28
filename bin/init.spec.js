@@ -40,10 +40,11 @@ test('madrun: init: createMadrun: writeFile', async (t) => {
     
     const {createMadrun} = await reRequire('./init');
     const cwd = '/hello';
-    const name = await createMadrun(cwd, {
+    
+    await createMadrun(cwd, {
         scripts: {
-            x: 'hello'
-        }
+            x: 'hello',
+        },
     });
     
     const code = montag`
@@ -54,7 +55,7 @@ test('madrun: init: createMadrun: writeFile', async (t) => {
             series,
             parallel,
         } = require('madrun');
-      
+        
         module.exports = {\"x\":\"hello\"};
     `;
     
@@ -78,7 +79,8 @@ test('madrun: init: createMadrun: writeFile: no scripts', async (t) => {
     
     const {createMadrun} = await reRequire('./init');
     const cwd = '/hello';
-    const name = await createMadrun(cwd, {});
+    
+    await createMadrun(cwd, {});
     
     const code = montag`
         'use strict';
@@ -88,7 +90,7 @@ test('madrun: init: createMadrun: writeFile: no scripts', async (t) => {
             series,
             parallel,
         } = require('madrun');
-      
+        
         module.exports = {};
     `;
     
@@ -114,7 +116,7 @@ test('madrun: init: patchPackage: import error', async (t) => {
     const madrunFile = join(__dirname, 'fixture', 'madrun.mjs');
     
     mockRequire('fs/promises', {
-        writeFile
+        writeFile,
     });
     
     const {patchPackage} = await reRequire('./init');
@@ -126,7 +128,7 @@ test('madrun: init: patchPackage: import error', async (t) => {
         hello: 'world',
         scripts: {
             test: 'madrun test',
-        }
+        },
     }, null, 2) + '\n';
     
     const expected = [

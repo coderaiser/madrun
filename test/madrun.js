@@ -41,10 +41,6 @@ test('madrun: run: series', async (t) => {
 
 test('madrun: run: series: no options', async (t) => {
     const lint = 'putout .';
-    const env = {};
-    const scripts = {
-        lint: () => lint,
-    };
     
     const result = await series(['lint']);
     
@@ -55,9 +51,6 @@ test('madrun: run: series: no options', async (t) => {
 test('madrun: run: parallel: no scripts', async (t) => {
     const lint = 'putout .';
     const env = {};
-    const scripts = {
-        lint: () => lint,
-    };
     
     const result = await parallel(['lint'], '', env);
     
@@ -67,10 +60,6 @@ test('madrun: run: parallel: no scripts', async (t) => {
 
 test('madrun: run: parallel: no options', async (t) => {
     const lint = 'putout .';
-    const env = {};
-    const scripts = {
-        lint: () => lint,
-    };
     
     const result = await parallel(['lint']);
     
