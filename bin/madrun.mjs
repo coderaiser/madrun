@@ -5,10 +5,12 @@ import {dirname, basename} from 'path';
 import findUp from 'find-up';
 import tryToCatch from 'try-to-catch';
 import yargsParser from 'yargs-parser';
-import readjson from 'readjson';
+import {createSimport} from 'simport';
 
 import {series} from '../lib/madrun.js';
 import check from '../lib/check.js';
+
+const simport = createSimport(import.meta.url);
 
 const {exit} = process;
 const {
@@ -48,7 +50,7 @@ if (help) {
 }
 
 if (version) {
-    const {version} = await readJSON('../package.json');
+    const {version} = await simport('../package.json');
     console.log(`v${version}`);
     process.exit();
 }
@@ -62,7 +64,7 @@ if (init) {
     
     fix = true;
     
-    const [errorPackage, info] = await tryToCatch(readjson, `${cwd}/package.json`);
+    const [errorPackage, info] = await tryToCatch(simport, `${cwd}/package.json`);
     
     if (errorPackage)
         console.error(errorPackage);
@@ -127,17 +129,22 @@ function getOutput({cmd, cwd}) {
 
 async function execute(cmd) {
     const {execSync} = await import('child_process');
-    const tryCatch = (await import('try-catch')).default;
+    const tryCatch = await simport('try-catch');
     
-    const [e] = tryCatch(execSync, cmd, {
-        stdio: [0, 1, 2, 'pipe'],
+    const child = exec(cmd, {
+        stdio: [0, 1, 2, 'ipc'],
         cwd: dir,
     });
     
-    if (e) {
+    child.once('message', () => {
+        console.log('received');
+        process.send && process.send('ready');
+    });
+    
+    child.on('error', (e) => {
         console.error(e.message);
         process.exit(1);
-    }
+    });
 }
 
 function getOptions(args) {
@@ -148,7 +155,7 @@ function getOptions(args) {
 }
 
 async function getScript() {
-    const supported = await readJSON('../supported.json');
+    const supported = await simport('../supported.json');
     const path = findUp.sync(supported);
     
     if (!path) {
@@ -181,11 +188,3 @@ async function putoutMadrun(dir, {fix}) {
     return places;
 }
 
-async function readJSON(name) {
-    const {readFile} = await import('fs/promises');
-    const {parse} = JSON;
-    const src = new URL(name, import.meta.url);
-    const info = await readFile(src, 'utf8');
-    
-    return parse(info);
-}
