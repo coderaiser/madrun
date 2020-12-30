@@ -136,7 +136,7 @@ async function execute(cmd) {
     });
     
     if (error) {
-        console.error(e.message);
+        console.error(error.message);
         process.exit(1);
     }
 }
