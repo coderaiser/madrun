@@ -131,7 +131,7 @@ async function execute(cmd) {
     const tryCatch = await simport('try-catch');
     
     const [error] = tryCatch(execSync, cmd, {
-        stdio: [0, 1, 2, 'ipc'],
+        stdio: [0, 1, 2],
         cwd: dir,
     });
     
