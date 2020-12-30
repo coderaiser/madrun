@@ -8,6 +8,7 @@ const {
 
 const tryToCatch = require('try-to-catch');
 const montag = require('montag');
+const supported = require('../supported.json');
 
 const {stringify} = JSON;
 const {keys} = Object;
@@ -71,11 +72,7 @@ function updatePackage(scripts) {
 const joinPartial = (a) => (b) => join(a, b);
 
 async function findMadrun(cwd) {
-    const madrunNames = [
-        '.madrun.js',
-        '.madrun.mjs',
-        '.madrun.cjs',
-    ].map(joinPartial(cwd));
+    const madrunNames = supported.map(joinPartial(cwd));
     
     for (const name of madrunNames) {
         const [error] = await tryToCatch(access, name);
