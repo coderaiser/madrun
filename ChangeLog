@@ -1,3 +1,9 @@
+2020.12.30, v8.3.7
+
+fix:
+- (madrun) execSync: rm ipc
+
+
 2020.12.30, v8.3.6
 
 fix:
