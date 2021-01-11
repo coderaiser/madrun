@@ -199,3 +199,18 @@ test('madrun: run: .madrun.js not found', async (t) => {
     t.end();
 });
 
+test('madrun: run: env', async (t) => {
+    const env = {};
+    const scripts = {
+        lint: () => ['eslint lib', {
+            PROGRESS: 1,
+        }],
+    };
+    
+    const result = await run('lint', '', env, scripts);
+    const expected = 'PROGRESS=1 eslint lib';
+    
+    t.equal(result, expected, 'should equal');
+    t.end();
+});
+

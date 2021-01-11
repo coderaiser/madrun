@@ -115,6 +115,9 @@ module.exports = {
     'fix:lint': async () => await run('lint', '--fix', {
         NODE_ENV: 'development',
     }),
+    'lint:env': () => ['putout .', {
+        CI: 1
+    }],
 };
 ```
 
