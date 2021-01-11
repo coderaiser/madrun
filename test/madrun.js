@@ -11,6 +11,7 @@ const {
     run,
     series,
     parallel,
+    cutEnv,
 } = require('..');
 
 test('madrun: run', async (t) => {
@@ -209,6 +210,72 @@ test('madrun: run: env', async (t) => {
     
     const result = await run('lint', '', env, scripts);
     const expected = 'PROGRESS=1 eslint lib';
+    
+    t.equal(result, expected, 'should equal');
+    t.end();
+});
+
+test('madrun: run: env: inner', async (t) => {
+    const env = {};
+    const scripts = {
+        'lint': () => ['eslint lib', {
+            PROGRESS: 1,
+        }],
+        'fix:lint': () => run('lint', '', {
+            COLOR: 'red',
+        }, scripts),
+    };
+    
+    const result = await run('fix:lint', '', env, scripts);
+    const expected = 'PROGRESS=1 COLOR=red eslint lib';
+    
+    t.equal(result, expected, 'should equal');
+    t.end();
+});
+
+test('madrun: cutEnv: env: in the middle', async (t) => {
+    const env = {};
+    const scripts = {
+        test: () => ['tape test/*.js', {
+            PROGRESS: 1,
+        }],
+        coverage: async () => [
+            `nyc ${await cutEnv('test', null, null, scripts)}`,
+            env,
+        ],
+    };
+    
+    const result = await run('coverage', '', env, scripts);
+    const expected = 'nyc tape test/*.js';
+    
+    t.equal(result, expected, 'should equal');
+    t.end();
+});
+
+test('madrun: cutEnv: env: array', async (t) => {
+    const env = {};
+    const scripts = {
+        test: () => ['tape test/*.js', {
+            PROGRESS: 1,
+        }],
+        coverage: async () => [
+            `nyc ${await cutEnv(['test'], null, null, scripts)}`,
+            env,
+        ],
+    };
+    
+    const result = await run('coverage', '', env, scripts);
+    const expected = 'nyc tape test/*.js';
+    
+    t.equal(result, expected, 'should equal');
+    t.end();
+});
+
+test('madrun: cutEnv: no scripts', async (t) => {
+    const madrun = await import('../.madrun.mjs');
+    const {test} = madrun.default;
+    const result = await cutEnv('test');
+    const [expected] = await test();
     
     t.equal(result, expected, 'should equal');
     t.end();

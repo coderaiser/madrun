@@ -97,6 +97,16 @@ Run scripts by a name or regexp parallel.
 - `env` - object with `env` variables
 - `scripts` - all scripts set (need for embedding only)
 
+### cutEnv(name, [opt, env])
+
+Same as `run`, but returns result without `env`.
+
+- `name` - name of a sript
+- `opt` - options to run with
+- `env` - object with `env` variables
+- `scripts` - all scripts set (need for embedding only)
+
+
 ## Example
 
 Let's install `madrun` and save it as `devDependency` with:
@@ -108,7 +118,7 @@ npm i madrun -D
 Let's create file `.madrun.js`:
 
 ```js
-const {run} = require('madrun');
+const {run, skipEnv} = require('madrun');
 
 module.exports = {
     'lint': () => 'putout .',
@@ -116,8 +126,9 @@ module.exports = {
         NODE_ENV: 'development',
     }),
     'lint:env': () => ['putout .', {
-        CI: 1
+        CI: 1,
     }],
+    'lint:no-env': async () => await skipEnv('lint:env'),
 };
 ```
 
