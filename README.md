@@ -120,6 +120,10 @@ Let's create file `.madrun.js`:
 ```js
 const {run, skipEnv} = require('madrun');
 
+const env = {
+    CI: 1,
+};
+
 module.exports = {
     'lint': () => 'putout .',
     'fix:lint': async () => await run('lint', '--fix', {
@@ -128,6 +132,7 @@ module.exports = {
     'lint:env': () => ['putout .', {
         CI: 1,
     }],
+    'env:lint': () => [env, 'putout .'],
     'lint:no-env': async () => await skipEnv('lint:env'),
 };
 ```

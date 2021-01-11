@@ -215,6 +215,22 @@ test('madrun: run: env', async (t) => {
     t.end();
 });
 
+test('madrun: run: env: first', async (t) => {
+    const env = {
+        PROGRESS: 1,
+    };
+    
+    const scripts = {
+        lint: () => [env, 'eslint lib'],
+    };
+    
+    const result = await run('lint', null, null, scripts);
+    const expected = 'PROGRESS=1 eslint lib';
+    
+    t.equal(result, expected, 'should equal');
+    t.end();
+});
+
 test('madrun: run: env: inner', async (t) => {
     const env = {};
     const scripts = {
