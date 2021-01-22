@@ -44,7 +44,7 @@ const {
 } = args;
 
 if (help) {
-    const {help} = await import('../lib/help.js');
+    const {help} = await simport('../lib/help.js');
     console.log(help());
     process.exit();
 }
@@ -59,7 +59,7 @@ if (init) {
     const {
         createMadrun,
         patchPackage,
-    } = await import('./init.js');
+    } = await simport('./init.js');
     
     fix = true;
     
@@ -127,7 +127,7 @@ function getOutput({cmd, cwd}) {
 }
 
 async function execute(cmd) {
-    const {execSync} = await import('child_process');
+    const {execSync} = await simport('child_process');
     const tryCatch = await simport('try-catch');
     
     const [error] = tryCatch(execSync, cmd, {
@@ -157,7 +157,7 @@ async function getScript() {
         process.exit(1);
     }
     
-    const esm = await import(path);
+    const esm = await simport(path);
     
     return [
         dirname(path),
