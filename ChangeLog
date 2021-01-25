@@ -1,3 +1,9 @@
+2021.01.25, v8.6.2
+
+fix:
+- (madrun) windows: simport
+
+
 2021.01.22, v8.6.1
 
 fix:
