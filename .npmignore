@@ -2,6 +2,7 @@
 *.spec.js
 
 test
+fixture
 coverage
 yarn-error.log
 
