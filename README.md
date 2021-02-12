@@ -148,7 +148,7 @@ For parallel fix with can use:
 
 ```sh
 $ madrun fix:lint
-> NODE_ENV=development putout lib --fix
+> NODE_ENV=development putout . --fix
 ```
 
 ## Related
