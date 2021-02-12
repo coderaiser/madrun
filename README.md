@@ -17,9 +17,9 @@ This can be done using:
 madrun --init
 ```
 
-`madrun` will import all scripts to `.madrun.js`, and add it to `.npmignore`.
+`madrun` will import all scripts to `.madrun.js`.
 
-When update `.madrun.js`, adding new scripts, run `madrun --init` again, to update `package.json`, so you can use:
+When updating `.madrun` script names, run `madrun --init` again, to update `package.json`, so you can use:
 
 ```sh
 npm run new-script-name
@@ -118,7 +118,7 @@ npm i madrun -D
 Let's create file `.madrun.js`:
 
 ```js
-const {run, skipEnv} = require('madrun');
+const {run, cutEnv} = require('madrun');
 
 const env = {
     CI: 1,
@@ -133,7 +133,7 @@ module.exports = {
         CI: 1,
     }],
     'env:lint': () => [env, 'putout .'],
-    'lint:no-env': async () => await skipEnv('lint:env'),
+    'lint:no-env': async () => await cutEnv('lint:env'),
 };
 ```
 
