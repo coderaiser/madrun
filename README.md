@@ -159,13 +159,13 @@ $ madrun fix:lint
 
 MIT
 
-[NPMIMGURL]: https://img.shields.io/npm/v/madrun.svg?style=flat
-[BuildStatusIMGURL]: https://img.shields.io/travis/coderaiser/madrun/master.svg?style=flat
-[DependencyStatusIMGURL]: https://img.shields.io/david/coderaiser/madrun.svg?style=flat
-[LicenseIMGURL]: https://img.shields.io/badge/license-MIT-317BF9.svg?style=flat
 [NPMURL]: https://npmjs.org/package/madrun "npm"
-[BuildStatusURL]: https://travis-ci.org/coderaiser/madrun "Build Status"
+[NPMIMGURL]: https://img.shields.io/npm/v/madrun.svg?style=flat
+[BuildStatusURL]: https://github.com/coderaiser/madrun/actions?query=workflow%3A%22Node+CI%22 "Build Status"
+[BuildStatusIMGURL]: https://github.com/coderaiser/madrun/workflows/Node%20CI/badge.svg
 [DependencyStatusURL]: https://david-dm.org/coderaiser/madrun "Dependency Status"
+[DependencyStatusIMGURL]: https://img.shields.io/david/coderaiser/madrun.svg?style=flat
 [LicenseURL]: https://tldrlegal.com/license/mit-license "MIT License"
+[LicenseIMGURL]: https://img.shields.io/badge/license-MIT-317BF9.svg?style=flat
 [CoverageURL]: https://coveralls.io/github/coderaiser/madrun?branch=master
 [CoverageIMGURL]: https://coveralls.io/repos/coderaiser/madrun/badge.svg?branch=master&service=github
