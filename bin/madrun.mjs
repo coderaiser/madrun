@@ -1,6 +1,9 @@
 #!/usr/bin/env node
 
-import {dirname, basename} from 'path';
+import {
+    dirname,
+    basename,
+} from 'path';
 
 import findUp from 'find-up';
 import tryToCatch from 'try-to-catch';

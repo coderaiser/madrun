@@ -6,8 +6,10 @@
     "all": true,
     "exclude": [
         ".*",
-        "**/*.spec.js",
-        "test"
+        "bin/madrun.mjs",
+        "**/*.spec.*",
+        "test",
+        "**/fixture"
     ],
     "branches": 100,
     "lines": 100,

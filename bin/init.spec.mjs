@@ -1,27 +1,32 @@
-'use strict';
+import {join} from 'path';
 
-const {join} = require('path');
-
-const {
+import {
     test,
     stub,
-} = require('supertape');
+} from 'supertape';
 
-const montag = require('montag');
-const mockRequire = require('mock-require');
-const tryToCatch = require('try-to-catch');
+import montag from 'montag';
+import tryToCatch from 'try-to-catch';
+import {createCommons} from 'simport';
+import {createMockImport} from 'mock-import';
 
-const {reRequire} = mockRequire;
+const {__dirname} = createCommons(import.meta.url);
+const {
+    mockImport,
+    reImport,
+    stopAll,
+} = createMockImport(import.meta.url);
+
 const {stringify} = JSON;
 
 test('madrun: init: createMadrun: found', async (t) => {
     const access = stub();
     
-    mockRequire('fs/promises', {
+    mockImport('fs/promises', {
         access,
     });
     
-    const {createMadrun} = await reRequire('./init');
+    const {createMadrun} = await reImport('./init.mjs');
     const cwd = '/hello';
     const name = await createMadrun(cwd);
     
@@ -33,12 +38,12 @@ test('madrun: init: createMadrun: writeFile', async (t) => {
     const access = stub().throws(Error('xxx'));
     const writeFile = stub();
     
-    mockRequire('fs/promises', {
+    mockImport('fs/promises', {
         access,
         writeFile,
     });
     
-    const {createMadrun} = await reRequire('./init');
+    const {createMadrun} = await reImport('./init.mjs');
     const cwd = '/hello';
     
     await createMadrun(cwd, {
@@ -72,12 +77,12 @@ test('madrun: init: createMadrun: writeFile: no scripts', async (t) => {
     const access = stub().throws(Error('xxx'));
     const writeFile = stub();
     
-    mockRequire('fs/promises', {
+    mockImport('fs/promises', {
         access,
         writeFile,
     });
     
-    const {createMadrun} = await reRequire('./init');
+    const {createMadrun} = await reImport('./init.mjs');
     const cwd = '/hello';
     
     await createMadrun(cwd, {});
@@ -104,7 +109,7 @@ test('madrun: init: createMadrun: writeFile: no scripts', async (t) => {
 });
 
 test('madrun: init: patchPackage: import error', async (t) => {
-    const {patchPackage} = await reRequire('./init');
+    const {patchPackage} = await reImport('./init.mjs');
     const [error] = await tryToCatch(patchPackage, 'xxx');
     
     t.ok(error.message.includes(`Cannot find package 'xxx'`));
@@ -115,11 +120,11 @@ test('madrun: init: patchPackage: import error', async (t) => {
     const writeFile = stub();
     const madrunFile = join(__dirname, 'fixture', 'madrun.mjs');
     
-    mockRequire('fs/promises', {
+    mockImport('fs/promises', {
         writeFile,
     });
     
-    const {patchPackage} = await reRequire('./init');
+    const {patchPackage} = await reImport('./init.mjs');
     await patchPackage(madrunFile, {
         hello: 'world',
     });
@@ -130,6 +135,8 @@ test('madrun: init: patchPackage: import error', async (t) => {
             test: 'madrun test',
         },
     }, null, 2) + '\n';
+    
+    stopAll();
     
     const expected = [
         './package.json',

@@ -291,7 +291,7 @@ test('madrun: cutEnv: no scripts', async (t) => {
     const madrun = await import('../.madrun.mjs');
     const {test} = madrun.default;
     const result = await cutEnv('test');
-    const [expected] = await test();
+    const [, expected] = await test();
     
     t.equal(result, expected, 'should equal');
     t.end();

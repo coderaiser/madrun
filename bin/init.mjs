@@ -1,19 +1,20 @@
-'use strict';
-
-const {join} = require('path');
-const {
+import {join} from 'path';
+import {
     writeFile,
     access,
-} = require('fs/promises');
+} from 'fs/promises';
 
-const tryToCatch = require('try-to-catch');
-const montag = require('montag');
-const supported = require('../supported.json');
+import tryToCatch from 'try-to-catch';
+import montag from 'montag';
+import {createSimport} from 'simport';
 
 const {stringify} = JSON;
 const {keys} = Object;
 
-module.exports.createMadrun = async (cwd, info) => {
+const simport = createSimport(import.meta.url);
+const supported = await simport('../supported.json');
+
+export const createMadrun = async (cwd, info) => {
     let name = await findMadrun(cwd);
     
     if (!name) {
@@ -38,8 +39,8 @@ module.exports.createMadrun = async (cwd, info) => {
     return name;
 };
 
-module.exports.patchPackage = async (name, info) => {
-    const {default: content} = await import(name);
+export const patchPackage = async (name, info) => {
+    const {default: content} = await simport(name);
     
     const updatedScripts = updatePackage(content);
     const prepared = preparePackage(info, updatedScripts);

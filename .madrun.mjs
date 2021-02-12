@@ -1,7 +1,13 @@
-import {run, cutEnv} from './lib/madrun.js';
+import {
+    run,
+    cutEnv,
+} from './lib/madrun.js';
+
+const NODE_OPTIONS = `'--loader mock-import --no-warnings'`;
 
 const env = {
     SUPERTAPE_PROGRESS_BAR_MIN: 20,
+    NODE_OPTIONS,
 };
 
 export default {
@@ -9,13 +15,13 @@ export default {
     'fresh:lint': () => run('lint', '--fresh'),
     'lint:fresh': () => run('lint', '--fresh'),
     'fix:lint': () => run('lint', '--fix'),
-    'test': () => [`tape 'test/**/*.js' '{lib,bin}/**/*.spec.{js,mjs}'`, env],
+    'test': () => [env, `tape 'test/**/*.js' '{lib,bin}/**/*.spec.{js,mjs}'`],
     'watch:test': async () => await run('watcher', await run('test')),
     'watch:tape': () => 'nodemon -w test -w lib --exec tape',
     'watch:lint': async () => await run('watcher', await run('lint')),
     'watcher': () => 'nodemon -w test -w lib -w bin --exec',
-    'coverage': async () => [`nyc ${await cutEnv('test')}`, env],
-    'report': () => 'nyc report --reporter=text-lcov | coveralls',
+    'coverage': async () => [`c8 ${await cutEnv('test')}`, env],
+    'report': () => 'c8 report --reporter=text-lcov | coveralls',
     'postpublish': () => 'npm i -g',
     'hello': () => {},
 };
