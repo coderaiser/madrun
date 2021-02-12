@@ -1,3 +1,9 @@
+2021.02.12, v8.7.0
+
+feature:
+- (madrun) init: convert to ESM
+
+
 2021.02.11, v8.6.5
 
 feature:
