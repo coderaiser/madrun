@@ -62,7 +62,7 @@ if (init) {
     const {
         createMadrun,
         patchPackage,
-    } = await simport('./init.js');
+    } = await simport('./init');
     
     fix = true;
     
