@@ -133,6 +133,7 @@ test('madrun: init: patchPackage: import error', async (t) => {
         hello: 'world',
         scripts: {
             test: 'madrun test',
+            pretest: 'madrun pretest',
         },
     }, null, 2) + '\n';
     

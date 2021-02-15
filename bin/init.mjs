@@ -61,9 +61,6 @@ function updatePackage(scripts) {
     const result = {};
     
     for (const key of keys(scripts)) {
-        if (/^(pre|post)/.test(key))
-            continue;
-        
         result[key] = `madrun ${key}`;
     }
     
