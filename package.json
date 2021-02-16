@@ -71,6 +71,7 @@
   },
   "devDependencies": {
     "@cloudcmd/stub": "^3.1.0",
+    "@putout/formatter-json": "^1.0.2",
     "c8": "^7.3.5",
     "coveralls": "^3.0.0",
     "eslint": "^7.3.1",

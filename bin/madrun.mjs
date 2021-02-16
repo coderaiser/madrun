@@ -170,7 +170,7 @@ async function getScript() {
 
 async function putoutMadrun(dir, {fix}) {
     const name = `${dir}/.madrun.js`;
-    const {runPutout} = await import('../lib/fix.js');
+    const {runPutout} = await simport('../lib/fix');
     const {
         readFile,
         writeFile,
