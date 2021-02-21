@@ -21,7 +21,7 @@ export default {
     'watch:lint': async () => await run('watcher', await run('lint')),
     'watcher': () => 'nodemon -w test -w lib -w bin --exec',
     'coverage': async () => [`c8 ${await cutEnv('test')}`, env],
-    'report': () => 'c8 report --reporter=text-lcov',
+    'report': () => 'c8 report --reporter=lcov',
     'postpublish': () => 'npm i -g',
     'hello': () => {},
 };
