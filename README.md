@@ -118,13 +118,13 @@ npm i madrun -D
 Let's create file `.madrun.js`:
 
 ```js
-const {run, cutEnv} = require('madrun');
+import {run, cutEnv} from 'madrun';
 
 const env = {
     CI: 1,
 };
 
-module.exports = {
+export default {
     'lint': () => 'putout .',
     'fix:lint': async () => await run('lint', '--fix', {
         NODE_ENV: 'development',
