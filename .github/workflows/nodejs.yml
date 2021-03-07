@@ -6,8 +6,6 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    env:
-      NAME: madrun
 
     strategy:
       matrix:
@@ -34,12 +32,7 @@ jobs:
     
     - name: Lint
       run:
-        redrun fix:lint
-    
-    - name: Commit fixes
-      uses: EndBug/add-and-commit@v7
-      with:
-        message: 'chore(${{ env.NAME }}) lint using actions'
+        redrun lint
     
     - name: Coverage
       run:
