@@ -112,7 +112,7 @@ test('madrun: init: patchPackage: import error', async (t) => {
     const {patchPackage} = await reImport('./init.mjs');
     const [error] = await tryToCatch(patchPackage, 'xxx');
     
-    t.ok(error.message.includes(`Cannot find package 'xxx'`));
+    t.match(error.message, RegExp(`Cannot find package 'xxx'`));
     t.end();
 });
 

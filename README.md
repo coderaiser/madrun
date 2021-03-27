@@ -1,5 +1,16 @@
 # Madrun [![License][LicenseIMGURL]][LicenseURL] [![NPM version][NPMIMGURL]][NPMURL] [![Dependency Status][DependencyStatusIMGURL]][DependencyStatusURL] [![Build Status][BuildStatusIMGURL]][BuildStatusURL] [![Coverage Status][CoverageIMGURL]][CoverageURL]
 
+[NPMURL]: https://npmjs.org/package/madrun "npm"
+[NPMIMGURL]: https://img.shields.io/npm/v/madrun.svg?style=flat
+[BuildStatusURL]: https://github.com/coderaiser/madrun/actions?query=workflow%3A%22Node+CI%22 "Build Status"
+[BuildStatusIMGURL]: https://github.com/coderaiser/madrun/workflows/Node%20CI/badge.svg
+[DependencyStatusURL]: https://david-dm.org/coderaiser/madrun "Dependency Status"
+[DependencyStatusIMGURL]: https://img.shields.io/david/coderaiser/madrun.svg?style=flat
+[LicenseURL]: https://tldrlegal.com/license/mit-license "MIT License"
+[LicenseIMGURL]: https://img.shields.io/badge/license-MIT-317BF9.svg?style=flat
+[CoverageURL]: https://coveralls.io/github/coderaiser/madrun?branch=master
+[CoverageIMGURL]: https://coveralls.io/repos/coderaiser/madrun/badge.svg?branch=master&service=github
+
 CLI tool to run multiple npm-scripts in a madly comfortable way. Can be used together with [redrun](https://github.com/coderaiser/redrun).
 
 ## Install
@@ -106,7 +117,6 @@ Same as `run`, but returns result without `env`.
 - `env` - object with `env` variables
 - `scripts` - all scripts set (need for embedding only)
 
-
 ## Example
 
 Let's install `madrun` and save it as `devDependency` with:
@@ -118,7 +128,10 @@ npm i madrun -D
 Let's create file `.madrun.js`:
 
 ```js
-import {run, cutEnv} from 'madrun';
+import {
+    run,
+    cutEnv,
+} from 'madrun';
 
 const env = {
     CI: 1,
@@ -158,14 +171,3 @@ $ madrun fix:lint
 ## License
 
 MIT
-
-[NPMURL]: https://npmjs.org/package/madrun "npm"
-[NPMIMGURL]: https://img.shields.io/npm/v/madrun.svg?style=flat
-[BuildStatusURL]: https://github.com/coderaiser/madrun/actions?query=workflow%3A%22Node+CI%22 "Build Status"
-[BuildStatusIMGURL]: https://github.com/coderaiser/madrun/workflows/Node%20CI/badge.svg
-[DependencyStatusURL]: https://david-dm.org/coderaiser/madrun "Dependency Status"
-[DependencyStatusIMGURL]: https://img.shields.io/david/coderaiser/madrun.svg?style=flat
-[LicenseURL]: https://tldrlegal.com/license/mit-license "MIT License"
-[LicenseIMGURL]: https://img.shields.io/badge/license-MIT-317BF9.svg?style=flat
-[CoverageURL]: https://coveralls.io/github/coderaiser/madrun?branch=master
-[CoverageIMGURL]: https://coveralls.io/repos/coderaiser/madrun/badge.svg?branch=master&service=github
