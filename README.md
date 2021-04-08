@@ -157,7 +157,7 @@ $ madrun lint
 > putout lib
 ```
 
-For parallel fix with can use:
+For parallel fix you can use:
 
 ```sh
 $ madrun fix:lint
