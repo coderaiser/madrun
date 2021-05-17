@@ -30,7 +30,7 @@ madrun --init
 
 `madrun` will import all scripts to `.madrun.js`.
 
-When updating `.madrun` script names, run `madrun --init` again, to update `package.json`, so you can use:
+When updating `madrun script names`, run `madrun --init` again, to update `package.json`, so you can use:
 
 ```sh
 npm run new-script-name
