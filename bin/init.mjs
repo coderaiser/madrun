@@ -29,7 +29,7 @@ export const createMadrun = async (cwd, info) => {
                 parallel,
             } = require('madrun');
             
-            module.exports = ${stringify(scripts)};
+            module.exports = ${stringify(scripts, null, 4)};
         `;
         
         name = join(cwd, '.madrun.js');

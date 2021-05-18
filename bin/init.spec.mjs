@@ -61,7 +61,9 @@ test('madrun: init: createMadrun: writeFile', async (t) => {
             parallel,
         } = require('madrun');
         
-        module.exports = {\"x\":\"hello\"};
+        module.exports = {
+        \"x\": \"hello\"
+        };
     `;
     
     const expected = [
