@@ -53,7 +53,7 @@ test('madrun: cli: script not found', (t) => {
 
 test('madrun: cli: kill', (t) => {
     const result = run('lint', {
-        timeout: 3000,
+        timeout: 1000,
     });
     
     const expected = '> putout .';
