@@ -1,3 +1,9 @@
+2021.07.16, v8.8.6
+
+fix:
+- (madrun) fix: initReport
+
+
 2021.05.28, v8.8.5
 
 feature:
