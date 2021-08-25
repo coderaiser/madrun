@@ -80,7 +80,7 @@
     "nodemon": "^2.0.0",
     "nyc": "^15.0.0",
     "runsome": "^1.0.0",
-    "supertape": "^5.0.0"
+    "supertape": "^6.0.5"
   },
   "publishConfig": {
     "access": "public"
