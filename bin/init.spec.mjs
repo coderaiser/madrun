@@ -118,7 +118,7 @@ test('madrun: init: patchPackage: import error', async (t) => {
     t.end();
 });
 
-test('madrun: init: patchPackage: import error', async (t) => {
+test('madrun: init: patchPackage: import error: writeFile', async (t) => {
     const writeFile = stub();
     const madrunFile = join(__dirname, 'fixture', 'madrun.mjs');
     
