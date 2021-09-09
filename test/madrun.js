@@ -187,6 +187,22 @@ test('madrun: pre, post', async (t) => {
     t.end();
 });
 
+test('madrun: pre, post: run', async (t) => {
+    const env = {};
+    const scripts = {
+        'lint:ide': () => 'echo ide',
+        'prelint': () => run('lint:ide', '', env, scripts),
+        'lint': () => 'eslint lib',
+        'postlint': () => 'echo post',
+    };
+    
+    const result = await run('lint', '', env, scripts);
+    const expected = 'echo ide && eslint lib && echo post';
+    
+    t.equal(result, expected, 'should equal');
+    t.end();
+});
+
 test('madrun: run: .madrun.js not found', async (t) => {
     mockRequire('find-up', {
         sync: stub(),
