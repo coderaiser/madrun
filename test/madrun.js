@@ -204,14 +204,9 @@ test('madrun: pre, post: run', async (t) => {
 });
 
 test('madrun: run: .madrun.js not found', async (t) => {
-    const findUp = stub();
-    const simport = stub().returns({findUp});
-    const createSimport = stub().returns(simport);
-    
-    mockRequire('simport', {
-        createSimport,
+    mockRequire('find-up', {
+        sync: stub(),
     });
-    
     const {run} = reRequire('..');
     const [e] = await tryToCatch(run);
     

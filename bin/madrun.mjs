@@ -5,7 +5,7 @@ import {
     basename,
 } from 'path';
 
-import {findUp} from 'find-up';
+import findUp from 'find-up';
 import tryToCatch from 'try-to-catch';
 import yargsParser from 'yargs-parser';
 import {createSimport} from 'simport';
@@ -153,7 +153,7 @@ function getOptions(args) {
 
 async function getScript() {
     const supported = await simport('../supported.json');
-    const path = await findUp(supported);
+    const path = findUp.sync(supported);
     
     if (!path) {
         console.error('file ".madrun.js" not found!');
