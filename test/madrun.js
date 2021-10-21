@@ -23,7 +23,7 @@ test('madrun: run', async (t) => {
     
     const result = await run('lint', '', env, scripts);
     
-    t.equal(result, lint, 'should equal');
+    t.equal(result, lint);
     t.end();
 });
 
@@ -36,7 +36,7 @@ test('madrun: run: series', async (t) => {
     
     const result = await run(['lint'], '', env, scripts);
     
-    t.equal(result, lint, 'should equal');
+    t.equal(result, lint);
     t.end();
 });
 
@@ -45,7 +45,7 @@ test('madrun: run: series: no options', async (t) => {
     
     const result = await series(['lint']);
     
-    t.equal(result, lint, 'should equal');
+    t.equal(result, lint);
     t.end();
 });
 
@@ -55,7 +55,7 @@ test('madrun: run: parallel: no scripts', async (t) => {
     
     const result = await parallel(['lint'], '', env);
     
-    t.equal(result, lint, 'should equal');
+    t.equal(result, lint);
     t.end();
 });
 
@@ -64,7 +64,7 @@ test('madrun: run: parallel: no options', async (t) => {
     
     const result = await parallel(['lint']);
     
-    t.equal(result, lint, 'should equal');
+    t.equal(result, lint);
     t.end();
 });
 
@@ -75,7 +75,7 @@ test('madrun: run: not found', async (t) => {
     const [e] = await tryToCatch(run, 'test', '', env, scripts);
     const expected = 'one of scripts not found: test';
     
-    t.equal(e.message, expected, 'should equal');
+    t.equal(e.message, expected);
     t.end();
 });
 
@@ -88,7 +88,7 @@ test('madrun: run: problem script', async (t) => {
     const [, data] = await tryToCatch(run, 'test', '', env, scripts);
     const expected = `echo 'fix scripts first: "hello"'`;
     
-    t.equal(data, expected, 'should equal');
+    t.equal(data, expected);
     t.end();
 });
 
@@ -96,7 +96,7 @@ test('madrun: run: not found: no scripts provided', async (t) => {
     const [e] = await tryToCatch(run, 'abc', '');
     const expected = 'one of scripts not found: abc';
     
-    t.equal(e.message, expected, 'should equal');
+    t.equal(e.message, expected);
     t.end();
 });
 
@@ -109,7 +109,7 @@ test('madrun: run: not found: deep', async (t) => {
     const [e] = await tryToCatch(run, 'lint', '', env, scripts);
     const expected = 'one of scripts not found: test';
     
-    t.equal(e.message, expected, 'should equal');
+    t.equal(e.message, expected);
     t.end();
 });
 
@@ -123,7 +123,7 @@ test('madrun: series: opts', async (t) => {
     const result = await run(['lint:lib', 'lint:bin'], '--fix', env, scripts);
     const expected = 'eslint lib --fix && eslint bin --fix';
     
-    t.equal(result, expected, 'should equal');
+    t.equal(result, expected);
     t.end();
 });
 
@@ -137,7 +137,7 @@ test('madrun: series: one arg', async (t) => {
     const result = await run('lint:*', '', env, scripts);
     const expected = 'eslint lib && eslint bin';
     
-    t.equal(result, expected, 'should equal');
+    t.equal(result, expected);
     t.end();
 });
 
@@ -151,7 +151,7 @@ test('madrun: parallel', async (t) => {
     const result = await parallel('lint:*', '', env, scripts);
     const expected = 'eslint lib & eslint bin';
     
-    t.equal(result, expected, 'should equal');
+    t.equal(result, expected);
     t.end();
 });
 
@@ -168,7 +168,7 @@ test('madrun: parallel: env', async (t) => {
     const result = await parallel('lint:*', '', env, scripts);
     const expected = 'NODE_ENV=development eslint lib & NODE_ENV=development eslint bin';
     
-    t.equal(result, expected, 'should equal');
+    t.equal(result, expected);
     t.end();
 });
 
@@ -183,7 +183,7 @@ test('madrun: pre, post', async (t) => {
     const result = await run('lint', '', env, scripts);
     const expected = 'echo pre && eslint lib && echo post';
     
-    t.equal(result, expected, 'should equal');
+    t.equal(result, expected);
     t.end();
 });
 
@@ -199,7 +199,7 @@ test('madrun: pre, post: run', async (t) => {
     const result = await run('lint', '', env, scripts);
     const expected = 'echo ide && eslint lib && echo post';
     
-    t.equal(result, expected, 'should equal');
+    t.equal(result, expected);
     t.end();
 });
 
@@ -227,7 +227,7 @@ test('madrun: run: env', async (t) => {
     const result = await run('lint', '', env, scripts);
     const expected = 'PROGRESS=1 eslint lib';
     
-    t.equal(result, expected, 'should equal');
+    t.equal(result, expected);
     t.end();
 });
 
@@ -243,7 +243,7 @@ test('madrun: run: env: first', async (t) => {
     const result = await run('lint', null, null, scripts);
     const expected = 'PROGRESS=1 eslint lib';
     
-    t.equal(result, expected, 'should equal');
+    t.equal(result, expected);
     t.end();
 });
 
@@ -261,7 +261,7 @@ test('madrun: run: env: inner', async (t) => {
     const result = await run('fix:lint', '', env, scripts);
     const expected = 'PROGRESS=1 COLOR=red eslint lib';
     
-    t.equal(result, expected, 'should equal');
+    t.equal(result, expected);
     t.end();
 });
 
@@ -280,7 +280,7 @@ test('madrun: cutEnv: env: in the middle', async (t) => {
     const result = await run('coverage', '', env, scripts);
     const expected = 'nyc tape test/*.js';
     
-    t.equal(result, expected, 'should equal');
+    t.equal(result, expected);
     t.end();
 });
 
@@ -299,7 +299,7 @@ test('madrun: cutEnv: env: array', async (t) => {
     const result = await run('coverage', '', env, scripts);
     const expected = 'nyc tape test/*.js';
     
-    t.equal(result, expected, 'should equal');
+    t.equal(result, expected);
     t.end();
 });
 
@@ -309,7 +309,7 @@ test('madrun: cutEnv: no scripts', async (t) => {
     const result = await cutEnv('test');
     const [, expected] = await test();
     
-    t.equal(result, expected, 'should equal');
+    t.equal(result, expected);
     t.end();
 });
 
