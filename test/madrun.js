@@ -207,6 +207,7 @@ test('madrun: run: .madrun.js not found', async (t) => {
     mockRequire('find-up', {
         sync: stub(),
     });
+    
     const {run} = reRequire('..');
     const [e] = await tryToCatch(run);
     

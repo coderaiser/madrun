@@ -30,6 +30,8 @@ test('madrun: init: createMadrun: found', async (t) => {
     const cwd = '/hello';
     const name = await createMadrun(cwd);
     
+    stopAll();
+    
     t.equal(name, '/hello/.madrun.js');
     t.end();
 });
@@ -71,6 +73,8 @@ test('madrun: init: createMadrun: writeFile', async (t) => {
         code,
     ];
     
+    stopAll();
+    
     t.calledWith(writeFile, expected);
     t.end();
 });
@@ -105,6 +109,8 @@ test('madrun: init: createMadrun: writeFile: no scripts', async (t) => {
         '/hello/.madrun.js',
         code,
     ];
+    
+    stopAll();
     
     t.calledWith(writeFile, expected);
     t.end();
