@@ -1,3 +1,12 @@
+2021.12.21, v8.9.0
+
+feature:
+- (package) putout v23.0.0
+- (package) yargs-parser v21.0.0
+- (package) @putout/plugin-madrun v11.0.0
+- (package) eslint-plugin-putout v12.2.0
+
+
 2021.11.10, v8.8.12
 
 feature:
