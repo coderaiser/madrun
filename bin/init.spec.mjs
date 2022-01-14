@@ -1,3 +1,5 @@
+import {dirname} from 'path';
+import {fileURLToPath} from 'url';
 import {join} from 'path';
 
 import {
@@ -7,10 +9,10 @@ import {
 
 import montag from 'montag';
 import tryToCatch from 'try-to-catch';
-import {createCommons} from 'simport';
 import {createMockImport} from 'mock-import';
 
-const {__dirname} = createCommons(import.meta.url);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 const {
     mockImport,
     reImport,

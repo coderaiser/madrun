@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+import {createRequire} from 'module';
 import {
     dirname,
     basename,
@@ -8,12 +9,10 @@ import {
 import findUp from 'find-up';
 import tryToCatch from 'try-to-catch';
 import yargsParser from 'yargs-parser';
-import {createSimport} from 'simport';
 
 import {series} from '../lib/madrun.js';
 import check from '../lib/check.js';
-
-const simport = createSimport(import.meta.url);
+const require = createRequire(import.meta.url);
 
 const {exit} = process;
 const {
@@ -47,13 +46,13 @@ const {
 } = args;
 
 if (help) {
-    const {help} = await simport('../lib/help.js');
+    const {help} = require('../lib/help.js');
     console.log(help());
     process.exit();
 }
 
 if (version) {
-    const {version} = await simport('../package.json');
+    const {version} = require('../package.json');
     console.log(`v${version}`);
     process.exit();
 }
@@ -62,11 +61,11 @@ if (init) {
     const {
         createMadrun,
         patchPackage,
-    } = await simport('./init');
+    } = await import('./init.mjs');
     
     fix = true;
     
-    const [errorPackage, info] = await tryToCatch(simport, `${cwd}/package.json`);
+    const [errorPackage, info] = await tryToCatch(require, `${cwd}/package.json`);
     
     if (errorPackage)
         console.error(errorPackage);
@@ -130,8 +129,8 @@ function getOutput({cmd, cwd}) {
 }
 
 async function execute(cmd) {
-    const {execSync} = await simport('child_process');
-    const tryCatch = await simport('try-catch');
+    const {execSync} = await import('child_process');
+    const tryCatch = (await import('try-catch')).default;
     
     const [error] = tryCatch(execSync, cmd, {
         stdio: [0, 1, 2],
@@ -152,7 +151,7 @@ function getOptions(args) {
 }
 
 async function getScript() {
-    const supported = await simport('../supported.json');
+    const supported = require('../supported.json');
     const path = findUp.sync(supported);
     
     if (!path) {
@@ -160,7 +159,7 @@ async function getScript() {
         process.exit(1);
     }
     
-    const esm = await simport(path);
+    const esm = await import(path);
     
     return [
         dirname(path),
@@ -170,7 +169,7 @@ async function getScript() {
 
 async function putoutMadrun(dir, {fix}) {
     const name = `${dir}/.madrun.js`;
-    const {runPutout} = await simport('../lib/fix');
+    const {runPutout} = await import('../lib/fix.mjs');
     const {
         readFile,
         writeFile,

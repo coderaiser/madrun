@@ -2,17 +2,14 @@ import test from 'supertape';
 import {createMockImport} from 'mock-import';
 import jsonFormatter from '@putout/formatter-json';
 
-import {createSimport} from 'simport';
-
 const {
     mockImport,
     reImport,
     stopAll,
 } = createMockImport(import.meta.url);
-const simport = createSimport(import.meta.url);
 
 test('madrun: fix', async (t) => {
-    const fixture = await simport('./fixture/fix.json');
+    const fixture = await import('./fixture/fix.json');
     const options = {
         fixCount: 1,
     };

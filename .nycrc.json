@@ -2,7 +2,7 @@
     "extension": [
         ".mjs"
     ],
-    "check-coverage": true,
+    "check-coverage": false,
     "all": true,
     "exclude": [
         ".*",

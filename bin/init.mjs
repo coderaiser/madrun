@@ -1,3 +1,4 @@
+import {createRequire} from 'module';
 import {join} from 'path';
 import {
     writeFile,
@@ -6,13 +7,13 @@ import {
 
 import tryToCatch from 'try-to-catch';
 import montag from 'montag';
-import {createSimport} from 'simport';
+
+const require = createRequire(import.meta.url);
 
 const {stringify} = JSON;
 const {keys} = Object;
 
-const simport = createSimport(import.meta.url);
-const supported = await simport('../supported.json');
+const supported = require('../supported.json');
 
 export const createMadrun = async (cwd, info) => {
     let name = await findMadrun(cwd);
@@ -40,7 +41,7 @@ export const createMadrun = async (cwd, info) => {
 };
 
 export const patchPackage = async (name, info) => {
-    const {default: content} = await simport(name);
+    const {default: content} = await import(name);
     
     const updatedScripts = updatePackage(content);
     const prepared = preparePackage(info, updatedScripts);

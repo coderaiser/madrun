@@ -63,7 +63,6 @@
     "montag": "^1.0.0",
     "once": "^1.4.0",
     "putout": "^24.0.0",
-    "simport": "^1.0.3",
     "try-catch": "^3.0.0",
     "try-to-catch": "^3.0.0",
     "yargs-parser": "^21.0.0"
@@ -72,7 +71,8 @@
     "@cloudcmd/stub": "^3.1.0",
     "@putout/formatter-json": "^2.0.0",
     "c8": "^7.3.5",
-    "eslint": "^8.0.0-beta.1",
+    "escover": "^1.1.6",
+    "eslint": "^8.0.0",
     "eslint-plugin-node": "^11.0.0",
     "eslint-plugin-putout": "^13.0.0",
     "mock-import": "^2.1.1",
