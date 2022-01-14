@@ -151,6 +151,7 @@ function getOptions(args) {
 }
 
 async function getScript() {
+    const {pathToFileURL} = require('url');
     const supported = require('../supported.json');
     const path = findUp.sync(supported);
     
@@ -159,7 +160,8 @@ async function getScript() {
         process.exit(1);
     }
     
-    const esm = await import(path);
+    // always convert path to url on windows
+    const esm = await import(pathToFileURL(path));
     
     return [
         dirname(path),
