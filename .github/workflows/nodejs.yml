@@ -5,6 +5,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      NAME: madrun
     strategy:
       matrix:
         node-version:
@@ -23,7 +25,11 @@ jobs:
       - name: Bootstrap
         run: redrun bootstrap
       - name: Lint
-        run: redrun lint
+        run: redrun fix:lint
+      - name: Commit fixes
+        uses: EndBug/add-and-commit@v7
+        with:
+          message: chore(${{ env.NAME }}) lint using actions
       - name: Coverage
         run: redrun coverage report
       - name: Coveralls
