@@ -16,7 +16,7 @@ export default {
     'lint:fresh': () => run('lint', '--fresh'),
     'fix:lint': () => run('lint', '--fix'),
     'test:only': () => `tape 'test/**/*.js' '{lib,bin}/**/*.spec.{js,mjs}'`,
-    'test': async () => [env, await'test:only'],
+    'test': async () => [env, await run('test:only')],
     'watch:test': async () => await run('watcher', await cutEnv('test')),
     'watch:tape': () => 'nodemon -w test -w lib --exec tape',
     'watch:lint': async () => await run('watcher', await run('lint')),

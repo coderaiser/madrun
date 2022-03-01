@@ -3,7 +3,7 @@
 const test = require('supertape');
 const check = require('../lib/check');
 
-test('madrun check', (t) => {
+test('madrun: check', (t) => {
     const result = check({
         test: 'hello',
         lint: 'lint',
