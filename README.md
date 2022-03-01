@@ -1,4 +1,4 @@
-# Madrun [![License][LicenseIMGURL]][LicenseURL] [![NPM version][NPMIMGURL]][NPMURL] [![Build Status][BuildStatusIMGURL]][BuildStatusURL] [![Coverage Status][CoverageIMGURL]][CoverageURL]
+# 🏎 Madrun [![License][LicenseIMGURL]][LicenseURL] [![NPM version][NPMIMGURL]][NPMURL] [![Build Status][BuildStatusIMGURL]][BuildStatusURL] [![Coverage Status][CoverageIMGURL]][CoverageURL]
 
 [NPMURL]: https://npmjs.org/package/madrun "npm"
 [NPMIMGURL]: https://img.shields.io/npm/v/madrun.svg?style=flat
@@ -19,19 +19,22 @@ npm i madrun -g
 
 # Usage
 
-First thing you should do is create `.madrun.js` file.
+First thing you should do is:
+- ✅ create `.madrun.js` file will all scripts written in **JavaScript**;
+- ✅ update `package.json` scripts to use **madrun**;
+
 This can be done using:
 
 ```sh
 madrun --init
 ```
 
-`madrun` will import all scripts to `.madrun.js`.
-
-When updating `madrun script names`, run `madrun --init` again, to update `package.json`, so you can use:
+When you create new script, you can run it with: `madrun lint test`.
+Run `madrun --init` again, to update `package.json`, so you can use:
 
 ```sh
-npm run new-script-name
+npm run lint
+npm test
 ```
 
 Then you can run `madrun` without args to see list of a scripts. Or run:
@@ -148,17 +151,17 @@ export default {
 };
 ```
 
-Now you can call any of listed scripts with help of `madrun cli`:
+Now you can call any of listed scripts with help of 🏎 **Madrun**:
 
 ```sh
-$ madrun lint
-> putout lib
+madrun lint
+> putout .
 ```
 
 For parallel fix you can use:
 
 ```sh
-$ madrun fix:lint
+madrun fix:lint
 > NODE_ENV=development putout . --fix
 ```
 
