@@ -20,7 +20,6 @@ npm i madrun -g
 # Usage
 
 First thing you should do is:
-
 - ✅ create `.madrun.js` file will all scripts written in **JavaScript**;
 - ✅ update `package.json` scripts to use **madrun**;
 
@@ -159,11 +158,11 @@ madrun lint
 > putout .
 ```
 
-For parallel fix you can use:
+For **series run** you can use:
 
 ```sh
-madrun fix:lint
-> NODE_ENV=development putout . --fix
+madrun lint:*
+> CI=1 putout . && putout .
 ```
 
 ## Related
