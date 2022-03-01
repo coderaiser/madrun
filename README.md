@@ -20,6 +20,7 @@ npm i madrun -g
 # Usage
 
 First thing you should do is:
+
 - ✅ create `.madrun.js` file will all scripts written in **JavaScript**;
 - ✅ update `package.json` scripts to use **madrun**;
 
