@@ -1,3 +1,16 @@
+2022.03.29, v9.0.1
+
+fix:
+- chore(actions) add auto fix
+
+
+feature:
+- (package) @putout/formatter-dump v4.0.0
+- (package) eslint-plugin-putout v14.0.1
+- (package) escover v2.0.1
+- (package) mock-import v3.0.0
+
+
 2022.02.17, v9.0.0
 
 feature:
