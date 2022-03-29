@@ -54,7 +54,7 @@
     "node": ">=16"
   },
   "dependencies": {
-    "@putout/formatter-dump": "^3.0.2",
+    "@putout/formatter-dump": "^4.0.0",
     "@putout/plugin-madrun": "^13.0.0",
     "all-object-keys": "^2.0.0",
     "find-up": "^5.0.0",
