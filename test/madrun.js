@@ -1,8 +1,7 @@
 'use strict';
 
-const test = require('supertape');
+const {test, stub} = require('supertape');
 const tryToCatch = require('try-to-catch');
-const stub = require('@cloudcmd/stub');
 const mockRequire = require('mock-require');
 
 const {reRequire, stopAll} = mockRequire;
