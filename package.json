@@ -4,6 +4,7 @@
   "description": "CLI tool to run multiple npm-scripts in a madly comfortable way",
   "main": "lib/madrun.js",
   "type": "commonjs",
+  "commitType": "colon",
   "scripts": {
     "lint": "madrun lint",
     "fresh:lint": "madrun fresh:lint",
