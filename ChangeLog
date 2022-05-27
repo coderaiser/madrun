@@ -89,7 +89,7 @@ feature:
 2021.09.09, v8.8.9
 
 fix:
-- (package) get back to older find-up becase of inability to test and problem with simport resolve
+- (package) get back to older find-up because of inability to test and problem with simport resolve
 
 
 2021.09.09, v8.8.8

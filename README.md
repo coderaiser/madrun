@@ -87,7 +87,7 @@ MADRUN_NAME=1 madrun lint
 
 Run script by a name or regexp.
 
-- `name` - name of a sript
+- `name` - name of a script
 - `opt` - options to run with
 - `env` - object with `env` variables
 - `scripts` - all scripts set (need for embedding only)
@@ -114,7 +114,7 @@ Run scripts by a name or regexp parallel.
 
 Same as `run`, but returns result without `env`.
 
-- `name` - name of a sript
+- `name` - name of a script
 - `opt` - options to run with
 - `env` - object with `env` variables
 - `scripts` - all scripts set (need for embedding only)
