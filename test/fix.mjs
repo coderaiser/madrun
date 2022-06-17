@@ -25,7 +25,7 @@ test('madrun: fix', async (t) => {
     
     stopAll();
     
-    t.deepEqual(result, fixture, 'should equal');
+    t.deepEqual(result, fixture);
     t.end();
 });
 

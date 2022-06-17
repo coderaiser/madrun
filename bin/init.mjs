@@ -10,10 +10,10 @@ import montag from 'montag';
 
 const require = createRequire(import.meta.url);
 
-const {stringify} = JSON;
+const supported = require('../supported.json');
 const {keys} = Object;
 
-const supported = require('../supported.json');
+const {stringify} = JSON;
 
 export const createMadrun = async (cwd, info) => {
     let name = await findMadrun(cwd);
