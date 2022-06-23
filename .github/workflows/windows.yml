@@ -1,10 +1,10 @@
-name: Node CI
+name: Node Windows CI
 on:
   - push
   - pull_request
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     env:
       NAME: madrun
     strategy:
@@ -22,7 +22,7 @@ jobs:
         run: npm i redrun -g
       - name: Install
         run: npm install
-      
+
       - name: Lint
         run: redrun fix:lint
       
