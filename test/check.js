@@ -12,7 +12,7 @@ test('madrun: check', (t) => {
     
     const expected = `echo 'fix scripts first: "test", "lint"'`;
     
-    t.deepEqual(result, expected);
+    t.equal(result, expected);
     t.end();
 });
 
