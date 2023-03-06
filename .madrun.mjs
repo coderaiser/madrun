@@ -3,6 +3,8 @@ import {
     cutEnv,
 } from './lib/madrun.js';
 
+const noop = () => {};
+
 const NODE_OPTIONS = `'--loader mock-import --no-warnings'`;
 
 const env = {
@@ -25,6 +27,6 @@ export default {
     'coverage:old': async () => [`c8 ${await run('test:only')}`, env],
     'report': () => 'c8 report --reporter=lcov',
     'postpublish': () => 'npm i -g',
-    'hello': () => {},
+    'hello': noop,
 };
 

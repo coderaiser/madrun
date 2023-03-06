@@ -1,6 +1,8 @@
-import {dirname} from 'path';
+import {
+    dirname,
+    join,
+} from 'path';
 import {fileURLToPath} from 'url';
-import {join} from 'path';
 
 import {
     test,
