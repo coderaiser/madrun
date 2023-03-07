@@ -12,6 +12,8 @@ import yargsParser from 'yargs-parser';
 
 import {series} from '../lib/madrun.js';
 import check from '../lib/check.js';
+import {choose} from '../lib/choose.mjs';
+
 const require = createRequire(import.meta.url);
 
 const {exit} = process;
@@ -48,13 +50,13 @@ const {
 if (help) {
     const {help} = require('../lib/help.js');
     console.log(help());
-    process.exit();
+    exit();
 }
 
 if (version) {
     const {version} = require('../package.json');
     console.log(`v${version}`);
-    process.exit();
+    exit();
 }
 
 if (init) {
@@ -77,42 +79,44 @@ if (init) {
         console.error(error);
 }
 
-const names = args._;
+let names = args._;
 const options = getOptions(args['--']);
-const [dir, script] = await getScript();
+const [dir, scripts] = await getScript();
 
-const problems = check(script);
+const problems = check(scripts);
 
 if (problems) {
     const result = await putoutMadrun(dir, {fix});
     
     if (fix) {
-        process.exit();
+        exit();
     } else {
         console.log(result);
-        process.exit(1);
+        exit(1);
     }
 }
 
 if (init)
-    process.exit();
+    exit();
 
 if (problems) {
     await execute(`echo '${problems}'`);
-    process.exit(1);
+    exit(1);
 }
 
 if (!names.length) {
-    console.log(Object.keys(script).join('\n'));
-    exit();
+    names = await choose(scripts);
 }
 
+if (!names.length)
+    exit();
+
 const env = {};
-const [e, cmd] = await tryToCatch(series, names, options, env, script);
+const [e, cmd] = await tryToCatch(series, names, options, env, scripts);
 
 if (e) {
     console.error(e.message);
-    process.exit(1);
+    exit(1);
 }
 
 console.log(getOutput({cmd, cwd}));

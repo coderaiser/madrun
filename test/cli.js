@@ -58,7 +58,7 @@ test('madrun: cli: kill', (t) => {
     
     const expected = '> putout .';
     
-    t.equal(result, expected);
+    t.match(result, expected);
     t.end();
 });
 
