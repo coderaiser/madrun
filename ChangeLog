@@ -1,3 +1,10 @@
+2023.05.01, v9.2.0
+
+feature:
+- a702e01 madrun: use built-in madrun
+- 77560c6 package: eslint-plugin-putout v17.5.1
+- 928768c package: @putout/plugin-madrun v15.0.0
+
 2023.03.07, v9.1.0
 
 feature:
