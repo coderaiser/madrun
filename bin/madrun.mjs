@@ -187,6 +187,7 @@ async function putoutMadrun(dir, {fix}) {
     } = await import('fs/promises');
     
     const data = await readFile(name, 'utf8');
+    
     const {
         places,
         code,

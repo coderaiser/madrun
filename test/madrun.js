@@ -131,6 +131,7 @@ test('madrun: series: opts', async (t) => {
         'lint:lib',
         'lint:bin',
     ], '--fix', env, scripts);
+    
     const expected = 'eslint lib --fix && eslint bin --fix';
     
     t.equal(result, expected);
