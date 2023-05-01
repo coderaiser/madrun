@@ -61,4 +61,3 @@ test('madrun: cli: kill', (t) => {
     t.match(result, expected);
     t.end();
 });
-

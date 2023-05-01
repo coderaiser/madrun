@@ -10,6 +10,7 @@ const {
 
 test('madrun: fix', async (t) => {
     const fixture = await import('./fixture/fix.json');
+    
     const options = {
         fixCount: 1,
     };
@@ -17,6 +18,7 @@ test('madrun: fix', async (t) => {
     mockImport('@putout/formatter-dump', jsonFormatter);
     
     const {runPutout} = await reImport('../lib/fix.mjs');
+    
     const result = runPutout(`
         module.exports = {
             'hello': 'world'
@@ -28,4 +30,3 @@ test('madrun: fix', async (t) => {
     t.deepEqual(result, fixture);
     t.end();
 });
-

@@ -4,7 +4,6 @@ import {
     writeFile,
     access,
 } from 'fs/promises';
-
 import tryToCatch from 'try-to-catch';
 import montag from 'montag';
 
@@ -21,7 +20,7 @@ export const createMadrun = async (cwd, info) => {
     if (!name) {
         const {scripts = {}} = info;
         
-        const madrun = montag `
+        const madrun = montag`
             'use strict';
             
             const {
@@ -82,4 +81,3 @@ async function findMadrun(cwd) {
     
     return '';
 }
-

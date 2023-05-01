@@ -3,18 +3,17 @@ import {
     join,
 } from 'path';
 import {fileURLToPath} from 'url';
-
 import {
     test,
     stub,
 } from 'supertape';
-
 import montag from 'montag';
 import tryToCatch from 'try-to-catch';
 import {createMockImport} from 'mock-import';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+
 const {
     mockImport,
     reImport,
@@ -72,10 +71,7 @@ test('madrun: init: createMadrun: writeFile', async (t) => {
         };
     `;
     
-    const expected = [
-        '/hello/.madrun.js',
-        code,
-    ];
+    const expected = ['/hello/.madrun.js', code];
     
     stopAll();
     
@@ -109,10 +105,7 @@ test('madrun: init: createMadrun: writeFile: no scripts', async (t) => {
         module.exports = {};
     `;
     
-    const expected = [
-        '/hello/.madrun.js',
-        code,
-    ];
+    const expected = ['/hello/.madrun.js', code];
     
     stopAll();
     
@@ -137,6 +130,7 @@ test('madrun: init: patchPackage: import error: writeFile', async (t) => {
     });
     
     const {patchPackage} = await reImport('./init.mjs');
+    
     await patchPackage(madrunFile, {
         hello: 'world',
     });
@@ -151,12 +145,8 @@ test('madrun: init: patchPackage: import error: writeFile', async (t) => {
     
     stopAll();
     
-    const expected = [
-        './package.json',
-        content,
-    ];
+    const expected = ['./package.json', content];
     
     t.calledWith(writeFile, expected);
     t.end();
 });
-

@@ -1,15 +1,12 @@
 #!/usr/bin/env node
-
 import {createRequire} from 'module';
 import {
     dirname,
     basename,
 } from 'path';
-
 import findUp from 'find-up';
 import tryToCatch from 'try-to-catch';
 import yargsParser from 'yargs-parser';
-
 import {series} from '../lib/madrun.js';
 import check from '../lib/check.js';
 import {choose} from '../lib/choose.mjs';
@@ -17,10 +14,12 @@ import {choose} from '../lib/choose.mjs';
 const require = createRequire(import.meta.url);
 
 const {exit} = process;
+
 const {
     MADRUN_PWD,
     MADRUN_NAME,
 } = process.env;
+
 const cwd = process.cwd();
 
 const args = yargsParser(process.argv.slice(2), {
@@ -86,7 +85,9 @@ const [dir, scripts] = await getScript();
 const problems = check(scripts);
 
 if (problems) {
-    const result = await putoutMadrun(dir, {fix});
+    const result = await putoutMadrun(dir, {
+        fix,
+    });
     
     if (fix) {
         exit();
@@ -119,7 +120,10 @@ if (e) {
     exit(1);
 }
 
-console.log(getOutput({cmd, cwd}));
+console.log(getOutput({
+    cmd,
+    cwd,
+}));
 await execute(cmd);
 
 function getOutput({cmd, cwd}) {
@@ -176,17 +180,20 @@ async function getScript() {
 async function putoutMadrun(dir, {fix}) {
     const name = `${dir}/.madrun.js`;
     const {runPutout} = await import('../lib/fix.mjs');
+    
     const {
         readFile,
         writeFile,
     } = await import('fs/promises');
     
     const data = await readFile(name, 'utf8');
-    const {places, code} = await runPutout(data);
+    const {
+        places,
+        code,
+    } = await runPutout(data);
     
     if (fix)
         await writeFile(name, code);
     
     return places;
 }
-

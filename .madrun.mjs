@@ -29,4 +29,3 @@ export default {
     'postpublish': () => 'npm i -g',
     'hello': noop,
 };
-

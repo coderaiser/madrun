@@ -11,11 +11,15 @@ const {
     cutEnv,
 } = require('..');
 
-const {reRequire, stopAll} = mockRequire;
+const {
+    reRequire,
+    stopAll,
+} = mockRequire;
 
 test('madrun: run', async (t) => {
     const lint = 'eslint lib';
     const env = {};
+    
     const scripts = {
         lint: () => lint,
     };
@@ -29,6 +33,7 @@ test('madrun: run', async (t) => {
 test('madrun: run: series', async (t) => {
     const lint = 'eslint lib';
     const env = {};
+    
     const scripts = {
         lint: () => lint,
     };
@@ -80,6 +85,7 @@ test('madrun: run: not found', async (t) => {
 
 test('madrun: run: problem script', async (t) => {
     const env = {};
+    
     const scripts = {
         hello: 'world',
     };
@@ -101,6 +107,7 @@ test('madrun: run: not found: no scripts provided', async (t) => {
 
 test('madrun: run: not found: deep', async (t) => {
     const env = {};
+    
     const scripts = {
         lint: () => run('test', '', env, scripts),
     };
@@ -114,12 +121,16 @@ test('madrun: run: not found: deep', async (t) => {
 
 test('madrun: series: opts', async (t) => {
     const env = {};
+    
     const scripts = {
         'lint:lib': () => 'eslint lib',
         'lint:bin': () => 'eslint bin',
     };
     
-    const result = await run(['lint:lib', 'lint:bin'], '--fix', env, scripts);
+    const result = await run([
+        'lint:lib',
+        'lint:bin',
+    ], '--fix', env, scripts);
     const expected = 'eslint lib --fix && eslint bin --fix';
     
     t.equal(result, expected);
@@ -128,6 +139,7 @@ test('madrun: series: opts', async (t) => {
 
 test('madrun: series: one arg', async (t) => {
     const env = {};
+    
     const scripts = {
         'lint:lib': () => 'eslint lib',
         'lint:bin': () => 'eslint bin',
@@ -142,6 +154,7 @@ test('madrun: series: one arg', async (t) => {
 
 test('madrun: parallel', async (t) => {
     const env = {};
+    
     const scripts = {
         'lint:lib': () => 'eslint lib',
         'lint:bin': () => 'eslint bin',
@@ -173,6 +186,7 @@ test('madrun: parallel: env', async (t) => {
 
 test('madrun: pre, post', async (t) => {
     const env = {};
+    
     const scripts = {
         prelint: () => 'echo pre',
         lint: () => 'eslint lib',
@@ -188,6 +202,7 @@ test('madrun: pre, post', async (t) => {
 
 test('madrun: pre, post: run', async (t) => {
     const env = {};
+    
     const scripts = {
         'lint:ide': () => 'echo ide',
         'prelint': () => run('lint:ide', '', env, scripts),
@@ -218,6 +233,7 @@ test('madrun: run: .madrun.js not found', async (t) => {
 
 test('madrun: run: env', async (t) => {
     const env = {};
+    
     const scripts = {
         lint: () => ['eslint lib', {
             PROGRESS: 1,
@@ -237,7 +253,10 @@ test('madrun: run: env: first', async (t) => {
     };
     
     const scripts = {
-        lint: () => [env, 'eslint lib'],
+        lint: () => [
+            env,
+            'eslint lib',
+        ],
     };
     
     const result = await run('lint', null, null, scripts);
@@ -249,6 +268,7 @@ test('madrun: run: env: first', async (t) => {
 
 test('madrun: run: env: inner', async (t) => {
     const env = {};
+    
     const scripts = {
         'lint': () => ['eslint lib', {
             PROGRESS: 1,
@@ -267,6 +287,7 @@ test('madrun: run: env: inner', async (t) => {
 
 test('madrun: cutEnv: env: in the middle', async (t) => {
     const env = {};
+    
     const scripts = {
         test: () => ['tape test/*.js', {
             PROGRESS: 1,
@@ -286,6 +307,7 @@ test('madrun: cutEnv: env: in the middle', async (t) => {
 
 test('madrun: cutEnv: env: array', async (t) => {
     const env = {};
+    
     const scripts = {
         test: () => ['tape test/*.js', {
             PROGRESS: 1,
@@ -312,4 +334,3 @@ test('madrun: cutEnv: no scripts', async (t) => {
     t.equal(result, expected);
     t.end();
 });
-

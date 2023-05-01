@@ -17,4 +17,3 @@ test('madrun: check', (t) => {
     t.equal(result, expected);
     t.end();
 });
-
