@@ -1,3 +1,12 @@
+2023.07.06, v9.3.0
+
+feature:
+- c72b896 package: eslint-plugin-putout v18.0.0
+- 4d8d729 package: putout v30.0.2
+- 8fc78af package: escover v3.4.0
+- c607a04 package: c8 v8.0.0
+- b14cab2 package: eslint-plugin-n v16.0.1
+
 2023.05.01, v9.2.0
 
 feature:
