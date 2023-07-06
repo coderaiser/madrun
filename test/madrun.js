@@ -11,10 +11,7 @@ const {
     cutEnv,
 } = require('..');
 
-const {
-    reRequire,
-    stopAll,
-} = mockRequire;
+const {reRequire, stopAll} = mockRequire;
 
 test('madrun: run', async (t) => {
     const lint = 'eslint lib';
@@ -127,11 +124,7 @@ test('madrun: series: opts', async (t) => {
         'lint:bin': () => 'eslint bin',
     };
     
-    const result = await run([
-        'lint:lib',
-        'lint:bin',
-    ], '--fix', env, scripts);
-    
+    const result = await run(['lint:lib', 'lint:bin'], '--fix', env, scripts);
     const expected = 'eslint lib --fix && eslint bin --fix';
     
     t.equal(result, expected);
@@ -254,10 +247,7 @@ test('madrun: run: env: first', async (t) => {
     };
     
     const scripts = {
-        lint: () => [
-            env,
-            'eslint lib',
-        ],
+        lint: () => [env, 'eslint lib'],
     };
     
     const result = await run('lint', null, null, scripts);

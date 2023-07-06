@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 import {createRequire} from 'module';
 import {
     dirname,
@@ -15,10 +16,7 @@ const require = createRequire(import.meta.url);
 
 const {exit} = process;
 
-const {
-    MADRUN_PWD,
-    MADRUN_NAME,
-} = process.env;
+const {MADRUN_PWD, MADRUN_NAME} = process.env;
 
 const cwd = process.cwd();
 
@@ -59,10 +57,7 @@ if (version) {
 }
 
 if (init) {
-    const {
-        createMadrun,
-        patchPackage,
-    } = await import('./init.mjs');
+    const {createMadrun, patchPackage} = await import('./init.mjs');
     
     fix = true;
     
@@ -180,18 +175,9 @@ async function getScript() {
 async function putoutMadrun(dir, {fix}) {
     const name = `${dir}/.madrun.js`;
     const {runPutout} = await import('../lib/fix.mjs');
-    
-    const {
-        readFile,
-        writeFile,
-    } = await import('fs/promises');
-    
+    const {readFile, writeFile} = await import('fs/promises');
     const data = await readFile(name, 'utf8');
-    
-    const {
-        places,
-        code,
-    } = await runPutout(data);
+    const {places, code} = await runPutout(data);
     
     if (fix)
         await writeFile(name, code);

@@ -1,7 +1,5 @@
 {
-    "extension": [
-        ".mjs"
-    ],
+    "extension": [".mjs"],
     "check-coverage": false,
     "all": true,
     "exclude": [

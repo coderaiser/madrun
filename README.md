@@ -149,10 +149,7 @@ export default {
     'lint:env': () => ['putout .', {
         CI: 1,
     }],
-    'env:lint': () => [
-        env,
-        'putout .',
-    ],
+    'env:lint': () => [env, 'putout .'],
     'lint:no-env': async () => await cutEnv('lint:env'),
 };
 ```
