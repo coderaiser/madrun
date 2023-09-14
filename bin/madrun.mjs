@@ -1,13 +1,14 @@
 #!/usr/bin/env node
 
-import {createRequire} from 'module';
+import {createRequire} from 'node:module';
 import {
     dirname,
     basename,
-} from 'path';
+} from 'node:path';
 import findUp from 'find-up';
 import tryToCatch from 'try-to-catch';
 import yargsParser from 'yargs-parser';
+import process from 'node:process';
 import {series} from '../lib/madrun.js';
 import check from '../lib/check.js';
 import {choose} from '../lib/choose.mjs';

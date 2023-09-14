@@ -1,8 +1,8 @@
 import {
     dirname,
     join,
-} from 'path';
-import {fileURLToPath} from 'url';
+} from 'node:path';
+import {fileURLToPath} from 'node:url';
 import {
     test,
     stub,
@@ -25,7 +25,7 @@ const {stringify} = JSON;
 test('madrun: init: createMadrun: found', async (t) => {
     const access = stub();
     
-    mockImport('fs/promises', {
+    mockImport('node:fs/promises', {
         access,
     });
     
@@ -43,7 +43,7 @@ test('madrun: init: createMadrun: writeFile', async (t) => {
     const access = stub().throws(Error('xxx'));
     const writeFile = stub();
     
-    mockImport('fs/promises', {
+    mockImport('node:fs/promises', {
         access,
         writeFile,
     });
@@ -83,7 +83,7 @@ test('madrun: init: createMadrun: writeFile: no scripts', async (t) => {
     const access = stub().throws(Error('xxx'));
     const writeFile = stub();
     
-    mockImport('fs/promises', {
+    mockImport('node:fs/promises', {
         access,
         writeFile,
     });
@@ -125,7 +125,7 @@ test('madrun: init: patchPackage: import error: writeFile', async (t) => {
     const writeFile = stub();
     const madrunFile = join(__dirname, 'fixture', 'madrun.mjs');
     
-    mockImport('fs/promises', {
+    mockImport('node:fs/promises', {
         writeFile,
     });
     
