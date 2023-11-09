@@ -1,3 +1,9 @@
+2023.11.09, v9.4.1
+
+feature:
+- fa8bb68 madrun: putout v33.0.0
+- 082fe61 madrun: eslint-plugin-putout v21.0.1
+
 2023.09.14, v9.4.0
 
 feature:
