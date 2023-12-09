@@ -51,7 +51,7 @@
   "homepage": "https://github.com/coderaiser/madrun",
   "license": "MIT",
   "engines": {
-    "node": ">=16"
+    "node": ">=18"
   },
   "dependencies": {
     "@putout/formatter-dump": "^4.0.0",
