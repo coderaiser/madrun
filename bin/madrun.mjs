@@ -101,9 +101,8 @@ if (problems) {
     exit(1);
 }
 
-if (!names.length) {
+if (!names.length)
     names = await choose(scripts);
-}
 
 if (!names.length)
     exit();
