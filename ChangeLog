@@ -2,7 +2,7 @@
 
 feature:
 - 3222754 madrun: eslint-plugin-putout v22.3.0
-- ede4dad madrun: c8 v9.1.0
+- edge4dad madrun: c8 v9.1.0
 - 57f7b7a madrun: mock-import v4.0.2
 - 1a91317 madrun: supertape v9.5.0
 - d523038 madrun: putout v35.0.0

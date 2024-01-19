@@ -67,7 +67,7 @@ test('madrun: init: createMadrun: writeFile', async (t) => {
         } = require('madrun');
         
         module.exports = {
-        \"x\": \"hello\"
+        "x": "hello"
         };
     `;
     
