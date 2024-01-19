@@ -1,3 +1,14 @@
+2024.01.19, v10.0.1
+
+feature:
+- 3222754 madrun: eslint-plugin-putout v22.3.0
+- ede4dad madrun: c8 v9.1.0
+- 57f7b7a madrun: mock-import v4.0.2
+- 1a91317 madrun: supertape v9.5.0
+- d523038 madrun: putout v35.0.0
+- 1c45483 madrun: escover v4.0.0
+- 9bdbf8c madrun: mock-import v3.4.1
+
 2023.12.09, v10.0.0
 
 feature:
