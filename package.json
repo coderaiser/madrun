@@ -73,7 +73,7 @@
     "escover": "^4.0.0",
     "eslint": "^8.0.0",
     "eslint-plugin-n": "^16.0.1",
-    "eslint-plugin-putout": "^21.0.1",
+    "eslint-plugin-putout": "^22.3.0",
     "mock-import": "^4.0.2",
     "mock-require": "^3.0.3",
     "nodemon": "^3.0.1",
