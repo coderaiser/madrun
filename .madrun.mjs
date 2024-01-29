@@ -5,7 +5,7 @@ import {
 
 const noop = () => {};
 
-const NODE_OPTIONS = `'--loader mock-import --no-warnings'`;
+const NODE_OPTIONS = `'--import mock-import/register --no-warnings'`;
 
 const env = {
     SUPERTAPE_PROGRESS_BAR_MIN: 20,
