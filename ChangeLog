@@ -1,3 +1,13 @@
+2024.07.16, v10.1.0
+
+feature:
+- 2b73d5e madrun: find-up v7.0.0
+- 4914a09 madrun: eslint v9.7.0
+- 12b1a56 madrun: @putout/formatter-dump v5.0.0
+- 1b4748f madrun: c8 v10.1.2
+- 4755c8c madrun: putout v36.0.0
+- 125f774 madrun: supertape v10.0.0
+
 2024.01.19, v10.0.1
 
 feature:
