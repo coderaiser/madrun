@@ -3,7 +3,7 @@
 import {createRequire} from 'node:module';
 import {dirname, basename} from 'node:path';
 import process from 'node:process';
-import findUp from 'find-up';
+import {findUpSync} from 'find-up';
 import tryToCatch from 'try-to-catch';
 import yargsParser from 'yargs-parser';
 import {series} from '../lib/madrun.js';
@@ -153,7 +153,7 @@ function getOptions(args) {
 async function getScript() {
     const {pathToFileURL} = require('node:url');
     const supported = require('../supported.json');
-    const path = findUp.sync(supported);
+    const path = findUpSync(supported);
     
     if (!path) {
         console.error('file ".madrun.js" not found!');
