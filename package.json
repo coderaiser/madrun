@@ -54,7 +54,7 @@
     "node": ">=18"
   },
   "dependencies": {
-    "@putout/formatter-dump": "^4.0.0",
+    "@putout/formatter-dump": "^5.0.0",
     "all-object-keys": "^2.0.0",
     "enquirer": "^2.3.6",
     "find-up": "^5.0.0",
