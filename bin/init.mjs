@@ -1,9 +1,6 @@
 import {createRequire} from 'node:module';
 import {join} from 'node:path';
-import {
-    writeFile,
-    access,
-} from 'node:fs/promises';
+import {writeFile, access} from 'node:fs/promises';
 import tryToCatch from 'try-to-catch';
 import montag from 'montag';
 

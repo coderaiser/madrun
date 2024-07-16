@@ -132,10 +132,7 @@ npm i madrun -D
 Let's create file `.madrun.js`:
 
 ```js
-import {
-    run,
-    cutEnv,
-} from 'madrun';
+import {run, cutEnv} from 'madrun';
 
 const env = {
     CI: 1,

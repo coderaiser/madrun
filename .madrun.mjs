@@ -1,7 +1,4 @@
-import {
-    run,
-    cutEnv,
-} from './lib/madrun.js';
+import {run, cutEnv} from './lib/madrun.js';
 
 const noop = () => {};
 

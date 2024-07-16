@@ -2,9 +2,9 @@
 
 'use strict';
 
-const process = require('process');
-const fs = require('fs');
-const path = require('path');
+const process = require('node:process');
+const fs = require('node:fs');
+const path = require('node:path');
 
 const filename = path.join(__dirname, '..', 'shell/redrun-completion.sh');
 const read = fs.createReadStream(filename);

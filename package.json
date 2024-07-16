@@ -72,7 +72,6 @@
     "c8": "^10.1.2",
     "escover": "^4.0.0",
     "eslint": "^9.7.0",
-    "eslint-plugin-n": "^16.0.1",
     "eslint-plugin-putout": "^22.3.0",
     "mock-import": "^4.0.2",
     "mock-require": "^3.0.3",

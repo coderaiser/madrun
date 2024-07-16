@@ -1,14 +1,11 @@
 #!/usr/bin/env node
 
 import {createRequire} from 'node:module';
-import {
-    dirname,
-    basename,
-} from 'node:path';
+import {dirname, basename} from 'node:path';
+import process from 'node:process';
 import findUp from 'find-up';
 import tryToCatch from 'try-to-catch';
 import yargsParser from 'yargs-parser';
-import process from 'node:process';
 import {series} from '../lib/madrun.js';
 import check from '../lib/check.js';
 import {choose} from '../lib/choose.mjs';
@@ -132,7 +129,7 @@ function getOutput({cmd, cwd}) {
 }
 
 async function execute(cmd) {
-    const {execSync} = await import('child_process');
+    const {execSync} = await import('node:child_process');
     const tryCatch = (await import('try-catch')).default;
     
     const [error] = tryCatch(execSync, cmd, {
@@ -154,7 +151,7 @@ function getOptions(args) {
 }
 
 async function getScript() {
-    const {pathToFileURL} = require('url');
+    const {pathToFileURL} = require('node:url');
     const supported = require('../supported.json');
     const path = findUp.sync(supported);
     
@@ -175,7 +172,7 @@ async function getScript() {
 async function putoutMadrun(dir, {fix}) {
     const name = `${dir}/.madrun.js`;
     const {runPutout} = await import('../lib/fix.mjs');
-    const {readFile, writeFile} = await import('fs/promises');
+    const {readFile, writeFile} = await import('node:fs/promises');
     const data = await readFile(name, 'utf8');
     const {places, code} = await runPutout(data);
     
