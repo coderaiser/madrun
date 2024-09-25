@@ -58,6 +58,10 @@ function updatePackage(scripts) {
     const result = {};
     
     for (const key of keys(scripts)) {
+        if (key.startsWith('pre'))
+            continue;
+        
+        console.log('xxxx', key);
         result[key] = `madrun ${key}`;
     }
     
