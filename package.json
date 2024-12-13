@@ -20,7 +20,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/coderaiser/madrun.git"
+    "url": "git+https://github.com/coderaiser/madrun.git"
   },
   "bin": {
     "madrun": "bin/madrun.mjs",
