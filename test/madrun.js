@@ -3,14 +3,14 @@
 const {test, stub} = require('supertape');
 const tryToCatch = require('try-to-catch');
 
+const {reRequire} = require('mock-require');
+
 const {
     run,
     series,
     parallel,
     cutEnv,
 } = require('..');
-
-const {reRequire} = require('mock-require');
 
 test('madrun: run', async (t) => {
     const lint = 'eslint lib';
