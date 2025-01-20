@@ -40,9 +40,7 @@
     "parallel",
     "serial",
     "run",
-    "tool",
-    "commandline",
-    "command"
+    "commandline"
   ],
   "author": "coderaiser <mnemonic.enemy@gmail.com> (http://coderaiser.github.io/)",
   "bugs": {
