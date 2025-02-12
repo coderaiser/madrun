@@ -53,7 +53,7 @@
   },
   "dependencies": {
     "@putout/formatter-dump": "^5.0.0",
-    "all-object-keys": "^2.0.0",
+    "all-object-keys": "^3.0.0",
     "enquirer": "^2.3.6",
     "find-up": "^7.0.0",
     "jessy": "^3.0.0",
