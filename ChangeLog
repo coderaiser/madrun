@@ -1,3 +1,11 @@
+2025.03.21, v11.0.0
+
+feature:
+- 7cf0285 madrun: putout v39.0.0
+- 4badf94 madrun: drop support of node < 20
+- 5a33496 madrun: eslint-plugin-putout v25.1.2
+- 214942a madrun: jessy v4.1.0
+
 2025.02.12, v10.2.5
 
 feature:
