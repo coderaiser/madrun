@@ -4,8 +4,5 @@
         "{lib,bin,test}": {
             "madrun": "off"
         }
-    },
-    "rules": {
-        "github/set-node-versions": "off"
     }
 }
