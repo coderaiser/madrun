@@ -1,3 +1,10 @@
+2025.04.08, v11.0.1
+
+feature:
+- e92303e madrun: supertape v11.1.0
+- 1cb5268 madrun: putout v40.0.0
+- 554dae8 madrun: eslint-plugin-putout v26.0.2
+
 2025.03.21, v11.0.0
 
 feature:
