@@ -63,7 +63,7 @@
     "putout": "^40.0.0",
     "try-catch": "^3.0.0",
     "try-to-catch": "^3.0.0",
-    "yargs-parser": "^21.0.0"
+    "yargs-parser": "^22.0.0"
   },
   "devDependencies": {
     "@putout/formatter-json": "^2.0.0",
