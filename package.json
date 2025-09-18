@@ -52,7 +52,7 @@
     "node": ">=20"
   },
   "dependencies": {
-    "@putout/formatter-dump": "^5.0.0",
+    "@putout/formatter-dump": "^6.1.0",
     "all-object-keys": "^3.0.0",
     "enquirer": "^2.3.6",
     "find-up": "^7.0.0",
