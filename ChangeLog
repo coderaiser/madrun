@@ -1,3 +1,11 @@
+2025.12.04, v11.0.4
+
+feature:
+- 02f4040 madrun: putout v41.0.0
+- 81d902d madrun: mock-import v5.0.0
+- 688655c madrun: eslint-plugin-putout v29.0.2
+- d1ae8c0 madrun: escover v5.0.1
+
 2025.09.18, v11.0.3
 
 feature:
