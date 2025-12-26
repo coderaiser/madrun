@@ -211,12 +211,12 @@ test('madrun: pre, post: run', async (t) => {
 });
 
 test('madrun: run: .madrun.js not found', async (t) => {
-    global.MADRUN_FINDUP = stub().returns('');
+    globalThis.MADRUN_FINDUP = stub().returns('');
     
     const {run} = reRequire('..');
     const [e] = await tryToCatch(run);
     
-    delete global.MADRUN_FINDUP;
+    delete globalThis.MADRUN_FINDUP;
     
     t.equal(e.message, '.madrun.js is missing!');
     t.end();
