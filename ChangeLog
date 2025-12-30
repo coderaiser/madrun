@@ -1,3 +1,8 @@
+2025.12.30, v11.0.6
+
+fix:
+- 0d0bef7 @putout/engine-reporter: reporter
+
 2025.12.30, v11.0.5
 
 feature:
