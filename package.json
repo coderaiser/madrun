@@ -52,6 +52,7 @@
     "node": ">=20"
   },
   "dependencies": {
+    "@putout/engine-reporter": "^8.0.2",
     "@putout/formatter-dump": "^6.1.0",
     "all-object-keys": "^3.0.0",
     "enquirer": "^2.3.6",
