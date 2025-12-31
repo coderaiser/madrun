@@ -1,3 +1,8 @@
+2025.12.31, v11.0.7
+
+feature:
+- 8e982b4 madrun: try-to-catch v4.0.0
+
 2025.12.30, v11.0.6
 
 fix:
