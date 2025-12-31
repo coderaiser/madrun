@@ -2,7 +2,7 @@ import {dirname, join} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {test, stub} from 'supertape';
 import montag from 'montag';
-import tryToCatch from 'try-to-catch';
+import {tryToCatch} from 'try-to-catch';
 import {createMockImport} from 'mock-import';
 
 const __filename = fileURLToPath(import.meta.url);

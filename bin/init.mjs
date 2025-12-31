@@ -1,7 +1,7 @@
 import {createRequire} from 'node:module';
 import {join} from 'node:path';
 import {writeFile, access} from 'node:fs/promises';
-import tryToCatch from 'try-to-catch';
+import {tryToCatch} from 'try-to-catch';
 import montag from 'montag';
 
 const require = createRequire(import.meta.url);

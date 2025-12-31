@@ -4,7 +4,7 @@ import {createRequire} from 'node:module';
 import {dirname, basename} from 'node:path';
 import process from 'node:process';
 import {findUpSync} from 'find-up';
-import tryToCatch from 'try-to-catch';
+import {tryToCatch} from 'try-to-catch';
 import yargsParser from 'yargs-parser';
 import {series} from '../lib/madrun.js';
 import check from '../lib/check.js';
