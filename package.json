@@ -49,7 +49,7 @@
   "homepage": "https://github.com/coderaiser/madrun",
   "license": "MIT",
   "engines": {
-    "node": ">=20"
+    "node": ">=22"
   },
   "dependencies": {
     "@putout/engine-reporter": "^8.0.2",
