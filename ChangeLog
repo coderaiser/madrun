@@ -1,3 +1,8 @@
+2026.01.04, v12.1.0
+
+feature:
+- 9200d4d madrun: init: exclude post
+
 2025.12.31, v12.0.0
 
 feature:
