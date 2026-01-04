@@ -61,6 +61,9 @@ function updatePackage(scripts) {
         if (key.startsWith('pre') && key !== 'prepare')
             continue;
         
+        if (key.startsWith('post'))
+            continue;
+        
         result[key] = `madrun ${key}`;
     }
     

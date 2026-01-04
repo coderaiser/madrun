@@ -172,3 +172,32 @@ test('madrun: init: patchPackage: avoid pre', async (t) => {
     t.calledWith(writeFile, expected);
     t.end();
 });
+
+test('madrun: init: patchPackage: avoid post', async (t) => {
+    const writeFile = stub();
+    const madrunFile = join(__dirname, 'fixture', 'madrun.mjs');
+    
+    mockImport('node:fs/promises', {
+        writeFile,
+    });
+    
+    const {patchPackage} = await reImport('./init.mjs');
+    
+    await patchPackage(madrunFile, {
+        hello: 'world',
+    });
+    
+    const content = stringify({
+        hello: 'world',
+        scripts: {
+            test: 'madrun test',
+        },
+    }, null, 2) + '\n';
+    
+    stopAll();
+    
+    const expected = ['./package.json', content];
+    
+    t.calledWith(writeFile, expected);
+    t.end();
+});
