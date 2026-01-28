@@ -130,7 +130,7 @@ function getOutput({cmd, cwd}) {
 
 async function execute(cmd) {
     const {execSync} = await import('node:child_process');
-    const tryCatch = (await import('try-catch')).default;
+    const {tryCatch} = await import('try-catch');
     
     const [error] = tryCatch(execSync, cmd, {
         stdio: [0, 1, 2],
