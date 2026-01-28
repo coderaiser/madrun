@@ -1,3 +1,8 @@
+2026.01.28, v12.1.2
+
+fix:
+- 7e8ee44 madrun: try-catch
+
 2026.01.28, v12.1.1
 
 feature:
