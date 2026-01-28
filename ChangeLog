@@ -1,3 +1,10 @@
+2026.01.28, v12.1.1
+
+feature:
+- f8abe3c madrun: eslint-plugin-putout v30.0.1
+- 88516f9 madrun: jessy v5.0.0
+- 6f34428 madrun: supertape v12.0.0
+
 2026.01.04, v12.1.0
 
 feature:
