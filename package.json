@@ -3,7 +3,7 @@
   "version": "12.1.3",
   "description": "CLI tool to run multiple npm-scripts in a madly comfortable way",
   "main": "lib/madrun.js",
-  "type": "commonjs",
+  "type": "module",
   "scripts": {
     "lint": "madrun lint",
     "fresh:lint": "madrun fresh:lint",
@@ -23,7 +23,7 @@
     "url": "git+https://github.com/coderaiser/madrun.git"
   },
   "bin": {
-    "madrun": "bin/madrun.mjs",
+    "madrun": "bin/madrun.js",
     "madrun-completion": "bin/madrun-completion.js"
   },
   "keywords": [
@@ -73,6 +73,7 @@
     "eslint": "^10.0.0",
     "eslint-plugin-putout": "^31.0.0",
     "nodemon": "^3.0.1",
+    "redlint": "^6.0.0",
     "runsome": "^1.0.0",
     "supertape": "^12.0.0"
   },

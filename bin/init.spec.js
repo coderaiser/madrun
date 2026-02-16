@@ -3,7 +3,7 @@ import {fileURLToPath} from 'node:url';
 import {test, stub} from 'supertape';
 import montag from 'montag';
 import {tryToCatch} from 'try-to-catch';
-import {createMadrun, patchPackage} from './init.mjs';
+import {createMadrun, patchPackage} from './init.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);

@@ -1,14 +1,11 @@
-'use strict';
-
-const {test, stub} = require('supertape');
-const {tryToCatch} = require('try-to-catch');
-
-const {
+import {test, stub} from 'supertape';
+import {tryToCatch} from 'try-to-catch';
+import {
     run,
     series,
     parallel,
     cutEnv,
-} = require('..');
+} from '../lib/madrun.js';
 
 test('madrun: run', async (t) => {
     const lint = 'eslint lib';
@@ -311,7 +308,7 @@ test('madrun: cutEnv: env: array', async (t) => {
 });
 
 test('madrun: cutEnv: no scripts', async (t) => {
-    const madrun = await import('../.madrun.mjs');
+    const madrun = await import('../.madrun.js');
     const {test} = madrun.default;
     const result = await cutEnv('test');
     const [, expected] = await test();

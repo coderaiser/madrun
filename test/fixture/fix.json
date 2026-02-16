@@ -1,4 +1,4 @@
 {
-    "code": "\n        module.exports = {\n            'hello': () => 'world'\n        };\n    ",
-    "places": "{\n    \"errors\": [\n        {\n            \"name\": \".madrun.js\",\n            \"places\": [\n                {\n                    \"rule\": \"madrun/add-function\",\n                    \"message\": \"function should be used instead of string in script \\\"hello\",\n                    \"position\": {\n                        \"line\": 3,\n                        \"column\": 21\n                    }\n                }\n            ]\n        }\n    ],\n    \"filesCount\": 1,\n    \"errorsCount\": 1\n}\n"
+    "code": "module.exports = {\n    'hello': () => 'world',\n};\n",
+    "places": "{\n    \"errors\": [\n        {\n            \"name\": \".madrun.js\",\n            \"places\": [\n                {\n                    \"rule\": \"madrun/add-function\",\n                    \"message\": \"Use 'function' instead of 'string' in script: 'hello'\",\n                    \"position\": {\n                        \"line\": 3,\n                        \"column\": 22\n                    }\n                }\n            ]\n        }\n    ],\n    \"filesCount\": 1,\n    \"errorsCount\": 1\n}\n"
 }

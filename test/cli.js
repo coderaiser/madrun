@@ -1,14 +1,12 @@
-'use strict';
+import {test} from 'supertape';
+import runsome from 'runsome';
+import packageJson from '../package.json' with {
+    type: 'json',
+};
+import {help} from '../lib/help.js';
 
-const {join} = require('node:path');
-
-const {test} = require('supertape');
-const runsome = require('runsome');
-
-const {version} = require('../package');
-const {help} = require('../lib/help');
-
-const cliPath = join(__dirname, '../bin/madrun.mjs');
+const {version} = packageJson;
+const cliPath = new URL('../bin/madrun.js', import.meta.url).pathname;
 const run = runsome(cliPath);
 
 test('madrun: cli: -v', (t) => {

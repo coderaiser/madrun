@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-
 import {createRequire} from 'node:module';
 import {dirname, basename} from 'node:path';
 import process from 'node:process';
@@ -8,7 +7,7 @@ import {tryToCatch} from 'try-to-catch';
 import yargsParser from 'yargs-parser';
 import {series} from '../lib/madrun.js';
 import check from '../lib/check.js';
-import {choose} from '../lib/choose.mjs';
+import {choose} from '../lib/choose.js';
 
 const require = createRequire(import.meta.url);
 
@@ -55,7 +54,7 @@ if (version) {
 }
 
 if (init) {
-    const {createMadrun, patchPackage} = await import('./init.mjs');
+    const {createMadrun, patchPackage} = await import('./init.js');
     
     fix = true;
     
@@ -171,7 +170,7 @@ async function getScript() {
 
 async function putoutMadrun(dir, {fix}) {
     const name = `${dir}/.madrun.js`;
-    const {runPutout} = await import('../lib/fix.mjs');
+    const {runPutout} = await import('../lib/fix.js');
     const {readFile, writeFile} = await import('node:fs/promises');
     const data = await readFile(name, 'utf8');
     const {places, code} = await runPutout(data);

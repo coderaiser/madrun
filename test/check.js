@@ -1,7 +1,5 @@
-'use strict';
-
-const {test} = require('supertape');
-const check = require('../lib/check');
+import {test} from 'supertape';
+import check from '../lib/check.js';
 
 const noop = () => {};
 
