@@ -1,13 +1,11 @@
+import {defineEnv} from 'supertape/env';
 import {run, cutEnv} from './lib/madrun.js';
 
 const noop = () => {};
 
-const NODE_OPTIONS = `'--import mock-import/register --no-warnings'`;
-
-const env = {
-    SUPERTAPE_PROGRESS_BAR_MIN: 20,
-    NODE_OPTIONS,
-};
+const env = defineEnv({
+    progressBarMin: 20,
+});
 
 export default {
     'lint': () => 'putout .',
@@ -20,8 +18,7 @@ export default {
     'watch:tape': () => 'nodemon -w test -w lib --exec tape',
     'watch:lint': async () => await run('watcher', await run('lint')),
     'watcher': () => 'nodemon -w test -w lib -w bin --exec',
-    'coverage': async () => `escover ${await run('test:only')}`,
-    'coverage:old': async () => [`c8 ${await run('test:only')}`, env],
+    'coverage': async () => [`c8 ${await run('test:only')}`, env],
     'report': () => 'c8 report --reporter=lcov',
     'postpublish': () => 'npm i -g',
     'hello': noop,

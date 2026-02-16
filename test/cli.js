@@ -2,7 +2,7 @@
 
 const {join} = require('node:path');
 
-const test = require('supertape');
+const {test} = require('supertape');
 const runsome = require('runsome');
 
 const {version} = require('../package');

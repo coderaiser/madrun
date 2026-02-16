@@ -3,31 +3,19 @@ import {fileURLToPath} from 'node:url';
 import {test, stub} from 'supertape';
 import montag from 'montag';
 import {tryToCatch} from 'try-to-catch';
-import {createMockImport} from 'mock-import';
+import {createMadrun, patchPackage} from './init.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-
-const {
-    mockImport,
-    reImport,
-    stopAll,
-} = createMockImport(import.meta.url);
 
 const {stringify} = JSON;
 
 test('madrun: init: createMadrun: found', async (t) => {
     const access = stub();
-    
-    mockImport('node:fs/promises', {
+    const cwd = '/hello';
+    const name = await createMadrun(cwd, null, {
         access,
     });
-    
-    const {createMadrun} = await reImport('./init.mjs');
-    const cwd = '/hello';
-    const name = await createMadrun(cwd);
-    
-    stopAll();
     
     t.equal(name, '/hello/.madrun.js');
     t.end();
@@ -37,18 +25,16 @@ test('madrun: init: createMadrun: writeFile', async (t) => {
     const access = stub().throws(Error('xxx'));
     const writeFile = stub();
     
-    mockImport('node:fs/promises', {
-        access,
-        writeFile,
-    });
-    
-    const {createMadrun} = await reImport('./init.mjs');
     const cwd = '/hello';
-    
-    await createMadrun(cwd, {
+    const info = {
         scripts: {
             x: 'hello',
         },
+    };
+    
+    await createMadrun(cwd, info, {
+        writeFile,
+        access,
     });
     
     const code = montag`
@@ -67,8 +53,6 @@ test('madrun: init: createMadrun: writeFile', async (t) => {
     
     const expected = ['/hello/.madrun.js', code];
     
-    stopAll();
-    
     t.calledWith(writeFile, expected);
     t.end();
 });
@@ -77,15 +61,12 @@ test('madrun: init: createMadrun: writeFile: no scripts', async (t) => {
     const access = stub().throws(Error('xxx'));
     const writeFile = stub();
     
-    mockImport('node:fs/promises', {
+    const cwd = '/hello';
+    
+    await createMadrun(cwd, {}, {
         access,
         writeFile,
     });
-    
-    const {createMadrun} = await reImport('./init.mjs');
-    const cwd = '/hello';
-    
-    await createMadrun(cwd, {});
     
     const code = montag`
         'use strict';
@@ -101,14 +82,11 @@ test('madrun: init: createMadrun: writeFile: no scripts', async (t) => {
     
     const expected = ['/hello/.madrun.js', code];
     
-    stopAll();
-    
     t.calledWith(writeFile, expected);
     t.end();
 });
 
 test('madrun: init: patchPackage: import error', async (t) => {
-    const {patchPackage} = await reImport('./init.mjs');
     const [error] = await tryToCatch(patchPackage, 'xxx');
     
     t.match(error.message, RegExp(`Cannot find package 'xxx'`));
@@ -118,15 +96,12 @@ test('madrun: init: patchPackage: import error', async (t) => {
 test('madrun: init: patchPackage: import error: writeFile', async (t) => {
     const writeFile = stub();
     const madrunFile = join(__dirname, 'fixture', 'madrun.mjs');
-    
-    mockImport('node:fs/promises', {
-        writeFile,
-    });
-    
-    const {patchPackage} = await reImport('./init.mjs');
-    
-    await patchPackage(madrunFile, {
+    const info = {
         hello: 'world',
+    };
+    
+    await patchPackage(madrunFile, info, {
+        writeFile,
     });
     
     const content = stringify({
@@ -135,8 +110,6 @@ test('madrun: init: patchPackage: import error: writeFile', async (t) => {
             test: 'madrun test',
         },
     }, null, 2) + '\n';
-    
-    stopAll();
     
     const expected = ['./package.json', content];
     
@@ -148,14 +121,12 @@ test('madrun: init: patchPackage: avoid pre', async (t) => {
     const writeFile = stub();
     const madrunFile = join(__dirname, 'fixture', 'madrun.mjs');
     
-    mockImport('node:fs/promises', {
-        writeFile,
-    });
-    
-    const {patchPackage} = await reImport('./init.mjs');
-    
-    await patchPackage(madrunFile, {
+    const info = {
         hello: 'world',
+    };
+    
+    await patchPackage(madrunFile, info, {
+        writeFile,
     });
     
     const content = stringify({
@@ -164,8 +135,6 @@ test('madrun: init: patchPackage: avoid pre', async (t) => {
             test: 'madrun test',
         },
     }, null, 2) + '\n';
-    
-    stopAll();
     
     const expected = ['./package.json', content];
     
@@ -176,15 +145,12 @@ test('madrun: init: patchPackage: avoid pre', async (t) => {
 test('madrun: init: patchPackage: avoid post', async (t) => {
     const writeFile = stub();
     const madrunFile = join(__dirname, 'fixture', 'madrun.mjs');
-    
-    mockImport('node:fs/promises', {
-        writeFile,
-    });
-    
-    const {patchPackage} = await reImport('./init.mjs');
-    
-    await patchPackage(madrunFile, {
+    const info = {
         hello: 'world',
+    };
+    
+    await patchPackage(madrunFile, info, {
+        writeFile,
     });
     
     const content = stringify({
@@ -193,8 +159,6 @@ test('madrun: init: patchPackage: avoid post', async (t) => {
             test: 'madrun test',
         },
     }, null, 2) + '\n';
-    
-    stopAll();
     
     const expected = ['./package.json', content];
     

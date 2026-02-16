@@ -1,6 +1,9 @@
 import {createRequire} from 'node:module';
 import {join} from 'node:path';
-import {writeFile, access} from 'node:fs/promises';
+import {
+    writeFile as _writeFile,
+    access as _access,
+} from 'node:fs/promises';
 import {tryToCatch} from 'try-to-catch';
 import montag from 'montag';
 
@@ -11,8 +14,14 @@ const {keys} = Object;
 
 const {stringify} = JSON;
 
-export const createMadrun = async (cwd, info) => {
-    let name = await findMadrun(cwd);
+export const createMadrun = async (cwd, info = {}, overrides = {}) => {
+    const {
+        access = _access,
+        writeFile = _writeFile,
+    } = overrides;
+    let name = await findMadrun(cwd, {
+        access,
+    });
     
     if (!name) {
         const {scripts = {}} = info;
@@ -36,7 +45,11 @@ export const createMadrun = async (cwd, info) => {
     return name;
 };
 
-export const patchPackage = async (name, info) => {
+export const patchPackage = async (name, info, overrides = {}) => {
+    const {
+        writeFile = _writeFile,
+    } = overrides;
+    
     const {default: content} = await import(name);
     
     const updatedScripts = updatePackage(content);
@@ -72,7 +85,7 @@ function updatePackage(scripts) {
 
 const joinPartial = (a) => (b) => join(a, b);
 
-async function findMadrun(cwd) {
+async function findMadrun(cwd, {access}) {
     const madrunNames = supported.map(joinPartial(cwd));
     
     for (const name of madrunNames) {

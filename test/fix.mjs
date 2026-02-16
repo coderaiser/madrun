@@ -9,7 +9,11 @@ const {
 } = createMockImport(import.meta.url);
 
 test('madrun: fix', async (t) => {
-    const fixture = await import('./fixture/fix.json');
+    const fixture = await import('./fixture/fix.json', {
+        with: {
+            type: 'json',
+        },
+    });
     
     const options = {
         fixCount: 1,

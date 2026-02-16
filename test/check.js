@@ -1,6 +1,6 @@
 'use strict';
 
-const test = require('supertape');
+const {test} = require('supertape');
 const check = require('../lib/check');
 
 const noop = () => {};
