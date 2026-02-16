@@ -3,7 +3,6 @@
     "check-coverage": false,
     "all": true,
     "exclude": [
-        "**/bin",
         "**/*.spec.*",
         "**/fixture",
         "**/*.config.*",

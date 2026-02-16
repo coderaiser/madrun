@@ -3,8 +3,6 @@
 const {test, stub} = require('supertape');
 const {tryToCatch} = require('try-to-catch');
 
-const {reRequire} = require('mock-require');
-
 const {
     run,
     series,
@@ -213,7 +211,6 @@ test('madrun: pre, post: run', async (t) => {
 test('madrun: run: .madrun.js not found', async (t) => {
     globalThis.MADRUN_FINDUP = stub().returns('');
     
-    const {run} = reRequire('..');
     const [e] = await tryToCatch(run);
     
     delete globalThis.MADRUN_FINDUP;
