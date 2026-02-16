@@ -16,7 +16,8 @@
     "watcher": "madrun watcher",
     "coverage": "madrun coverage",
     "report": "madrun report",
-    "hello": "madrun hello"
+    "hello": "madrun hello",
+    "prepare": "madrun prepare"
   },
   "repository": {
     "type": "git",

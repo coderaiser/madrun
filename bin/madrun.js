@@ -115,6 +115,7 @@ console.log(getOutput({
     cmd,
     cwd,
 }));
+
 await execute(cmd);
 
 function getOutput({cmd, cwd}) {
