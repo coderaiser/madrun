@@ -1,3 +1,12 @@
+2026.02.16, v13.0.0
+
+feature:
+- 4b94e02 madrun: migrate to ESM
+- d525e67 madrun: get rid of mock-import
+- 72f6236 madrun: eslint-plugin-putout v31.0.0
+- d1f1eec madrun: putout v42.0.0
+- f81fcbb madrun: eslint v10.0.0
+
 2026.01.28, v12.1.3
 
 fix:
