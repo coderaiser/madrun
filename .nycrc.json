@@ -5,11 +5,11 @@
         "**/*.spec.*",
         "**/fixture",
         "**/*.config.*",
-        ".*",
-        "test",
         "**/bin/madrun-completion.js",
         "**/bin/madrun.js",
-        "**/choose.js"
+        "**/choose.js",
+        ".*",
+        "test"
     ],
     "branches": 100,
     "lines": 100,
