@@ -3,11 +3,11 @@
     "all": true,
     "exclude": [
         "**/*.spec.*",
-        "**/fixture",
         "**/*.config.*",
         "**/bin/madrun-completion.js",
         "**/bin/madrun.js",
         "**/choose.js",
+        "**/fixture",
         ".*",
         "test"
     ],
