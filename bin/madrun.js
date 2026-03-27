@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 import {createRequire} from 'node:module';
 import {dirname, basename} from 'node:path';
 import process from 'node:process';

@@ -13,6 +13,7 @@ const {stringify} = JSON;
 test('madrun: init: createMadrun: found', async (t) => {
     const access = stub();
     const cwd = '/hello';
+    
     const name = await createMadrun(cwd, null, {
         access,
     });
@@ -96,6 +97,7 @@ test('madrun: init: patchPackage: import error', async (t) => {
 test('madrun: init: patchPackage: import error: writeFile', async (t) => {
     const writeFile = stub();
     const madrunFile = join(__dirname, 'fixture', 'madrun.mjs');
+    
     const info = {
         hello: 'world',
     };
@@ -109,7 +111,8 @@ test('madrun: init: patchPackage: import error: writeFile', async (t) => {
         scripts: {
             test: 'madrun test',
         },
-    }, null, 2) + '\n';
+    }, null, 2) +
+        '\n';
     
     const expected = ['./package.json', content];
     
@@ -134,7 +137,8 @@ test('madrun: init: patchPackage: avoid pre', async (t) => {
         scripts: {
             test: 'madrun test',
         },
-    }, null, 2) + '\n';
+    }, null, 2) +
+        '\n';
     
     const expected = ['./package.json', content];
     
@@ -145,6 +149,7 @@ test('madrun: init: patchPackage: avoid pre', async (t) => {
 test('madrun: init: patchPackage: avoid post', async (t) => {
     const writeFile = stub();
     const madrunFile = join(__dirname, 'fixture', 'madrun.mjs');
+    
     const info = {
         hello: 'world',
     };
@@ -158,7 +163,8 @@ test('madrun: init: patchPackage: avoid post', async (t) => {
         scripts: {
             test: 'madrun test',
         },
-    }, null, 2) + '\n';
+    }, null, 2) +
+        '\n';
     
     const expected = ['./package.json', content];
     
