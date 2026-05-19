@@ -5,7 +5,7 @@ import {
     access as _access,
 } from 'node:fs/promises';
 import {tryToCatch} from 'try-to-catch';
-import montag from 'montag';
+import {montag} from 'montag';
 
 const require = createRequire(import.meta.url);
 

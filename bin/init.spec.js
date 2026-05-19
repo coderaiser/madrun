@@ -1,7 +1,7 @@
 import {dirname, join} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {test, stub} from 'supertape';
-import montag from 'montag';
+import {montag} from 'montag';
 import {tryToCatch} from 'try-to-catch';
 import {createMadrun, patchPackage} from './init.js';
 
