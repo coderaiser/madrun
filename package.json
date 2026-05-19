@@ -76,7 +76,7 @@
     "redlint": "^6.0.0",
     "runsome": "^1.0.0",
     "superc8": "^12.2.4",
-    "supertape": "^12.0.0"
+    "supertape": "^13.2.0"
   },
   "publishConfig": {
     "access": "public"
