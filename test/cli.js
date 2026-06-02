@@ -1,5 +1,5 @@
 import {test} from 'supertape';
-import runsome from 'runsome';
+import {runsome} from 'runsome';
 import packageJson from '../package.json' with {
     type: 'json',
 };
