@@ -134,7 +134,7 @@ async function execute(cmd) {
     const {tryCatch} = await import('try-catch');
     
     const [error] = tryCatch(execSync, cmd, {
-        stdio: [0, 1, 2],
+        stdio: 'inherit',
         cwd: dir,
     });
     
