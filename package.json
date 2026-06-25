@@ -17,7 +17,7 @@
     "coverage": "madrun coverage",
     "report": "madrun report",
     "hello": "madrun hello",
-    "prepare": "node bin/madrun.js prepare"
+    "prepare": "madrun prepare"
   },
   "repository": {
     "type": "git",
