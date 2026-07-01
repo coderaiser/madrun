@@ -4,6 +4,7 @@
     "exclude": [
         "**/*.spec.*",
         "**/*.config.*",
+        "**/*.ts",
         "**/bin/madrun-completion.js",
         "**/bin/madrun.js",
         "**/choose.js",

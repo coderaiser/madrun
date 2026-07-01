@@ -8,11 +8,13 @@ const env = defineEnv({
 });
 
 export default {
+    'wisdom': () => run('lint', 'coverage', 'test:dts'),
     'lint': () => 'putout .',
     'fresh:lint': () => run('lint', '--fresh'),
     'lint:fresh': () => run('lint', '--fresh'),
     'fix:lint': () => run('lint', '--fix'),
     'test': () => [env, `tape 'test/**/*.js' '{lib,bin}/**/*.spec.{js,mjs}'`],
+    'test:dts': () => 'check-dts test/*.ts',
     'watch:test': async () => await run('watcher', await cutEnv('test')),
     'watch:tape': () => 'nodemon -w test -w lib --exec tape',
     'watch:lint': async () => await run('watcher', await run('lint')),
