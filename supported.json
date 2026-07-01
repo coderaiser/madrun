@@ -1,1 +1,6 @@
-[".madrun.js", ".madrun.cjs", ".madrun.mjs"]
+[
+    ".madrun.js",
+    ".madrun.cjs",
+    ".madrun.mjs",
+    ".madrun.ts"
+]
