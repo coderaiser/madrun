@@ -8,7 +8,7 @@ const env = defineEnv({
 });
 
 export default {
-    'wisdom': () => run('lint', 'coverage', 'test:dts'),
+    'wisdom': () => run(['lint', 'coverage', 'test:dts']),
     'lint': () => 'putout .',
     'fresh:lint': () => run('lint', '--fresh'),
     'lint:fresh': () => run('lint', '--fresh'),

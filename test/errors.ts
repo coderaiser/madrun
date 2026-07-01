@@ -1,4 +1,9 @@
-import {run, series, parallel, cutEnv} from '../lib/madrun.js';
+import {
+    run,
+    series,
+    parallel,
+    cutEnv,
+} from '../lib/madrun.js';
 
 // THROWS Argument of type 'number' is not assignable to parameter of type 'string | string[]'
 run(1);

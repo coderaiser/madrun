@@ -1,10 +1,17 @@
-import {run, series, parallel, cutEnv} from '../lib/madrun.js';
+import {
+    run,
+    series,
+    parallel,
+    cutEnv,
+} from '../lib/madrun.js';
 
 // These should all pass type checking
 export const a: Promise<string> = run('test');
 export const b: Promise<string> = run(['lint', 'test']);
 export const c: Promise<string> = run('lint', '--fix');
-export const d: Promise<string> = run('lint', '', {NODE_ENV: 'test'});
+export const d: Promise<string> = run('lint', '', {
+    NODE_ENV: 'test',
+});
 export const e: Promise<string> = run('lint', '', {}, {});
 export const f: Promise<string> = series('test');
 export const g: Promise<string> = series(['lint', 'test']);
